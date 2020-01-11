@@ -1,13 +1,10 @@
-hi
-welcome to auroraOS
-https://github.com/soupy-developer/auroraOS
-this was just a filesystem test but anyways
-mess around
-have fun
-open settings
-check out some themes
+Hi!
+Welcome to auroraOS
+( https://github.com/soupy-developer/auroraOS )
+This was just a file system test
+Mess Around and Have Found
+You can also check out some themes in the Settings
 
-most functions in auroraOS are available through context menus
-just right-click
+- Most functions in auroraOS are avaible through context menus ( Just Right-Click with your mouse )
 
-also the windows 10 theme doesn't work
+- The Windows 10 Theme doesn't work yet
