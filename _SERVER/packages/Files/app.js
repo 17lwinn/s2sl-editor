@@ -34,14 +34,14 @@ var dirBox = document.getElementById(`${package.name}Directory`);
 
 var readDirectory = async function(path) {
   var deletePath;
-  if (path.includes("./")) path = "/";
-  if (!path.includes("/")) path = "/" + path;
+  if (path.includes("./") || path === "/") path = "/home";
+  if (!path.includes("/")) path = "/home/" + path;
   document.getElementById(`${package.name}Folder`).onclick = function() { os.prompt("Please enter the name of the folder you want to create.", "Create Folder", window.name, function(name) { os.filesystem.writeDirectory(path + "/" + name); readDirectory(path); }); };
   document.getElementById(`${package.name}File`).onclick = function() { os.prompt("Please enter the name and extension of the file you want to create.", "Create File", window.name, function(name) { os.filesystem.writeFile(path + "/" + name, ""); readDirectory(path); }); };
   var list = await os.filesystem.readDirectory(path);
   fileList.innerHTML = "";
   dirBox.value = path;
-  if (path !== "/") list.unshift({name: "..", type: "directory", path: path.slice(0, path.lastIndexOf("/"))});
+  if (path !== "/home" || path !== "/home/") list.unshift({name: "..", type: "directory", path: path.slice(0, path.lastIndexOf("/"))});
   list.forEach(item => {
     var html = document.createElement("button");
     html.style = "width:100%;text-align:left;border-radius:0;margin:0;padding:0;padding-left:10px;padding-right:10px;";

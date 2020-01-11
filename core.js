@@ -113,7 +113,7 @@ var os = {
   },
   filesystem: {
     readDirectory: async function(path) {
-      if (path.includes("./")) path = "$$$$";
+      if (path.includes("./") || path === "/") path = "/home";
       path = path.replaceAll("/", "$$$$");
       var raw = await fetch(`/file/read/directory/${path}`);
       var dir = await raw.json();
