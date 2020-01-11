@@ -41,7 +41,7 @@ var readDirectory = async function(path) {
   var list = await os.filesystem.readDirectory(path);
   fileList.innerHTML = "";
   dirBox.value = path;
-  if (path !== "/home" || path !== "/home/") list.unshift({name: "..", type: "directory", path: path.slice(0, path.lastIndexOf("/"))});
+  if (path !== "/home" && path !== "/home/") list.unshift({name: "..", type: "directory", path: path.slice(0, path.lastIndexOf("/"))});
   list.forEach(item => {
     var html = document.createElement("button");
     html.style = "width:100%;text-align:left;border-radius:0;margin:0;padding:0;padding-left:10px;padding-right:10px;";
