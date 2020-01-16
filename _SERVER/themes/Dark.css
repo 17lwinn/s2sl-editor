@@ -26,7 +26,7 @@
   color: white;
 }
 .windowBody {
-  background-color: rgb(50,50,50);
+  background: linear-gradient(0deg, rgb(34,34,34), rgb(52,52,52));
   color: #ebebeb;
 }
 .windowAction {
@@ -48,15 +48,18 @@ input, button, textarea, select {
   background-color: rgba(0,0,0,0.3);
   color: #ebebeb;
   border-radius: 5px;
-  padding: 5px;
-  padding-left: 7px;
-  padding-right: 7px;
+  padding: 7px;
+  padding-left: 9px;
+  padding-right: 9px;
   border: none;
+  font-weight: bold;
+  box-shadow: 0px 0px 6px rgba(0,0,0,0.4);
 }
 
 option {
   background-color: black;
   color: #ebebeb;
+  font-weight: bold;
 }
 button[disabled], input[disabled], textarea[disabled], select[disabled] {
   background: rgba(0,0,0,0.15);
@@ -113,6 +116,6 @@ button:active:after, .checkmark:not(.notAllowed):active:after {
 
 .blur {
   color: rgb(240,240,240);
-  background-color: rgba(0,0,0,0.6);
+  background: rgba(0,0,0,0.6);
   backdrop-filter: blur(20px);
 }
