@@ -1,17 +1,17 @@
 ::-webkit-scrollbar-thumb { background-color: rgba(0,0,0,0.5); border-radius: 5px; }
 
 .fullscreen {
-  background-color: rgb(220,220,220);
+  background-color: rgb(245,245,245);
   color: black;
 }
 
 .dock {
-  background-color: rgb(220,220,220);
+  background-color: rgb(245,245,245);
   color: black;
 }
 
 .contextMenu {
-  background-color: rgb(220,220,220);
+  background-color: rgb(245,245,245);
   color: black;
 }
 .notAllowed {
@@ -22,11 +22,11 @@
 }
 
 .windowTitleBar {
-  background-color: rgb(220,220,220);
+  background-color: rgb(245,245,245);
   color: black;
 }
 .windowBody {
-  background-color: rgb(220,220,220);
+  background-color: rgb(245,245,245);
   color: black;
 }
 .windowAction {
@@ -45,14 +45,16 @@
 .windowAction img:hover { filter: brightness(50%); }
 .windowAction img:active { filter: brightness(70%); }
 
-input, button, textarea, select {
-  background-color: rgba(0,0,0,0.4);
-  color: white;
+input[type="textbox"], button, textarea, select {
+  background-color: rgba(255,255,255,0.4);
+  color: black;
   border-radius: 5px;
-  padding: 5px;
-  padding-left: 7px;
-  padding-right: 7px;
+  padding: 7px;
+  padding-left: 9px;
+  padding-right: 9px;
   border: none;
+  font-weight: bold;
+  box-shadow: 0px 0px 8px rgba(0,0,0,0.4);
 }
 
 #systemButton img {
@@ -67,17 +69,30 @@ button[disabled], input[disabled], textarea[disabled], select[disabled] {
   background: rgba(0,0,0,0.2);
   color: rgba(0,0,0,0.3);
 }
-.chboxContainer input:checked ~ .checkmark { color: white; }
+.chboxContainer input:checked ~ .checkmark { color: black; }
 .checkmark {
-  background-color: rgba(0,0,0,0.4);
+  background-color: rgba(255,255,255,0.4);
   color: transparent;
+  box-shadow: 0px 0px 8px rgba(0,0,0,0.4);
+  padding: 4px;
+  font-weight: bold;
+  padding-left: 8px;
+  padding-right: 8px;
 }
-input[type="range"] { height: 3px; }
+input[type="range"] {
+  height: 4px;
+  background-color: gray;
+  border-radius: 5px;
+  border: none;
+  font-weight: bold;
+  box-shadow: 0px 0px 8px rgba(0,0,0,0.4);
+}
 input[type="range"]::-webkit-slider-thumb {
   width: 20px;
   height: 20px;
   border-radius: 100%;
-  background: white;
+  background-color: rgba(255,255,255,0.7);
+  box-shadow: 0px 0px 8px rgba(0,0,0,0.4);
 }
 input[type="range"]::-webkit-slider-thumb:hover { background: rgb(150,150,150); }
 .menubar {
@@ -118,6 +133,6 @@ button:active:after, .checkmark:not(.notAllowed):active:after {
 
 .blur {
   color: black;
-  background-color: rgba(220,220,220,0.6);
+  background-color: rgba(255,255,255,0.6);
   backdrop-filter: blur(20px);
 }
