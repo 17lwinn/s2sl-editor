@@ -53,7 +53,6 @@ input[type="textbox"], input[type="text"], button, textarea, select {
   padding-left: 9px;
   padding-right: 9px;
   border: none;
-  font-weight: bold;
   box-shadow: 0px 0px 6px rgba(0,0,0,0.4);
 }
 
@@ -64,7 +63,6 @@ input[type="textbox"], input[type="text"], button, textarea, select {
 option {
   background-color: white;
   color: black;
-  font-weight: bold;
 }
 button[disabled], input[disabled], textarea[disabled], select[disabled] {
   background-color: rgba(150,150,150,0.4);
@@ -77,7 +75,6 @@ button[disabled], input[disabled], textarea[disabled], select[disabled] {
   color: transparent;
   box-shadow: 0px 0px 6px rgba(0,0,0,0.4);
   padding: 4px;
-  font-weight: bold;
   padding-left: 8px;
   padding-right: 8px;
 }
@@ -86,7 +83,6 @@ input[type="range"] {
   background-color: gray;
   border-radius: 5px;
   border: none;
-  font-weight: bold;
   box-shadow: 0px 0px 6px rgba(0,0,0,0.4);
 }
 input[type="range"]::-webkit-slider-thumb {
@@ -104,7 +100,6 @@ input[type="range"]::-webkit-slider-thumb:hover { background: rgb(200,200,200); 
 }
 .menubarButton, .menubarObject {
   border-radius: 5px;
-  font-weight: bold;
 }
 .menubarButton:hover, button:hover:not([disabled]), .checkmark:hover:not(.notAllowed), select:hover:not([disabled]), .contextMenuSelection:hover:not(.notAllowed), ::-webkit-scrollbar-thumb:hover { background-color: rgba(175,175,175,0.4); }
 .menubarButton:active, button:active:not([disabled]), .checkmark:active:not(.notAllowed), select:active:not([disabled]), .contextMenuSelection:active:not(.notAllowed), ::-webkit-scrollbar-thumb:active { background-color: rgba(120,120,120,0.4); }
