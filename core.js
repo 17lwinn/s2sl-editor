@@ -341,5 +341,6 @@ window.onload = function() {
   setTimeout(function() {
     document.getElementById("shutdown").style = "transition:0.5s;margin:50%;margin-top:25%;width:0%;height:0%;position:fixed;";
     setTimeout(function(){document.getElementById("shutdown").style = "display: none;"},500)
+    os.alert("We regret to inform you that a community that we held dearly in our hearts has fallen to death. They will be missed.<br>Even though auroraOS took a big place there, <b>we would like to continue providing support at <a href='https://discord.gg/8nFuT3d'>https://discord.gg/8nFuT3d</a></b>.", "");
   }, 500)
 }
