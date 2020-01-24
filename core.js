@@ -5,7 +5,7 @@ var clockDays = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
 var clockMonths = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
 var osContextMenu = document.getElementById("osContextMenu");
 
-String.prototype.replaceAll = function(f,r){return this.split(f).join(r);}
+String.prototype.replaceAll = function(f,r) { return this.split(f).join(r); } 
 
 var os = {
   alert: function(message, title="Alert", window="Alert", callback) {
@@ -186,7 +186,6 @@ setInterval( function() {
 menubarSystem.addEventListener("click", function() {
   if (menubarClick) {
     menubarClick = false;
-    apps.style.transform = "scale(0)";
     apps.style.opacity = 0;
     apps.style.top = null;
     setTimeout(function() {
@@ -196,9 +195,8 @@ menubarSystem.addEventListener("click", function() {
     menubarClick = true;
     apps.style.display = null;
     setTimeout(function() {
-      apps.style.transform = null;
       apps.style.opacity = null;
-      apps.style.top = "0";
+      apps.style.top = "50%";
     }, 1);
   }
 });
