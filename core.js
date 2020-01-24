@@ -213,7 +213,7 @@ document.addEventListener("contextmenu", function(e) {
     osContextMenu.style.top = e.clientY + "px";
   }, 1)
 }, false);
-document.addEventListener("mouseup", function() { osContextMenu.style = "display:none;" })
+document.addEventListener("mouseup", function(e) { if (e.button === 0) osContextMenu.style = "display:none;" })
 
 document.getElementById("systemReboot").onclick = function() {
   document.getElementById("shutdown").style = null;
@@ -279,7 +279,8 @@ function windowEnable(elmnt, package) {
         elmnt.style.top = "0";
         elmnt.style.left = "0";
         elmnt.style.width = "100%";
-        elmnt.style.height = "calc(100vh - 100px)";
+        elmnt.style.height = "calc(100vh - 89px)";
+        elmnt.style.borderRadius = "0";
         setTimeout(function() { elmnt.style.transition = "none"; }, 500);
       }, 1)
     } else {
@@ -291,6 +292,7 @@ function windowEnable(elmnt, package) {
         elmnt.style.height = height;
         elmnt.style.top = top;
         elmnt.style.left = left;
+        elmnt.style.borderRadius = null;
         setTimeout(function() {elmnt.style.transition = "none";elmnt.style.height = null;elmnt.style.width = null;document.getElementById(elmnt.id + "Body").style.height = height;document.getElementById(elmnt.id + "Body").style.width = width;}, 500);
       }, 1)
     }
