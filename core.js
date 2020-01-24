@@ -187,7 +187,7 @@ menubarSystem.addEventListener("click", function() {
   if (menubarClick) {
     menubarClick = false;
     apps.style.opacity = 0;
-    apps.style.top = null;
+    apps.style.bottom = null;
     setTimeout(function() {
       apps.style.display = "none";
     }, 100);
@@ -196,7 +196,7 @@ menubarSystem.addEventListener("click", function() {
     apps.style.display = null;
     setTimeout(function() {
       apps.style.opacity = null;
-      apps.style.top = "50%";
+      apps.style.bottom = "0";
     }, 1);
   }
 });
