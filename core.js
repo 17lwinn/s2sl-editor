@@ -203,6 +203,18 @@ menubarSystem.addEventListener("click", function() {
 
 document.onkeydown = function(e) { if (e.keyCode === 19) { menubarSystem.click(); } }
 
+document.getElementById("appSearch").onkeyup = function() {
+  var div = document.getElementById("appsDisplay").getElementsByTagName("div");
+  for (var i = 0; i < div.length; i++) {
+    var txtValue = div[i].innerText;
+    if (txtValue.toUpperCase().indexOf(document.getElementById("appSearch").value.toUpperCase()) > -1) {
+      div[i].style.display = null;
+    } else {
+      div[i].style.display = "none";
+    }
+  }
+}
+
 document.addEventListener("contextmenu", function(e) {
   if (e.defaultPrevented) return;
   e.preventDefault();
