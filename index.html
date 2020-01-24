@@ -22,9 +22,9 @@
     <div onclick="os.startPackage(os.packages.find(e => e.name === 'Terminal'))" class="contextMenuSelection">Terminal</div>
   </div>
   <div class="dock blur">
-    <div id="systemButton" class="menubarButton"><img src="logo.webp" style="border-radius:0px;transform:scale(1);margin:0;height:35px;width:35px;padding-top:0px;padding:-4px;"></div>
+    <div id="systemButton" class="menubarButton"><img src="logo.webp" style="border-radius:0px;transform:scale(1);margin:-2px;height:30px;width:30px;padding-top:0px;padding:-8px;"></div>
     <container style="margin-left:35px;" id="dockDisplay"></container>
-    <div id="menubarClock" style="font-size:14px;text-align:right;" class="menubarObject"></div>
+    <div id="menubarClock" style="text-align:right;margin:-4px;" class="menubarObject"></div>
   </div>
   <div id="applications" class="fullscreen blur" style="display:none;transform:scale(0);opacity:0;">
     <h1 onclick="os.startPackage(os.packages.find(element => element.name === 'About'))" style="cursor:default;margin-top:-15px;transition:cubic-bezier(.17,.67,0,.83) 0.3s;">auroraOS</h1>
