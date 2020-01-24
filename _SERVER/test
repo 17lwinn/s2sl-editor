@@ -1,3 +1,0 @@
-1
-document.head.innerHTML += "<style>* {background-color: white;}</style>"
- 

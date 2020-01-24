@@ -32,8 +32,8 @@ body.loading, body.loading * { cursor: progress !important; }
   margin-left: 5px;
   margin-right: 5px;
   transition: cubic-bezier(.17,.67,0,.83) 0.3s;
-  height: 50px;
-  width: 50px;
+  height: 40px;
+  width: 40px;
   border-radius: 100%;
 }
 .dock img:hover {
