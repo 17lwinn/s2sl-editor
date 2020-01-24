@@ -27,10 +27,10 @@
     <div id="menubarClock" style="text-align:right;margin:-4px;" class="menubarObject"></div>
   </div>
   <div id="applications" class="fullscreen blur" style="display:none;">
+    <img class="menubarButton" id="systemReboot" src="restart.svg" style="height:40px;width:40px;">
     <h1 onclick="os.startPackage(os.packages.find(element => element.name === 'About'))" style="cursor:default;margin-top:-15px;transition:cubic-bezier(.17,.67,0,.83) 0.3s;">auroraOS</h1>
     <container id="appsDisplay"></container>
     <br>
-    <ui style="margin-left:-12.75%;width:25%;position:fixed;bottom:45px;"><div id="systemShutdown" style="margin-right:15px;"class="menubarButton">Shut down</div><div id="systemReboot" class="menubarButton">Restart</div></ui>
   </div>
 </body>
 

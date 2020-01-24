@@ -215,15 +215,11 @@ document.addEventListener("contextmenu", function(e) {
 }, false);
 document.addEventListener("mouseup", function() { osContextMenu.style = "display:none;" })
 
-document.getElementById("systemShutdown").onclick = function() {
+document.getElementById("systemReboot").onclick = function() {
   document.getElementById("shutdown").style = null;
   setTimeout(function() {
     document.getElementById("shutdown").style = "transition:0.5s;background-color:black;width:100%;height:100%;position:absolute;z-index:256;";
   }, 1)
-}
-
-document.getElementById("systemReboot").onclick = function() {
-  document.getElementById("systemShutdown").click();
   setTimeout(function() { location = location; }, 1000);
 }
 
