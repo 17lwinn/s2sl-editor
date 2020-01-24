@@ -187,14 +187,16 @@ menubarSystem.addEventListener("click", function() {
   if (menubarClick) {
     menubarClick = false;
     apps.style.bottom = null;
+    apps.style.opacity = 0;
     setTimeout(function() {
       apps.style.display = "none";
-    }, 100);
+    }, 200);
   } else {
     menubarClick = true;
     apps.style.display = null;
     setTimeout(function() {
-      apps.style.bottom = "50px";
+      apps.style.bottom = "55px";
+      apps.style.opacity = 1;
     }, 1);
   }
 });
