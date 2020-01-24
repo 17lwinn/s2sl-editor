@@ -10,7 +10,7 @@ a:hover { text-decoration: underline; }
 
 ::-webkit-scrollbar { width: 10px; height: 10px; }
 
-.fullscreen { text-align: center; transition: 0.3s; width: 600px; height: 80%; position: fixed; bottom: -50%; z-index: 253; padding: 75px; margin: 10px; }
+.fullscreen { text-align: center; transition: 0.3s; width: 600px; height: 80%; position: fixed; bottom: -100%; z-index: 253; padding: 75px; margin: 10px; border-radius: 5px; }
 .fullscreen div { text-align: center; display: inline-block; margin: 30px; transition: cubic-bezier(.17,.67,0,.83) 0.3s; }
 .fullscreen div img { height: 80px; width: 80px; }
 .fullscreen div:hover, .fullscreen h1:hover { transform: scale(1.25); }

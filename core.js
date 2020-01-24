@@ -186,7 +186,6 @@ setInterval( function() {
 menubarSystem.addEventListener("click", function() {
   if (menubarClick) {
     menubarClick = false;
-    apps.style.opacity = 0;
     apps.style.bottom = null;
     setTimeout(function() {
       apps.style.display = "none";
@@ -195,11 +194,12 @@ menubarSystem.addEventListener("click", function() {
     menubarClick = true;
     apps.style.display = null;
     setTimeout(function() {
-      apps.style.opacity = null;
-      apps.style.bottom = "0";
+      apps.style.bottom = "50px";
     }, 1);
   }
 });
+
+document.onkeydown = function(e) { if (e.keyCode === 19) { menubarSystem.click(); } }
 
 document.addEventListener("contextmenu", function(e) {
   if (e.defaultPrevented) return;
