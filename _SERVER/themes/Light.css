@@ -21,12 +21,9 @@
   border-top: 1px solid rgba(0,0,0,0.4);
 }
 
-.windowTitleBar {
-  background: transparent;
-  color: white;
-}
+.windowTitleBar { color: black; }
 .window {
-  background: rgba(0,0,0,0.7);
+  background-color: rgba(255,255,255,0.6);
   backdrop-filter: blur(20px);
 }
 .windowBody {

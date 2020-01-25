@@ -21,10 +21,7 @@
   border-top: 1px solid rgba(255,255,255,0.3);
 }
 
-.windowTitleBar {
-  background: transparent;
-  color: white;
-}
+.windowTitleBar { color: white; }
 .window {
   background: rgba(0,0,0,0.7);
   backdrop-filter: blur(20px);
@@ -134,4 +131,4 @@ button:active:after, .checkmark:not(.notAllowed):active:after {
   backdrop-filter: blur(20px);
 }
 
-.windowBody .blur { background: transparent; backdrop-filter: none; }
+.window .blur { background: transparent; backdrop-filter: none; }
