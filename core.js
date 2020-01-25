@@ -80,7 +80,7 @@ var os = {
     document.body.appendChild(script);
     packagee.script = script;
     os.runningPackages[packagee.name] = packagee;
-    packagee.createWindow = function(body) {
+    packagee.createWindow = function(body, options={}) {
       var window = document.createElement("div");
       window.id = packagee.name + "Window" + Math.random().toString();
       window.className += "window";
@@ -91,6 +91,7 @@ var os = {
       setTimeout(function() { Object.values(os.runningPackages).forEach(package => { if (package.windows[0]) package.windows.forEach(window => window.style.zIndex = 1); }); window.style.transition = "none"; window.style.zIndex = 2; }, 200)
       windowEnable(window, packagee);
       if (menubarClick) menubarSystem.click();
+      if (options.resizable) window.resizable = true;
       window.edit = function(body) { window.innerHTML = body.replaceAll(/%package%/, packagee.name).replaceAll(/%window%/, window.id); };
       window.body = document.getElementById(`${window.id}Body`);
       packagee.windows.push(window);
@@ -236,7 +237,6 @@ function windowEnable(elmnt, package) {
   var maximizer = null;
   var maximized = false;
   var minimizer = null;
-  elmnt.minimized = false;
   var width = null;
   var height = null;
   var top = null;
@@ -284,6 +284,7 @@ function windowEnable(elmnt, package) {
       document.getElementById(elmnt.id + "Body").style.width = null;
       elmnt.style.transition = "0.4s";
       $(elmnt).draggable("disable");
+      $(elmnt).resizable("disable");
       setTimeout(function() {
         elmnt.style.top = "0";
         elmnt.style.left = "0";
@@ -295,6 +296,7 @@ function windowEnable(elmnt, package) {
       document.getElementById(elmnt.id + "Body").style.resize = null;
       elmnt.style.transition = "0.4s";
       $(elmnt).draggable("enable");
+      $(elmnt).resizable("enable");
       setTimeout(function() {
         maximized = false;
         elmnt.style.width = width;
@@ -308,14 +310,18 @@ function windowEnable(elmnt, package) {
   if (maximizer) { maximizer.addEventListener("click", maximize); document.getElementById(elmnt.id + "TitleBar").addEventListener("dblclick", maximize); }
   if (minimizer) minimizer.addEventListener("click", minimize);
   $(elmnt).draggable({ handle: document.getElementById(elmnt.id + "TitleBar") });
-  $(elmnt).resizable({handles: "e, s, w"});
+  if (elmnt.resizable) $(elmnt).resizable({ handles: "all" });
 }
 
 document.getElementById("StopAllProcesses").onclick = function() { Object.values(os.runningPackages).forEach(package => { if (package.windows[0]) package.windows.forEach(window => window.close()); }); }
 document.getElementById("MinimizeAllWindows").onclick = function() { Object.values(os.runningPackages).forEach(package => { if (package.windows[0]) package.windows.forEach(window => window.minimize()); }); }
 
 //BEGIN SETTINGS HOOK
-if (window.localStorage.getItem("theme")) os.filesystem.readFile(window.localStorage.getItem("theme")).then(theme => document.getElementById("STYLE_Theme").href = `data:text/css;base64,${theme}`);
+if (window.localStorage.getItem("theme")) {
+  os.filesystem.readFile(window.localStorage.getItem("theme")).then(theme => document.getElementById("STYLE_Theme").href = `data:text/css;base64,${theme}`);
+} else {
+  os.filesystem.readFile("/themes/Dark.css").then(theme => document.getElementById("STYLE_Theme").href = `data:text/css;base64,${theme}`);
+}
 if (window.localStorage.getItem("bgURL")) {
   var bgURLStyle = document.createElement("style");
   bgURLStyle.id = "STYLE_Wallpaper";

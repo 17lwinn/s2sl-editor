@@ -1,7 +1,7 @@
 ;(async function(){
 var package = os.runningPackages[document.currentScript.id];
 var mainWindowRaw = await package.resource("main.html");
-var window = package.createWindow(atob(mainWindowRaw));
+var window = package.createWindow(atob(mainWindowRaw), { resizable: true });
 
 var bodyContextMenu = document.createElement("div");
 bodyContextMenu.id = `${package.name}ContextMenu`;

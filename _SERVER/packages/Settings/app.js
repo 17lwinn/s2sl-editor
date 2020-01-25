@@ -1,7 +1,7 @@
 ;(async function(){
 var package = os.runningPackages[document.currentScript.id];
 var mainWindowRaw = await package.resource("main.html");
-var packageWindow = await package.createWindow(atob(mainWindowRaw));
+var packageWindow = await package.createWindow(atob(mainWindowRaw), { resizable: true });
 
 var fontSize = document.getElementById(`${package.name}FontSize`);
 var bgURL = document.getElementById(`${package.name}WallpaperURL`);
@@ -59,6 +59,6 @@ document.getElementById(`${package.name}Reset`).onclick = function() {
   }, false);
 };
 
-document.getElementById(`${package.name}About`).onclick = function() { package.createWindow(`<div id="%window%TitleBar" class="windowTitleBar blur"><div id="%window%Close" class="windowAction"><img src="close.svg"></div>About auroraOS</div> <div id="%window%Body" class="windowBody blur" style="resize:none;text-align:center;"> <img src="logo.webp" style="float:left;margin-right:15px;"> <h1 style="float:right;margin-top:20px;margin-left:45px;margin-right:45px;">auroraOS</h1> <p><strong>Build</strong> 39</p> <p><strong>Version</strong> 4.0</p> <p>Made with love by <a href="https://discord.gg/8nFuT3d">soup</a></p> </div>`); };
+document.getElementById(`${package.name}About`).onclick = function() { package.createWindow(`<div id="%window%TitleBar" class="windowTitleBar blur"><div id="%window%Close" class="windowAction"><img src="close.svg"></div>About auroraOS</div> <div id="%window%Body" class="windowBody blur" style="text-align:center;"> <img src="logo.webp" style="float:left;margin-right:15px;"> <h1 style="float:right;margin-top:20px;margin-left:45px;margin-right:45px;">auroraOS</h1> <p><strong>Build</strong> 39</p> <p><strong>Version</strong> 4.0</p> <p>Made with love by <a href="https://discord.gg/8nFuT3d">soup</a></p> </div>`); };
   
 })()
