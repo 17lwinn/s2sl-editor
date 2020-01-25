@@ -283,6 +283,7 @@ function windowEnable(elmnt, package) {
       document.getElementById(elmnt.id + "Body").style.height = null;
       document.getElementById(elmnt.id + "Body").style.width = null;
       elmnt.style.transition = "0.4s";
+      $(elmnt).draggable("disable");
       setTimeout(function() {
         elmnt.style.top = "0";
         elmnt.style.left = "0";
@@ -293,6 +294,7 @@ function windowEnable(elmnt, package) {
     } else {
       document.getElementById(elmnt.id + "Body").style.resize = null;
       elmnt.style.transition = "0.4s";
+      $(elmnt).draggable("enable");
       setTimeout(function() {
         maximized = false;
         elmnt.style.width = width;
@@ -305,8 +307,8 @@ function windowEnable(elmnt, package) {
   }
   if (maximizer) { maximizer.addEventListener("click", maximize); document.getElementById(elmnt.id + "TitleBar").addEventListener("dblclick", maximize); }
   if (minimizer) minimizer.addEventListener("click", minimize);
-  console.log(`#${elmnt.id}TitleBar`);
-  $(elmnt).draggable({ handle:`#${elmnt.id}TitleBar` });
+  $(elmnt).draggable({ handle: document.getElementById(elmnt.id + "TitleBar") });
+  $(elmnt).resizable({handles: "e, s, w"});
 }
 
 document.getElementById("StopAllProcesses").onclick = function() { Object.values(os.runningPackages).forEach(package => { if (package.windows[0]) package.windows.forEach(window => window.close()); }); }
