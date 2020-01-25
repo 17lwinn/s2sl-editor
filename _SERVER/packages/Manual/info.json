@@ -1,0 +1,5 @@
+{
+    "name": "Manual",
+    "startOnBoot": false,
+    "isApp": true
+}
