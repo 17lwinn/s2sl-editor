@@ -305,25 +305,8 @@ function windowEnable(elmnt, package) {
   }
   if (maximizer) { maximizer.addEventListener("click", maximize); document.getElementById(elmnt.id + "TitleBar").addEventListener("dblclick", maximize); }
   if (minimizer) minimizer.addEventListener("click", minimize);
-  document.getElementById(elmnt.id + "TitleBar").onmousedown = function(e) {
-    if (maximized == false) {
-      e = e || window.event;
-      pos3 = e.clientX;
-      pos4 = e.clientY;
-      Object.values(os.runningPackages).forEach(package => { if (package.windows[0]) package.windows.forEach(window => window.style.zIndex = 1); });
-      elmnt.style.zIndex = 2;
-      document.onmouseup = function() {document.onmouseup = null; document.onmousemove = null;};
-      document.onmousemove = function(e) {
-        pos1 = pos3 - e.clientX;
-        pos2 = pos4 - e.clientY;
-        pos3 = e.clientX;
-        pos4 = e.clientY;
-        e.preventDefault();
-        elmnt.style.top = (elmnt.offsetTop - pos2) + "px";
-        elmnt.style.left = (elmnt.offsetLeft - pos1) + "px";
-      }
-    }
-  }
+  console.log($(`#${elmnt.id}`).draggable;
+  $(`#${elmnt.id}`).draggable({ handle: `#${elmnt.id}TitleBar` });
 }
 
 document.getElementById("StopAllProcesses").onclick = function() { Object.values(os.runningPackages).forEach(package => { if (package.windows[0]) package.windows.forEach(window => window.close()); }); }
