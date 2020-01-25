@@ -169,14 +169,14 @@ async function loadPackages() {
   os.packages.forEach(async function(package, index) {
     if (package.startOnBoot) os.startPackage(package);
     if (package.isApp) {
-      document.getElementById("appsDisplay").innerHTML += `<div tabindex="0"><img id="${package.name}Start" src="data:image/webp;base64,${icons[index]}"><br>${package.name}</div>`;
+      document.getElementById("appsDisplay").innerHTML += `<div><img id="${package.name}Start" src="data:image/webp;base64,${icons[index]}"><br>${package.name}</div>`;
       package.icon = await icons[index];
-      document.getElementById(`${package.name}Start`).onmousedown = function() { os.startPackage(package); };
+      document.getElementById(`${package.name}Start`).onclick = function() { os.startPackage(package); };
     };
   });
 }; loadPackages();
 
-setInterval( function() {
+setInterval(function() {
 	var date = new Date();
   var minute = date.getMinutes()
   if (minute < 10) minute = "0" + minute;
@@ -204,17 +204,19 @@ menubarSystem.addEventListener("click", function() {
 
 document.onkeydown = function(e) { if (e.keyCode === 19) { menubarSystem.click(); } }
 
+var entered = false;
 document.getElementById("appSearch").onkeyup = function(e) {
   var div = document.getElementById("appsDisplay").getElementsByTagName("div");
   for (var i = 0; i < div.length; i++) {
     var txtValue = div[i].innerText;
     if (txtValue.toUpperCase().indexOf(document.getElementById("appSearch").value.toUpperCase()) > -1) {
       div[i].style.display = null;
+      if (e.keyCode === 13 && entered === false) { entered = true; div[i].getElementsByTagName("img")[0].click(); }
     } else {
       div[i].style.display = "none";
     }
   }
-  if (e.keyCode === 13) div[0].getElementsByTagName("img")[0].click();
+  entered = false;
 }
 
 document.addEventListener("contextmenu", function(e) {
