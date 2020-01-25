@@ -22,12 +22,16 @@
 }
 
 .windowTitleBar {
-  background-color: rgb(245,245,245);
-  color: black;
+  background: transparent;
+  color: white;
+}
+.window {
+  background: rgba(0,0,0,0.7);
+  backdrop-filter: blur(20px);
 }
 .windowBody {
-  background-color: rgb(245,245,245);
-  color: black;
+  background: linear-gradient(0deg, rgb(34,34,34), rgb(52,52,52));
+  color: #ebebeb;
 }
 .windowAction {
   background-color: transparent;
@@ -134,3 +138,5 @@ button:active:after, .checkmark:not(.notAllowed):active:after {
   background-color: rgba(255,255,255,0.6);
   backdrop-filter: blur(20px);
 }
+
+.window .blur { background: transparent; backdrop-filter: none; }
