@@ -305,8 +305,8 @@ function windowEnable(elmnt, package) {
   }
   if (maximizer) { maximizer.addEventListener("click", maximize); document.getElementById(elmnt.id + "TitleBar").addEventListener("dblclick", maximize); }
   if (minimizer) minimizer.addEventListener("click", minimize);
-  $(`#${elmnt.id}`).draggable();
-  $(`#${elmnt.id}`).draggable({ handle: `#${elmnt.id}TitleBar` });
+  console.log(`#${elmnt.id}TitleBar`);
+  $(elmnt).draggable({ handle:`#${elmnt.id}TitleBar` });
 }
 
 document.getElementById("StopAllProcesses").onclick = function() { Object.values(os.runningPackages).forEach(package => { if (package.windows[0]) package.windows.forEach(window => window.close()); }); }
