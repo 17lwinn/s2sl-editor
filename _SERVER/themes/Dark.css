@@ -134,4 +134,4 @@ button:active:after, .checkmark:not(.notAllowed):active:after {
   backdrop-filter: blur(20px);
 }
 
-.windowBody blur { background: transparent; backdrop-filter: none; }
+.window .blur { background: transparent; backdrop-filter: none; }
