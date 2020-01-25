@@ -197,6 +197,7 @@ menubarSystem.addEventListener("click", function() {
     setTimeout(function() {
       apps.style.bottom = "55px";
       apps.style.opacity = 1;
+      document.getElementById("appSearch").focus();
     }, 1);
   }
 });
