@@ -329,7 +329,7 @@ function windowEnable(elmnt, package) {
 document.getElementById("StopAllProcesses").onclick = function() { Object.values(os.runningPackages).forEach(package => { if (package.windows[0]) package.windows.forEach(window => window.close()); }); }
 document.getElementById("MinimizeAllWindows").onclick = function() { Object.values(os.runningPackages).forEach(package => { if (package.windows[0]) package.windows.forEach(window => window.minimize()); }); }
 
-//BEGIN SETTINGS LOAD
+//BEGIN SETTINGS HOOK
 if (window.localStorage.getItem("theme")) os.filesystem.readFile(window.localStorage.getItem("theme")).then(theme => document.getElementById("STYLE_Theme").href = `data:text/css;base64,${theme}`);
 if (window.localStorage.getItem("bgURL")) {
   var bgURLStyle = document.createElement("style");
@@ -337,7 +337,7 @@ if (window.localStorage.getItem("bgURL")) {
   document.head.appendChild(bgURLStyle);
   bgURLStyle.sheet.insertRule("body{background-image:url('" + window.localStorage.getItem("bgURL") + "')}")
 };
-//END SETTINGS LOAD
+//END SETTINGS HOOK
 
 if (location.protocol !== "https:") location.href = "https:" + window.location.href.substring(window.location.protocol.length);
 
