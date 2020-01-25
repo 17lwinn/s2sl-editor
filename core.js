@@ -89,9 +89,9 @@ var os = {
       document.body.appendChild(window);
       setTimeout(function() { window.style = null;}, 5);
       setTimeout(function() { Object.values(os.runningPackages).forEach(package => { if (package.windows[0]) package.windows.forEach(window => window.style.zIndex = 1); }); window.style.transition = "none"; window.style.zIndex = 2; }, 200)
-      windowEnable(window, packagee);
       if (menubarClick) menubarSystem.click();
-      if (options.resizable) window.resizable = true;
+      if (options.resizable === true) window.resizable = true;
+      windowEnable(window, packagee);
       window.edit = function(body) { window.innerHTML = body.replaceAll(/%package%/, packagee.name).replaceAll(/%window%/, window.id); };
       window.body = document.getElementById(`${window.id}Body`);
       packagee.windows.push(window);
@@ -234,18 +234,21 @@ document.addEventListener("mouseup", function(e) { if (e.button === 0) osContext
 
 function windowEnable(elmnt, package) {
   var pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
-  var maximizer = null;
-  var maximized = false;
-  var minimizer = null;
+  var maximizer;
+  var maximized;
+  var minimizer;
   var width = null;
   var height = null;
   var top = null;
   var left = null;
-  try {var maximizer=document.getElementById(elmnt.id + "Maximize");}catch(a){}
-  try {var minimizer=document.getElementById(elmnt.id + "Minimize");}catch(a){}
+  if (elmnt.resizable) {
+    maximizer = document.getElementById(elmnt.id + "Maximize");
+    minimizer = document.getElementById(elmnt.id + "Minimize");
+    maximized = false;
+    elmnt.maximize = maximize;
+    elmnt.minimize = minimize;
+  }
   elmnt.close = function() { document.getElementById(elmnt.id + "Close").click(); };
-  elmnt.maximize = maximize;
-  elmnt.minimize = minimize;
   document.getElementById(elmnt.id + "Close").onclick = function() {
     elmnt.style.transition = null;
     elmnt.style.transform = "scale(0.75)";
@@ -273,15 +276,14 @@ function windowEnable(elmnt, package) {
   function maximize() {
     if (maximized == false) {
       maximized = true;
-      width = document.getElementById(elmnt.id + "Body").style.width ? document.getElementById(elmnt.id + "Body").style.width : "300px";
-      height = document.getElementById(elmnt.id + "Body").style.height ? document.getElementById(elmnt.id + "Body").style.height : "300px";
+      width = elmnt.style.width ? elmnt.style.width : "300px";
+      height = elmnt.style.height ? elmnt.style.height : "300px";
       top = elmnt.style.top;
       left = elmnt.style.left;
       elmnt.style.width = width;
       elmnt.style.height = height;
-      document.getElementById(elmnt.id + "Body").style.resize = "none";
-      document.getElementById(elmnt.id + "Body").style.height = null;
-      document.getElementById(elmnt.id + "Body").style.width = null;
+      elmnt.style.height = null;
+      elmnt.style.width = null;
       elmnt.style.transition = "0.4s";
       $(elmnt).draggable("disable");
       $(elmnt).resizable("disable");
@@ -293,7 +295,6 @@ function windowEnable(elmnt, package) {
         setTimeout(function() { elmnt.style.transition = "none"; }, 500);
       }, 1)
     } else {
-      document.getElementById(elmnt.id + "Body").style.resize = null;
       elmnt.style.transition = "0.4s";
       $(elmnt).draggable("enable");
       $(elmnt).resizable("enable");
@@ -303,7 +304,7 @@ function windowEnable(elmnt, package) {
         elmnt.style.height = height;
         elmnt.style.top = top;
         elmnt.style.left = left;
-        setTimeout(function() {elmnt.style.transition = "none";elmnt.style.height = null;elmnt.style.width = null;document.getElementById(elmnt.id + "Body").style.height = height;document.getElementById(elmnt.id + "Body").style.width = width;}, 500);
+        setTimeout(function() {elmnt.style.transition = "none";}, 500);
       }, 1)
     }
   }
