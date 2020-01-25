@@ -27,10 +27,8 @@
     <div id="menubarClock" style="text-align:right;margin:-4px;" class="menubarObject"></div>
   </div>
   <div id="applications" class="fullscreen blur" style="display:none;">
-    <input type="textbox" id="appSearch" placeholder="Search apps.." >
-    <img class="menubarButton" id="systemReboot" src="restart.svg" style="height:40px;width:40px;">
-    <ul id="appsDisplay"></ul>
-    <br>
+    <input type="textbox" id="appSearch" placeholder="Search apps.." style="width:calc(100% - 40px);margin:20px;">
+    <ul id="appsDisplay" style="overflow-y:auto;max-height:80%;"></ul>
   </div>
 </body>
 

@@ -227,14 +227,6 @@ document.addEventListener("contextmenu", function(e) {
 }, false);
 document.addEventListener("mouseup", function(e) { if (e.button === 0) osContextMenu.style = "display:none;" })
 
-document.getElementById("systemReboot").onclick = function() {
-  document.getElementById("shutdown").style = null;
-  setTimeout(function() {
-    document.getElementById("shutdown").style = "transition:0.5s;background-color:black;width:100%;height:100%;position:absolute;z-index:256;";
-  }, 1)
-  setTimeout(function() { location = location; }, 1000);
-}
-
 function windowEnable(elmnt, package) {
   var pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
   var maximizer = null;
@@ -349,7 +341,7 @@ window.onload = function() {
   document.body.removeChild(document.getElementById("startup"));
   document.getElementById("shutdown").style = "background-color:black;width:100%;height:100%;position:fixed;z-index:256;";
   setTimeout(function() {
-    document.getElementById("shutdown").style = "transition:0.5s;margin:50%;margin-top:25%;width:0%;height:0%;position:fixed;";
-    setTimeout(function(){document.getElementById("shutdown").style = "display: none;"},500)
+    document.getElementById("shutdown").style = "transition:0.3s;width:100%;height:100%;transform:scale(0.5);position:fixed;";
+    setTimeout(function() { document.getElementById("shutdown").style = "display: none;" }, 300)
   }, 500)
 }
