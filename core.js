@@ -169,7 +169,7 @@ async function loadPackages() {
   os.packages.forEach(async function(package, index) {
     if (package.startOnBoot) os.startPackage(package);
     if (package.isApp) {
-      document.getElementById("appsDisplay").innerHTML += `<div><img id="${package.name}Start" src="data:image/webp;base64,${icons[index]}"><br>${package.name}</div>`;
+      document.getElementById("appsDisplay").innerHTML += `<div tabindex="0"><img id="${package.name}Start" src="data:image/webp;base64,${icons[index]}"><br>${package.name}</div>`;
       package.icon = await icons[index];
       document.getElementById(`${package.name}Start`).onmousedown = function() { os.startPackage(package); };
     };
@@ -204,7 +204,7 @@ menubarSystem.addEventListener("click", function() {
 
 document.onkeydown = function(e) { if (e.keyCode === 19) { menubarSystem.click(); } }
 
-document.getElementById("appSearch").onkeyup = function() {
+document.getElementById("appSearch").onkeyup = function(e) {
   var div = document.getElementById("appsDisplay").getElementsByTagName("div");
   for (var i = 0; i < div.length; i++) {
     var txtValue = div[i].innerText;
@@ -214,6 +214,7 @@ document.getElementById("appSearch").onkeyup = function() {
       div[i].style.display = "none";
     }
   }
+  if (e.keyCode === 13) div[0].getElementsByTagName("img")[0].click();
 }
 
 document.addEventListener("contextmenu", function(e) {
