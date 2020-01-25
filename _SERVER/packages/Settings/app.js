@@ -22,6 +22,7 @@ if (!document.getElementById("STYLE_Wallpaper")) {
 
 var themes = await os.filesystem.readDirectory("/themes");
 themes.forEach(item => {
+  if (item.name === "MeowOS.css") return; //REMOVE LOLOL
   var obj = document.createElement("option");
   obj.value = item.path;
   obj.innerHTML = item.name.split('.')[0];

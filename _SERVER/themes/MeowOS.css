@@ -1,5 +1,5 @@
 .fullscreen {
-  background: gray;
+  background: darkgray;
   color: black;
 }
 
@@ -70,5 +70,4 @@ input[type="range"]::-webkit-slider-thumb {
 #systemButton, #menubarClock { border: none; background: none; }
 #systemButton img { box-shadow: none; filter: brightness(0%); }
 
-.menubarButton:hover, button:hover:not([disabled]), .checkmark:hover:not(.notAllowed), select:hover:not([disabled]), .contextMenuSelection:hover:not(.notAllowed), ::-webkit-scrollbar-thumb:hover, input[type="range"]::-webkit-slider-thumb:hover { background: linear-gradient(0deg, rgb(98,165,255), rgb(113,213,255)); }
-.menubarButton:active, button:active:not([disabled]), .checkmark:active:not(.notAllowed), select:active:not([disabled]), .contextMenuSelection:active:not(.notAllowed), ::-webkit-scrollbar-thumb:active, input[type="range"]::-webkit-slider-thumb:active { background: linear-gradient(0deg, rgb(48,115,255), rgb(63,173,255)); }
+.menubarButton:hover, button:hover:not([disabled]), .checkmark:hover:not(.notAllowed), select:hover:not([disabled]), .contextMenuSelection:hover:not(.notAllowed), ::-webkit-scrollbar-thumb:hover, input[type="range"]::-webkit-slider-thumb:hover { opacity: 0.5; }
