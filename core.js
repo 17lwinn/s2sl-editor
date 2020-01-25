@@ -287,7 +287,7 @@ function windowEnable(elmnt, package) {
         elmnt.style.top = "0";
         elmnt.style.left = "0";
         elmnt.style.width = "100%";
-        elmnt.style.height = "calc(100vh - 89px)";
+        elmnt.style.height = "calc(100vh - 60px)";
         setTimeout(function() { elmnt.style.transition = "none"; }, 500);
       }, 1)
     } else {
