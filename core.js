@@ -1,3 +1,5 @@
+if (location.protocol !== "https:") location.href = "https:" + window.location.href.substring(window.location.protocol.length);
+
 var menubarSystem = document.getElementById("systemButton");
 var apps = document.getElementById("applications");
 var menubarClick = false;
@@ -28,7 +30,7 @@ var os = {
     document.getElementById(`${alert.id}Title`).innerHTML = title;
     document.getElementById(`${alert.id}Message`).innerHTML = message;
     alert.style.zIndex = 200;
-    document.getElementById(`${alert.id}Close`).onmouseup = function() { callback(); };
+    if (callback) document.getElementById(`${alert.id}Close`).onmouseup = function() { callback(); };
   },
   prompt: function(message, title="Prompt", window="Prompt", callback, showTextBox=true) {
     var prompt = document.getElementById("Prompt").cloneNode(true);
@@ -258,7 +260,6 @@ function windowEnable(elmnt, package) {
   }
   function minimize() {
     if (elmnt.minimized == false) {
-      top = elmnt.style.top;
       elmnt.minimized = true;
       elmnt.style.transition = null;
       elmnt.style.transform = "scale(0.75)";
@@ -282,8 +283,6 @@ function windowEnable(elmnt, package) {
       left = elmnt.style.left;
       elmnt.style.width = width;
       elmnt.style.height = height;
-      elmnt.style.height = null;
-      elmnt.style.width = null;
       elmnt.style.transition = "0.4s";
       $(elmnt).draggable("disable");
       $(elmnt).resizable("disable");
@@ -291,7 +290,7 @@ function windowEnable(elmnt, package) {
         elmnt.style.top = "0";
         elmnt.style.left = "0";
         elmnt.style.width = "100%";
-        elmnt.style.height = "calc(100vh - 60px)";
+        elmnt.style.height = "calc(100vh - 55px)";
         setTimeout(function() { elmnt.style.transition = "none"; }, 500);
       }, 1)
     } else {
@@ -330,8 +329,6 @@ if (window.localStorage.getItem("bgURL")) {
   bgURLStyle.sheet.insertRule("body{background-image:url('" + window.localStorage.getItem("bgURL") + "')}")
 };
 //END SETTINGS HOOK
-
-if (location.protocol !== "https:") location.href = "https:" + window.location.href.substring(window.location.protocol.length);
 
 window.onload = function() {
   document.body.removeChild(document.getElementById("startup"));
