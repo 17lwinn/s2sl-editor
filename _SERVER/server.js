@@ -8,8 +8,6 @@ const bodyParser = require("body-parser");
 const compression = require("compression");
 const rimraf = require("rimraf");
 
-const homeDir = path.join(__dirname, "/home");
-
 String.prototype.replaceAll = function(f,r) { return this.split(f).join(r); };
 
 app.use(compression());
