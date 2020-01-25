@@ -305,7 +305,7 @@ function windowEnable(elmnt, package) {
   }
   if (maximizer) { maximizer.addEventListener("click", maximize); document.getElementById(elmnt.id + "TitleBar").addEventListener("dblclick", maximize); }
   if (minimizer) minimizer.addEventListener("click", minimize);
-  console.log($(`#${elmnt.id}`).draggable;
+  $(`#${elmnt.id}`).draggable();
   $(`#${elmnt.id}`).draggable({ handle: `#${elmnt.id}TitleBar` });
 }
 
