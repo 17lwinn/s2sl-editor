@@ -18,6 +18,11 @@ a:hover { text-decoration: underline; }
 
 body.loading, body.loading * { cursor: progress !important; }
 
+img {
+  user-drag: none;
+  -webkit-user-drag: none;
+}
+
 .dock {
   width: 100%;
   text-align: center;
