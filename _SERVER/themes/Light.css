@@ -1,5 +1,7 @@
 ::-webkit-scrollbar-thumb { background-color: rgba(0,0,0,0.5); border-radius: 5px; }
 
+a { color: #480b80; }
+
 .fullscreen {
   background-color: rgb(245,245,245);
   color: black;

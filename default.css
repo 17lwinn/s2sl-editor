@@ -5,7 +5,7 @@ body {
 }
 *:not(h1) {box-sizing: border-box; font-family: "open sans", sans-serif; font-size: 14px; transition: font-size cubic-bezier(.17,.67,0,.83) 0.3s; }
 
-a { text-decoration: none; color: #bb7ff0; }
+a { text-decoration: none; }
 a:hover { text-decoration: underline; }
 
 ::-webkit-scrollbar { width: 10px; height: 10px; }
