@@ -246,11 +246,12 @@ function windowEnable(elmnt, package) {
   var left = null;
   if (elmnt.resizable) {
     maximizer = document.getElementById(elmnt.id + "Maximize");
-    minimizer = document.getElementById(elmnt.id + "Minimize");
     maximized = false;
     elmnt.maximize = maximize;
-    elmnt.minimize = minimize;
   }
+  minimizer = document.getElementById(elmnt.id + "Minimize");
+  elmnt.minimize = minimize;
+  elmnt.minimized = false;
   elmnt.close = function() { document.getElementById(elmnt.id + "Close").click(); };
   document.getElementById(elmnt.id + "Close").onclick = function() {
     elmnt.style.transition = null;
