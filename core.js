@@ -127,10 +127,12 @@ var os = {
       return dir;
     },
     readFile: async function(path) {
+      loading.style.display = null;
       if (path.includes("./")) return;
       path = path.replaceAll("/", "$$$$");
       var raw = await fetch(`/file/read/file/${path}`);
       var file = await raw.json();
+      loading.style.display = "none";
       return file;
     },
     writeDirectory: function(path) {
