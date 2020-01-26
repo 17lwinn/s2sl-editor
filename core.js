@@ -336,7 +336,7 @@ window.onload = function() {
   document.body.removeChild(document.getElementById("startup"));
   document.getElementById("shutdown").style = "background-color:black;width:100%;height:100%;position:fixed;z-index:256;";
   setTimeout(function() {
-    document.getElementById("shutdown").style = "transition:0.3s;width:100%;height:100%;transform:scale(0.5);position:fixed;";
+    document.getElementById("shutdown").style = "opacity:0;background-color:black;transition:0.3s;width:100%;height:100%;transform:scale(0.5);position:fixed;";
     setTimeout(function() { document.getElementById("shutdown").style = "display: none;" }, 300)
-  }, 500)
+  }, 1)
 }
