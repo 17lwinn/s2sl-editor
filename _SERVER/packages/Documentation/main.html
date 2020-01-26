@@ -11,9 +11,9 @@
   <p>This section includes information about auroraOS and how it works.</p>
   <img src="https://cdn.discordapp.com/attachments/649254598271565855/671052595623755776/thing.PNG" style="border-radius:5px;width:814px;height:454px;">
   <p>As you can see, the server-side core only serves files and packages. As of now, packages only run on the client.</p>
-  <h2>File Architecture</h2>
+  <h2>File Structure</h2>
   <pre>
-    LICENSE                  obvious reasons
+    LICENSE                  Obvious reasons
     core.js                  Client core script
     default.css              Base css for themes
     index.html               Actual HTML file
@@ -36,4 +36,14 @@
   <p>Meanwhile, the server requires Node 8 or later. It uses Express to serve auroraOS.</p>
   <h2>Packages</h2>
   <p>auroraOS is a package-based system. Everything that is not part of the core system, i.e. the file browser, settings app, calculator, and more, is a package. To install a package, all you have to do is move the package directory into <b>_SERVER/packages/</b>.</p>
+  <h1>API Reference</h1>
+  <p>All packages must be wrapped in either <pre>;(async function(){   YOUR CODE HERE   })()</pre> or <pre>;(function(){   YOUR CODE HERE   })()</pre>.</p>
+  <pre>os.runningPackages[document.currentScript.id];</pre>
+  <p>Returns the process itself.</p><br>
+  <pre>[PACKAGE].createWindow(window HTML, options)</pre>
+  <p>Creates a window.</p><br>
+  <pre>[PACKAGE].resource(file name)</pre>
+  <p>Returns a file in base64 form. It looks in the package directory, e.g. passing <b>thing.txt</b> would return <b>_SERVER/packages/yourPackage/thing.txt</b>.</p><br>
+  <pre>[PACKAGE].resource(file name)</pre>
+  <p>urn <b>_SERVER/packages/yourPackage/thing.txt</b>.</p><br>
 </div>
