@@ -6,6 +6,7 @@ var menubarClick = false;
 var clockDays = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
 var clockMonths = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
 var osContextMenu = document.getElementById("osContextMenu");
+var loading = document.getElementById("menubarLoading");
 
 String.prototype.replaceAll = function(f,r) { return this.split(f).join(r); } 
 
@@ -56,7 +57,7 @@ var os = {
   },
   runningPackages: {},
   startPackage: async function(package, flags) {
-    document.body.className = "loading";
+    loading.style.display = null;
     var packageRaw = await fetch(`/packages/start/${package.name}`);
     var packageJS = await packageRaw.json();
     var packagee = Object.assign({}, package);
@@ -100,10 +101,12 @@ var os = {
       return window;
     };
     packagee.resource = async function(filePath) {
+      loading.style.display = null;
       var fileRaw = await fetch(`/packages/resources/${packagee.absoluteName}/${filePath}`);
+      loading.style.display = "none";
       return await fileRaw.json();
     };
-    document.body.className = null;
+    loading.style.display = "none";
   },
   stopPackage: function(package) {
     if (package.isApp) package.dockIcon.style = "transform:scale(0);width:0px;height:15px;";
