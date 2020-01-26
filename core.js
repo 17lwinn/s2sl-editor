@@ -291,7 +291,7 @@ function windowEnable(elmnt, package) {
       left = elmnt.style.left;
       elmnt.style.width = width;
       elmnt.style.height = height;
-      elmnt.style.transition = "0.4s";
+      elmnt.style.transition = "0.2s";
       $(elmnt).draggable("disable");
       $(elmnt).resizable("disable");
       setTimeout(function() {
@@ -299,10 +299,10 @@ function windowEnable(elmnt, package) {
         elmnt.style.left = "0";
         elmnt.style.width = "100%";
         elmnt.style.height = "calc(100vh - 55px)";
-        setTimeout(function() { elmnt.style.transition = "none"; }, 500);
+        setTimeout(function() { elmnt.style.transition = "none"; }, 200);
       }, 1)
     } else {
-      elmnt.style.transition = "0.4s";
+      elmnt.style.transition = "0.2s";
       $(elmnt).draggable("enable");
       $(elmnt).resizable("enable");
       setTimeout(function() {
@@ -311,7 +311,7 @@ function windowEnable(elmnt, package) {
         elmnt.style.height = height;
         elmnt.style.top = top;
         elmnt.style.left = left;
-        setTimeout(function() {elmnt.style.transition = "none";}, 500);
+        setTimeout(function() {elmnt.style.transition = "none";}, 200);
       }, 1)
     }
   }
