@@ -94,6 +94,10 @@ var os = {
       setTimeout(function() { Object.values(os.runningPackages).forEach(package => { if (package.windows[0]) package.windows.forEach(window => window.style.zIndex = 1); }); window.style.transition = "none"; window.style.zIndex = 2; }, 200)
       if (menubarClick) menubarSystem.click();
       if (options.resizable === true) window.resizable = true;
+      if (options.startingDimensions) {
+        window.style.width = options.startingDimensions[0];
+        window.style.height = options.startingDimensions[1];
+      }
       windowEnable(window, packagee);
       window.edit = function(body) { window.innerHTML = body.replaceAll(/%package%/, packagee.name).replaceAll(/%window%/, window.id); };
       window.body = document.getElementById(`${window.id}Body`);
