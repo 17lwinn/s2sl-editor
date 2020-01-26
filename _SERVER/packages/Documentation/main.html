@@ -6,11 +6,30 @@
   <h2>I found a bug. Where do I report it?</h2>
   <p><a href="https://github.com/soupy-developer/auroraOS/issues">https://github.com/soupy-developer/auroraOS/issues.</a></p>
   <h2>How do I install auroraOS on my own server?</h2>
-  <p>Currently, there isn't an automated installer. However, you can install it manually by cloning the <a href="https://github.com/soupy-developer/auroraOS">git repository</a> and running _SERVER/server.js. Then, you can visit localhost:[the port, default is 3000] or configure it.</p>
+  <p>Currently, there isn't an automated installer. However, you can install it manually by cloning the <a href="https://github.com/soupy-developer/auroraOS">git repository</a> and running <b>npm i</b> in the _SERVER directory. Then, run _SERVER/server.js. After that, you can visit localhost:[the port, default is 3000] or configure it.</p>
   <h1>Important Information</h1>
   <p>This section includes information about auroraOS and how it works.</p>
   <img src="https://cdn.discordapp.com/attachments/649254598271565855/671052595623755776/thing.PNG" style="border-radius:5px;width:814px;height:454px;">
   <p>As you can see, the server-side core only serves files and packages. As of now, packages only run on the client.</p>
   <h2>File Architecture</h2>
-  <code>rararararara</code>
+  <pre>
+    LICENSE                  obvious reasons
+    core.js                  Client core script
+    default.css              Base css for themes
+    index.html               Actual HTML file
+    package.json             NPM package list
+    wallpaper.webp           Default wallpaper
+    .gitignore, README.md    Can be removed
+    [All other files]        Important
+    _SERVER/                 Server things
+        server.js            Server core script
+        themes/              Themes (.css files) go here
+        packages/            Packages go here
+          samplePackage/     Packages are stored as directories
+            app.js           Main script, run on package start
+            icon.webp        Package icon (only required if package is an app)
+            info.json        Package information
+            main.html        Main window (only required if package is an app/not embedded into package)
+        home/                Main filesystem directory
+  </pre>
 </div>
