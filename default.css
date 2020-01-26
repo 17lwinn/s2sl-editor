@@ -3,7 +3,7 @@ body {
   background-size: cover;
   margin: 0px;
 }
-*:not(h1) {box-sizing: border-box; font-family: "open sans", sans-serif; font-size: 14px; transition: font-size cubic-bezier(.17,.67,0,.83) 0.3s; }
+*:not(h1):not(pre) {box-sizing: border-box; font-family: "open sans", sans-serif; font-size: 14px; transition: font-size cubic-bezier(.17,.67,0,.83) 0.3s; }
 
 a { text-decoration: none; }
 a:hover { text-decoration: underline; }

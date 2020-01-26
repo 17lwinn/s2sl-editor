@@ -328,7 +328,7 @@ document.getElementById("MinimizeAllWindows").onclick = function() { Object.valu
 if (window.localStorage.getItem("theme")) {
   os.filesystem.readFile(window.localStorage.getItem("theme")).then(theme => document.getElementById("STYLE_Theme").href = `data:text/css;base64,${theme}`);
 } else {
-  os.filesystem.readFile("/themes/Dark.css").then(theme => document.getElementById("STYLE_Theme").href = `data:text/css;base64,${theme}`);
+  os.filesystem.readFile("/themes/Light.css").then(theme => document.getElementById("STYLE_Theme").href = `data:text/css;base64,${theme}`);
 }
 if (window.localStorage.getItem("bgURL")) {
   var bgURLStyle = document.createElement("style");
