@@ -25,8 +25,9 @@
     <div onclick="os.startPackage(os.packages.find(e => e.name === 'Terminal'))" class="contextMenuSelection">Terminal</div>
   </div>
   <div class="dock blur">
-    <div id="systemButton" class="menubarButton"><img src="logo.webp" style="border-radius:0px;transform:scale(1);margin:-2px;height:30px;width:30px;padding-top:0px;padding:-8px;"></div>
+    <div id="systemButton" class="menubarButton animated flip delay-1s"><img src="logo.webp" style="border-radius:0px;transform:scale(1);margin:-2px;height:30px;width:30px;padding-top:0px;padding:-8px;"></div>
     <container style="margin-left:35px;" id="dockDisplay"></container>
+    <img src="loading.webp" class="menubarObject">
     <div id="menubarClock" style="text-align:right;margin:-4px;" class="menubarObject"></div>
   </div>
   <div id="applications" class="fullscreen blur" style="display:none;">
