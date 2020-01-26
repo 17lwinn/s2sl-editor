@@ -1,5 +1,6 @@
 ;(async function(){
 var package = os.runningPackages[document.currentScript.id];
+var window = package.createWindow(`<div id="%window%TitleBar" class="windowTitleBar"><div id="%window%Close" class="windowAction"><img src="close.svg"></div><div id="%window%Maximize" class="windowAction"><img src="max.svg"></div><div id="%window%Minimize" class="windowAction"><img src="min.svg"></div><ui>Documentation</ui></div> <div id="%window%Body" class="windowBody blur" style="text-align:center;"> <h1>auroraOS Manual and Documentation</h1> <p>auroraOS is an OS/desktop environment that runs in your browser. It features a window manager, beautiful GUI, themes, a package manager, custom APIs, filesystem access, and more!</p> <p>auroraOS can run in any modern web browser excluding Internet Explorer, but it has been tested extensively in Chrome/Chromium browsers.</p> <a href="https://github.com/soupy-developer/auroraOS">By the way, we're open-source.</a> <br><br> <img src="logo.webp"> <br> <button id="%package%Begin">Begin!</button> </div>`, { resizable: true, startingDimensions: [600, 600] });
 var mainWindowRaw = await package.resource("main.html");
-var mainWindow = package.createWindow(atob(mainWindowRaw), { resizable: true, startingDimensions: [600, 600] });
+document.getElementById(`${package.name}Begin`).onclick = function() { window.edit(atob(mainWindowRaw)); };
 })()

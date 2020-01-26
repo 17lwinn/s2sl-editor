@@ -98,12 +98,7 @@ var os = {
       window.edit = function(body) { window.innerHTML = body.replaceAll(/%package%/, packagee.name).replaceAll(/%window%/, window.id); };
       window.body = document.getElementById(`${window.id}Body`);
       packagee.windows.push(window);
-      setTimeout(function() {
-        if (options.startingDimensions) {
-          window.style += `width:${options.startingDimensions[0]}px; height:${options.startingDimensions[1]}px;`;
-          console.log(window.style);
-        }
-      }, 50)
+      setTimeout(function() { if (options.startingDimensions) window.style += `width:${options.startingDimensions[0]}px; height:${options.startingDimensions[1]}px;`; }, 50)
       return window;
     };
     packagee.resource = async function(filePath) {
