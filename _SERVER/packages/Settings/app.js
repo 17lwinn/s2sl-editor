@@ -3,16 +3,9 @@ var package = os.runningPackages[document.currentScript.id];
 var mainWindowRaw = await package.resource("main.html");
 var packageWindow = await package.createWindow(atob(mainWindowRaw), { resizable: true });
 
-var fontSize = document.getElementById(`${package.name}FontSize`);
 var bgURL = document.getElementById(`${package.name}WallpaperURL`);
 var theme = document.getElementById(`${package.name}Theme`);
 
-if (!document.getElementById("STYLE_FontSize")) {
-  var fontSizeStyle = document.createElement("style");
-  fontSizeStyle.id = "STYLE_FontSize";
-  document.head.appendChild(fontSizeStyle);
-  fontSizeStyle.sheet.insertRule("a{}");
-}
 if (!document.getElementById("STYLE_Wallpaper")) {
   var bgURLStyle = document.createElement("style");
   bgURLStyle.id = "STYLE_Wallpaper";
@@ -26,12 +19,6 @@ themes.forEach(item => {
   obj.value = item.path;
   obj.innerHTML = item.name.split('.')[0];
   theme.appendChild(obj);
-});
-
-fontSize.addEventListener("input", function() {
-  document.getElementById("STYLE_FontSize").sheet.deleteRule(0);
-  document.getElementById("STYLE_FontSize").sheet.insertRule("*:not(h1){font-size:" + fontSize.value + "px;}");
-  document.getElementById(`${package.name}FontSizePreview`).innerHTML = "Font Size: " + fontSize.value + "px";
 });
 
 theme.addEventListener("input", async function() {
