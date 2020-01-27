@@ -67,12 +67,13 @@ app.get("/file/read/:type/:filePath", async function(req, res) {
         req.params.filePath = await req.params.filePath.replaceAll("$$$$", "/");
         fs.readFile(`${__dirname}/${req.params.filePath}`, (err, data) => {
             const file = Buffer.from(data).toString("base64");
-            res.send(file);
+            res.send(JSON.stringify(file));
             console.log(`File ${req.params.filePath} sent.`)
         });
     }
 });
 app.post("/file/write/:type/:filePath", async function(req, res) {
+    if (!(req.params.filePath.includes("/home"))) return;
     if (req.params.type === "directory") {
         console.log(`[POST] Client is creating directory at ${req.params.filePath}!`);
         req.params.filePath = await req.params.filePath.replaceAll("$$$$", "/");
@@ -86,6 +87,7 @@ app.post("/file/write/:type/:filePath", async function(req, res) {
     }
 });
 app.post("/file/rm/:type/:filePath", async function(req, res) {
+    if (!(req.params.filePath.includes("/home"))) return;
     if (req.params.type === "directory") {
         console.log(`[POST] Client is removing directory at ${req.params.filePath}!`);
         req.params.filePath = await req.params.filePath.replaceAll("$$$$", "/");

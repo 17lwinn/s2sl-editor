@@ -125,7 +125,8 @@ var os = {
       loading.style.display = null;
       if (path.includes("./")) return;
       path = path.replaceAll("/", "$$$$");
-      var file = await fetch(`/file/read/file/${path}`);
+      var raw = await fetch(`/file/read/file/${path}`);
+      var file = await raw.json();
       loading.style.display = "none";
       return file;
     },

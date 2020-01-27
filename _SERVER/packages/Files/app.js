@@ -34,9 +34,8 @@ var fileList = document.getElementById(`${package.name}FileList`);
 var dirBox = document.getElementById(`${package.name}Directory`);
 
 var readDirectory = async function(path) {
-  var deletePath;
-  if (path.includes("./") || path === "/") path = "/home";
-  if (!path.includes("/")) path = "/home/" + path;
+  if (path.includes("./")) path = "/";
+  if (!path.includes("/")) path = "/" + path;
   document.getElementById(`${package.name}Folder`).onclick = function() { os.prompt("Please enter the name of the folder you want to create.", "Create Folder", window.name, function(name) { os.filesystem.writeDirectory(path + "/" + name); readDirectory(path); }); };
   document.getElementById(`${package.name}File`).onclick = function() { os.prompt("Please enter the name and extension of the file you want to create.", "Create File", window.name, function(name) { os.filesystem.writeFile(path + "/" + name, ""); readDirectory(path); }); };
   var list = await os.filesystem.readDirectory(path);
@@ -59,7 +58,7 @@ var readDirectory = async function(path) {
   });
 }
 
-readDirectory("/home");
+readDirectory("/");
 
 dirBox.addEventListener("keypress", e => { if (e.keyCode === 13) readDirectory(dirBox.value) });
 
