@@ -101,12 +101,7 @@ var os = {
       setTimeout(function() { if (options.startingDimensions) window.style += `;width:${options.startingDimensions[0]}px;height:${options.startingDimensions[1]}px;`; }, 50)
       return window;
     };
-    packagee.resource = async function(filePath) {
-      loading.style.display = null;
-      var fileRaw = await fetch(`/packages/resources/${packagee.absoluteName}/${filePath}`);
-      loading.style.display = "none";
-      return await fileRaw.json();
-    };
+    packagee.resource = async function(filePath) { return await os.filesystem.readFile(`/packages/resources/${packagee.absoluteName}/${filePath}`); };
     loading.style.display = "none";
   },
   stopPackage: function(package) {
@@ -130,8 +125,7 @@ var os = {
       loading.style.display = null;
       if (path.includes("./")) return;
       path = path.replaceAll("/", "$$$$");
-      var raw = await fetch(`/file/read/file/${path}`);
-      var file = await raw.json();
+      var file = await fetch(`/file/read/file/${path}`);
       loading.style.display = "none";
       return file;
     },
@@ -203,13 +197,10 @@ var entered = false;
 document.getElementById("appSearch").onkeyup = function(e) {
   var div = document.getElementById("appsDisplay").getElementsByTagName("div");
   for (var i = 0; i < div.length; i++) {
-    var txtValue = div[i].innerText;
-    if (txtValue.toUpperCase().indexOf(document.getElementById("appSearch").value.toUpperCase()) > -1) {
+    if (div[i].innerText.toUpperCase().indexOf(document.getElementById("appSearch").value.toUpperCase()) > -1) {
       div[i].style.display = null;
       if (e.keyCode === 13 && entered === false) { entered = true; div[i].getElementsByTagName("img")[0].click(); }
-    } else {
-      div[i].style.display = "none";
-    }
+    } else div[i].style.display = "none";
   }
   entered = false;
 }
@@ -227,31 +218,23 @@ document.addEventListener("contextmenu", function(e) {
 document.addEventListener("mouseup", function(e) { if (e.button === 0) osContextMenu.style = "display:none;" })
 
 function windowEnable(elmnt, package) {
-  var pos1, pos2,
-  var pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
-  var maximizer;
-  var maximized;
-  var minimizer;
-  var width
-  var height = null;
-  var top = null;
-  var left = null;
+  var maximizer, maximized, width, height, top, left;
+  var minimizer = document.getElementById(elmnt.id + "Minimize");
   if (elmnt.resizable) {
     maximizer = document.getElementById(elmnt.id + "Maximize");
     maximized = false;
     elmnt.maximize = maximize;
   }
-  minimizer = document.getElementById(elmnt.id + "Minimize");
   elmnt.minimize = minimize;
   elmnt.minimized = false;
-  elmnt.close = function() { document.getElementById(elmnt.id + "Close").click(); };
-  document.getElementById(elmnt.id + "Close").onclick = function() {
+  elmnt.close = function() {
     elmnt.style.transition = null;
     elmnt.style.transform = "scale(0.75)";
     elmnt.style.opacity = 0;
     if (package) if (package.windows[0].id == elmnt.id) os.stopPackage(package);
     setTimeout(function() { document.body.removeChild(elmnt); }, 200)
-  }
+  };
+  document.getElementById(elmnt.id + "Close").onclick = elmnt.close;
   function minimize() {
     if (elmnt.minimized == false) {
       elmnt.minimized = true;
@@ -297,7 +280,7 @@ function windowEnable(elmnt, package) {
         elmnt.style.height = height;
         elmnt.style.top = top;
         elmnt.style.left = left;
-        setTimeout(function() {elmnt.style.transition = "none";}, 200);
+        setTimeout(function() { elmnt.style.transition = "none"; }, 200);
       }, 1)
     }
   }
@@ -305,22 +288,18 @@ function windowEnable(elmnt, package) {
   if (minimizer) minimizer.addEventListener("click", minimize);
   $(elmnt).draggable({ handle: document.getElementById(elmnt.id + "TitleBar") });
   if (elmnt.resizable) $(elmnt).resizable({ handles: "all" });
-  document.getElementById(elmnt.id + "TitleBar").onmousedown = function(e) {
-      Object.values(os.runningPackages).forEach(package => { if (package.windows[0]) package.windows.forEach(window => window.style.zIndex = 1); });
-      elmnt.style.zIndex = 2;
-    }
-  }
+  document.getElementById(elmnt.id + "TitleBar").addEventListener("mousedown", function() {
+    Object.values(os.runningPackages).forEach(package => { if (package.windows[0]) package.windows.forEach(window => window.style.zIndex = 1); });
+    elmnt.style.zIndex = 2;
+  });
 }
 
 document.getElementById("StopAllProcesses").onclick = function() { Object.values(os.runningPackages).forEach(package => { if (package.windows[0]) package.windows.forEach(window => window.close()); }); }
 document.getElementById("MinimizeAllWindows").onclick = function() { Object.values(os.runningPackages).forEach(package => { if (package.windows[0]) package.windows.forEach(window => window.minimize()); }); }
 
 //BEGIN SETTINGS HOOK
-if (window.localStorage.getItem("theme")) {
-  os.filesystem.readFile(window.localStorage.getItem("theme")).then(theme => document.getElementById("STYLE_Theme").href = `data:text/css;base64,${theme}`);
-} else {
-  os.filesystem.readFile("/themes/Light.css").then(theme => document.getElementById("STYLE_Theme").href = `data:text/css;base64,${theme}`);
-}
+if (window.localStorage.getItem("theme")) os.filesystem.readFile(window.localStorage.getItem("theme")).then(theme => document.getElementById("STYLE_Theme").href = `data:text/css;base64,${theme}`); else os.filesystem.readFile("/themes/Light.css").then(theme => document.getElementById("STYLE_Theme").href = `data:text/css;base64,${theme}`);
+
 if (window.localStorage.getItem("bgURL")) {
   var bgURLStyle = document.createElement("style");
   bgURLStyle.id = "STYLE_Wallpaper";
@@ -332,20 +311,16 @@ if (window.localStorage.getItem("bgURL")) {
 window.onload = async function() {
   var packages = await fetch("/packages");
   os.packages = await packages.json();
-  var icon = await fetch("/packages/icons");
-  var icons = await icon.json();
   os.packages.forEach(async function(package, index) {
     if (package.startOnBoot) os.startPackage(package);
     if (package.isApp) {
-      document.getElementById("appsDisplay").innerHTML += `<div><img id="${package.name}Start" src="data:image/webp;base64,${icons[index]}"><br>${package.name}</div>`;
-      package.icon = await icons[index];
+      document.getElementById("appsDisplay").innerHTML += `<div><img id="${package.name}Start" src="data:image/webp;base64,${package.icon}"><br>${package.name}</div>`;
+      await document.getElementById(`${package.name}Start`);
       document.getElementById(`${package.name}Start`).onclick = function() { os.startPackage(package); };
     };
   })
-  document.body.removeChild(document.getElementById("startup"));
-  document.getElementById("shutdown").style = "background-color:black;width:100%;height:100%;position:fixed;z-index:256;";
   setTimeout(function() {
-    document.getElementById("shutdown").style = "opacity:0;background-color:black;transition:0.3s;width:100%;height:100%;position:fixed;";
-    setTimeout(function() { document.body.removeChild(document.getElementById("shutdown")); }, 300)
+    document.getElementById("startup").style = "transition:0.3s;width:100%;height:100%;position:fixed;";
+    setTimeout(function() { document.body.removeChild(document.getElementById("startup")); }, 300)
   }, 1)
 }

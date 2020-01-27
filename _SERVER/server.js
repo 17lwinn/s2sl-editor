@@ -17,35 +17,26 @@ app.use(bodyParser.json());
 
 // START OS API
 
-app.get("/packages", function(req, res) {
+app.get("/packages", async function(req, res) {
     const array = [];
     console.log("[GET] Client requested package data!");
     const packages = fs.readdirSync(`${__dirname}/packages`, { withFileTypes: true }).filter(dir => dir.isDirectory());
+    let canAccess;
     for (const dir of packages) {
         const info = require(`./packages/${dir.name}/info.json`);
+        if (info.isApp) {
+          canAccess = true;
+          try { fs.accessSync(`${__dirname}/packages/${dir.name}/icon.webp`, fs.constants.F_OK); } catch(e) { canAccess = false; }
+          if (canAccess) {
+            const rawIcon = fs.readFileSync(`${__dirname}/packages/${dir.name}/icon.webp`);
+            info.icon = await Buffer.from(rawIcon).toString("base64");
+          }
+        }
         array.push(info);
         console.log(`Package ${info.name} loaded`);
     }
     res.send(JSON.stringify(array));
     console.log("Package data sending complete.")
-});
-app.get("/packages/icons", async function(req, res) {
-    const array = [];
-    console.log("[GET] Client requested package icons!");
-    const packages = fs.readdirSync(`${__dirname}/packages`, { withFileTypes: true }).filter(dir => dir.isDirectory());
-    let canAccess;
-    for (const dir of packages) {
-        canAccess = true;
-        try { fs.accessSync(`${__dirname}/packages/${dir.name}/icon.webp`, fs.constants.F_OK); } catch(e) { canAccess = false; }
-        if (canAccess) {
-            const rawIcon = fs.readFileSync(`${__dirname}/packages/${dir.name}/icon.webp`);
-            const icon = await Buffer.from(rawIcon).toString("base64");
-            array.push(icon);
-            console.log(`Icon of package ${dir.name} loaded`);
-        } else array.push(undefined);
-    }
-    res.send(JSON.stringify(array));
-    console.log("Package icon sending complete.")
 });
 app.get("/packages/start/:packageName", async function(req, res) {
     console.log(`[GET] Client is starting package ${req.params.packageName}!`);
@@ -53,14 +44,6 @@ app.get("/packages/start/:packageName", async function(req, res) {
         const file = Buffer.from(data).toString("base64");
         res.send(JSON.stringify(file));
         console.log(`Package sent.`)
-    });
-});
-app.get("/packages/resources/:packageName/:fileName", async function(req, res) {
-    console.log(`[GET] Client package ${req.params.packageName} is requesting resource ${req.params.fileName}!`);
-    fs.readFile(`${__dirname}/packages/${req.params.packageName}/${req.params.fileName}`, (err, data) => {
-        const file = Buffer.from(data).toString("base64");
-        res.send(JSON.stringify(file));
-        console.log(`Resource sent.`)
     });
 });
 
@@ -84,7 +67,7 @@ app.get("/file/read/:type/:filePath", async function(req, res) {
         req.params.filePath = await req.params.filePath.replaceAll("$$$$", "/");
         fs.readFile(`${__dirname}/${req.params.filePath}`, (err, data) => {
             const file = Buffer.from(data).toString("base64");
-            res.send(JSON.stringify(file));
+            res.send(file);
             console.log(`File ${req.params.filePath} sent.`)
         });
     }
