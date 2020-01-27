@@ -1,3 +1,5 @@
+var STARTUP = Date.now();
+
 if (location.protocol !== "https:") location.href = "https:" + window.location.href.substring(window.location.protocol.length);
 
 var menubarSystem = document.getElementById("systemButton");
@@ -331,11 +333,12 @@ window.onload = async function() {
   os.packages.forEach(async function(package, index) {
     if (package.startOnBoot) os.startPackage(package);
     if (package.isApp) {
+      document.getElementById("appsDisplay").innerHTML += `<div><img id="${package.name}Start" src="data:image/webp;base64,${icons[index]}"><br>${package.name}</div>`;
       package.icon = await icons[index];
-      document.getElementById("appsDisplay").innerHTML += `<div><img id="${package.name}Start" src="data:image/webp;base64,${package.icon"><br>${package.name}</div>`;
       document.getElementById(`${package.name}Start`).onclick = function() { os.startPackage(package); };
     };
   });
+  STARTUP = (Date.now() - STARTUP) / 10;
   document.body.removeChild(document.getElementById("startup"));
   document.getElementById("shutdown").style = "background-color:black;width:100%;height:100%;position:fixed;z-index:256;";
   setTimeout(function() {
