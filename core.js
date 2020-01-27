@@ -331,8 +331,8 @@ window.onload = async function() {
   os.packages.forEach(async function(package, index) {
     if (package.startOnBoot) os.startPackage(package);
     if (package.isApp) {
-      document.getElementById("appsDisplay").innerHTML += `<div><img id="${package.name}Start" src="data:image/webp;base64,${icons[index]}"><br>${package.name}</div>`;
       package.icon = await icons[index];
+      document.getElementById("appsDisplay").innerHTML += `<div><img id="${package.name}Start" src="data:image/webp;base64,${package.icon"><br>${package.name}</div>`;
       document.getElementById(`${package.name}Start`).onclick = function() { os.startPackage(package); };
     };
   });
@@ -340,6 +340,6 @@ window.onload = async function() {
   document.getElementById("shutdown").style = "background-color:black;width:100%;height:100%;position:fixed;z-index:256;";
   setTimeout(function() {
     document.getElementById("shutdown").style = "opacity:0;background-color:black;transition:0.3s;width:100%;height:100%;position:fixed;";
-    setTimeout(function() { document.getElementById("shutdown").style = "display: none;" }, 300)
+    setTimeout(function() { document.body.removeChild(document.getElementById("shutdown")); }, 300)
   }, 1)
 }
