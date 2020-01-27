@@ -170,21 +170,6 @@ var os = {
   }
 };
 
-async function loadPackages() {
-  var packages = await fetch("/packages");
-  os.packages = await packages.json();
-  var icon = await fetch("/packages/icons");
-  var icons = await icon.json();
-  os.packages.forEach(async function(package, index) {
-    if (package.startOnBoot) os.startPackage(package);
-    if (package.isApp) {
-      document.getElementById("appsDisplay").innerHTML += `<div><img id="${package.name}Start" src="data:image/webp;base64,${icons[index]}"><br>${package.name}</div>`;
-      package.icon = await icons[index];
-      document.getElementById(`${package.name}Start`).onclick = function() { os.startPackage(package); };
-    };
-  });
-}; loadPackages();
-
 setInterval(function() {
 	var date = new Date();
   var minute = date.getMinutes()
@@ -338,11 +323,23 @@ if (window.localStorage.getItem("bgURL")) {
 };
 //END SETTINGS HOOK
 
-window.onload = function() {
+window.onload = async function() {
+  var packages = await fetch("/packages");
+  os.packages = await packages.json();
+  var icon = await fetch("/packages/icons");
+  var icons = await icon.json();
+  os.packages.forEach(async function(package, index) {
+    if (package.startOnBoot) os.startPackage(package);
+    if (package.isApp) {
+      document.getElementById("appsDisplay").innerHTML += `<div><img id="${package.name}Start" src="data:image/webp;base64,${icons[index]}"><br>${package.name}</div>`;
+      package.icon = await icons[index];
+      document.getElementById(`${package.name}Start`).onclick = function() { os.startPackage(package); };
+    };
+  });
   document.body.removeChild(document.getElementById("startup"));
   document.getElementById("shutdown").style = "background-color:black;width:100%;height:100%;position:fixed;z-index:256;";
   setTimeout(function() {
-    document.getElementById("shutdown").style = "opacity:0;background-color:black;transition:0.3s;width:100%;height:100%;transform:scale(0.5);position:fixed;";
+    document.getElementById("shutdown").style = "opacity:0;background-color:black;transition:0.3s;width:100%;height:100%;position:fixed;";
     setTimeout(function() { document.getElementById("shutdown").style = "display: none;" }, 300)
   }, 1)
 }
