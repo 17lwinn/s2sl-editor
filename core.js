@@ -227,11 +227,12 @@ document.addEventListener("contextmenu", function(e) {
 document.addEventListener("mouseup", function(e) { if (e.button === 0) osContextMenu.style = "display:none;" })
 
 function windowEnable(elmnt, package) {
+  var pos1, pos2,
   var pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
   var maximizer;
   var maximized;
   var minimizer;
-  var width = null;
+  var width
   var height = null;
   var top = null;
   var left = null;
@@ -304,6 +305,11 @@ function windowEnable(elmnt, package) {
   if (minimizer) minimizer.addEventListener("click", minimize);
   $(elmnt).draggable({ handle: document.getElementById(elmnt.id + "TitleBar") });
   if (elmnt.resizable) $(elmnt).resizable({ handles: "all" });
+  document.getElementById(elmnt.id + "TitleBar").onmousedown = function(e) {
+      Object.values(os.runningPackages).forEach(package => { if (package.windows[0]) package.windows.forEach(window => window.style.zIndex = 1); });
+      elmnt.style.zIndex = 2;
+    }
+  }
 }
 
 document.getElementById("StopAllProcesses").onclick = function() { Object.values(os.runningPackages).forEach(package => { if (package.windows[0]) package.windows.forEach(window => window.close()); }); }
