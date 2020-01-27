@@ -22,11 +22,9 @@ themes.forEach(item => {
 });
 
 theme.addEventListener("input", async function() {
-  document.body.className = "loading";
+  window.localStorage.setItem("theme", theme.value);
   var style = await os.filesystem.readFile(theme.value);
   document.getElementById("STYLE_Theme").href = `data:text/css;base64,${style}`;
-  document.body.className = null;
-  window.localStorage.setItem("theme", theme.value);
 });
 
 document.getElementById(`${package.name}WallpaperURLSelect`).onclick = function() {
@@ -35,7 +33,7 @@ document.getElementById(`${package.name}WallpaperURLSelect`).onclick = function(
   window.localStorage.setItem("bgURL", bgURL.value);
 };
 
-if (window.localStorage.getItem("theme")) theme.value = window.localStorage.getItem("theme");
+if (window.localStorage.getItem("theme")) theme.value = window.localStorage.getItem("theme"); else theme.value = "/themes/Light.css";
 if (window.localStorage.getItem("bgURL")) bgURL.value = window.localStorage.getItem("bgURL");
 
 document.getElementById(`${package.name}Reset`).onclick = function() {
@@ -47,7 +45,5 @@ document.getElementById(`${package.name}Reset`).onclick = function() {
 };
 
 document.getElementById(`${package.name}About`).onclick = function() { package.createWindow(`<div id="%window%TitleBar" class="windowTitleBar blur"><div id="%window%Close" class="windowAction"><img src="close.svg"></div>About auroraOS</div><div id="%window%Body" class="windowBody blur" style="text-align:center;"><img src="logo.webp" style="float:left;margin-right:15px;"> <h1 style="float:right;margin-top:20px;margin-left:45px;margin-right:45px;">auroraOS</h1> <p><strong>Build</strong> 39</p> <p><strong>Version</strong> 4.0</p> <p>Made with love by <a href="https://discord.gg/8nFuT3d">soup</a></p> <h2>Open-source licenses</h2><a href="https://jquery.com/">jQuery - The jQuery Foundation</a> <br><a href="https://jqueryui.com/">jQueryUI - The jQuery Foundation</a><br><a href="https://ace.c9.io/">Ace - Cloud9, Mozilla</a><br><a href="https://github.com/daneden/animate.css">Animate.css - daneden</a><br><a href="https://github.com/soupy-developer/auroraOS">And of course, auroraOS itself</a></div>`); };
-  
-  document.getElementById(`${package.name}startup`).innerText = `Last boot took ${STARTUP} seconds.`;//REMOVE ME
   
 })()

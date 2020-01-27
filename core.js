@@ -1,5 +1,3 @@
-var STARTUP = Date.now();
-
 if (location.protocol !== "https:") location.href = "https:" + window.location.href.substring(window.location.protocol.length);
 
 var menubarSystem = document.getElementById("systemButton");
@@ -19,43 +17,43 @@ var os = {
     alert.innerHTML = alert.innerHTML.replaceAll("%window%", alert.id);
     alert.style.opacity = 0;
     alert.style.transform = "scale(0.75)";
-    document.body.appendChild(alert);
-    setTimeout(function() { alert.style.opacity = 1; alert.style.transform = "scale(1)"; }, 5);
-    windowEnable(alert);
     alert.style.display = null;
-    if (!(window === "Alert")) {
+    if (window !== "Alert") {
       var windowObject = document.getElementById(window);
       alert.style.left = windowObject.style.left;
       alert.style.top = windowObject.style.top;
     }
-    setTimeout(function() { alert.style.transition = "none"; }, 200);
     document.getElementById(`${alert.id}TitleBar`).innerHTML = title;
     document.getElementById(`${alert.id}Title`).innerHTML = title;
     document.getElementById(`${alert.id}Message`).innerHTML = message;
     alert.style.zIndex = 200;
     if (callback) document.getElementById(`${alert.id}Close`).onmouseup = function() { callback(); };
+    document.body.appendChild(alert);
+    setTimeout(function() { alert.style.opacity = 1; alert.style.transform = "scale(1)"; }, 5);
+    setTimeout(function() { alert.style.transition = "none"; }, 200);
+    windowEnable(alert);
   },
-  prompt: function(message, title="Prompt", window="Prompt", callback, showTextBox=true) {
+  prompt: function(message, title="Prompt", window="Prompt", callback) {
     var prompt = document.getElementById("Prompt").cloneNode(true);
     prompt.id += Math.random().toString();
     prompt.innerHTML = prompt.innerHTML.replaceAll("%window%", prompt.id);
     prompt.style.display = null;
     prompt.style.opacity = 0;
     prompt.style.transform = "scale(0.75)";
-    document.body.appendChild(prompt);
-    windowEnable(prompt);
-    setTimeout(function() { prompt.style.opacity = null; prompt.style.transform = null; }, 5);
     if (!(window === "Prompt")) {
       var windowObject = document.getElementById(window);
       prompt.style.left = windowObject.style.left;
       prompt.style.top = windowObject.style.top;
     }
-    if (showTextBox) { document.getElementById(`${prompt.id}Input`).style.display = null; document.getElementById(`${prompt.id}Input`).placeholder = title; }
-    setTimeout(function() { prompt.style.transition = "none"; }, 200);
+    document.getElementById(`${prompt.id}Input`).placeholder = title;
     document.getElementById(`${prompt.id}TitleBar`).innerHTML = title;
     document.getElementById(`${prompt.id}Title`).innerHTML = title;
     document.getElementById(`${prompt.id}Message`).innerHTML = message;
     document.getElementById(`${prompt.id}OK`).onmouseup = function() { callback(document.getElementById(`${prompt.id}Input`).value); prompt.close(); };
+    document.body.appendChild(prompt);
+    windowEnable(prompt);
+    setTimeout(function() { prompt.style.opacity = null; prompt.style.transform = null; }, 5);
+    setTimeout(function() { prompt.style.transition = "none"; }, 200);
   },
   runningPackages: {},
   startPackage: async function(package, flags) {
@@ -337,8 +335,7 @@ window.onload = async function() {
       package.icon = await icons[index];
       document.getElementById(`${package.name}Start`).onclick = function() { os.startPackage(package); };
     };
-  });
-  STARTUP = (Date.now() - STARTUP) / 10;
+  })
   document.body.removeChild(document.getElementById("startup"));
   document.getElementById("shutdown").style = "background-color:black;width:100%;height:100%;position:fixed;z-index:256;";
   setTimeout(function() {
