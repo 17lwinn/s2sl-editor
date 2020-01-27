@@ -23,12 +23,12 @@ var os = {
       alert.style.left = windowObject.style.left;
       alert.style.top = windowObject.style.top;
     }
-    document.getElementById(`${alert.id}TitleBar`).innerHTML = title;
-    document.getElementById(`${alert.id}Title`).innerHTML = title;
-    document.getElementById(`${alert.id}Message`).innerHTML = message;
     alert.style.zIndex = 200;
     if (callback) document.getElementById(`${alert.id}Close`).onmouseup = function() { callback(); };
     document.body.appendChild(alert);
+    document.getElementById(`${alert.id}TitleBar`).innerHTML = title;
+    document.getElementById(`${alert.id}Title`).innerHTML = title;
+    document.getElementById(`${alert.id}Message`).innerHTML = message;
     setTimeout(function() { alert.style.opacity = 1; alert.style.transform = "scale(1)"; }, 5);
     setTimeout(function() { alert.style.transition = "none"; }, 200);
     windowEnable(alert);
@@ -45,12 +45,12 @@ var os = {
       prompt.style.left = windowObject.style.left;
       prompt.style.top = windowObject.style.top;
     }
+    document.getElementById(`${prompt.id}OK`).onmouseup = function() { callback(document.getElementById(`${prompt.id}Input`).value); prompt.close(); };
+    document.body.appendChild(prompt);
     document.getElementById(`${prompt.id}Input`).placeholder = title;
     document.getElementById(`${prompt.id}TitleBar`).innerHTML = title;
     document.getElementById(`${prompt.id}Title`).innerHTML = title;
     document.getElementById(`${prompt.id}Message`).innerHTML = message;
-    document.getElementById(`${prompt.id}OK`).onmouseup = function() { callback(document.getElementById(`${prompt.id}Input`).value); prompt.close(); };
-    document.body.appendChild(prompt);
     windowEnable(prompt);
     setTimeout(function() { prompt.style.opacity = null; prompt.style.transform = null; }, 5);
     setTimeout(function() { prompt.style.transition = "none"; }, 200);
@@ -64,6 +64,7 @@ var os = {
     packagee.name += Math.random().toString();
     packagee.absoluteName = package.name;
     packagee.event = new Event(packagee.name + "Close");
+    packagee.flags = flags;
     packagee.windows = [];
     if (packagee.isApp) {
       packagee.dockIcon = document.createElement("img");
@@ -79,7 +80,6 @@ var os = {
     script.src = "data:text/javascript;base64," + packageJS;
     script.id = packagee.name;
     script.defer = true;
-    packagee.flags = flags;
     document.body.appendChild(script);
     packagee.script = script;
     os.runningPackages[packagee.name] = packagee;
@@ -90,9 +90,9 @@ var os = {
       window.innerHTML = body.replaceAll(/%package%/, packagee.name).replaceAll(/%window%/, window.id);
       window.style = "opacity:0;transform:scale(0.75);";
       document.body.appendChild(window);
-      setTimeout(function() { window.style = null;}, 5);
-      setTimeout(function() { Object.values(os.runningPackages).forEach(package => { if (package.windows[0]) package.windows.forEach(window => window.style.zIndex = 1); }); window.style.transition = "none"; window.style.zIndex = 2; }, 200)
       if (menubarClick) menubarSystem.click();
+      setTimeout(function() { window.style = null; }, 5);
+      setTimeout(function() { Object.values(os.runningPackages).forEach(package => { if (package.windows[0]) package.windows.forEach(window => window.style.zIndex = 1); }); window.style.transition = "none"; window.style.zIndex = 2; }, 200)
       if (options.resizable === true) window.resizable = true;
       windowEnable(window, packagee);
       window.edit = function(body) { document.getElementById(`${window.id}Body`).outerHTML = body.replaceAll(/%package%/, packagee.name).replaceAll(/%window%/, window.id); };
