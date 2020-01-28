@@ -58,12 +58,10 @@ var os = {
   runningPackages: {},
   startPackage: async function(package, flags) {
     loading.style.display = null;
-    var packageRaw = await fetch(`/packages/start/${package.name}`);
-    var packageJS = await packageRaw.json();
+    var packageJS = await os.filesystem.readFile(`/packages/${package.name}/app.js`);
     var packagee = Object.assign({}, package);
     packagee.name += Math.random().toString();
     packagee.absoluteName = package.name;
-    packagee.event = new Event(packagee.name + "Close");
     packagee.flags = flags;
     packagee.windows = [];
     if (packagee.isApp) {
@@ -321,7 +319,7 @@ window.onload = async function() {
     };
   })
   setTimeout(function() {
-    document.getElementById("startup").style = "transition:0.3s;width:100%;height:100%;position:fixed;";
+    document.getElementById("startup").style = "transition:0.3s;opacity:0;width:100%;height:100%;position:fixed;";
     setTimeout(function() { document.body.removeChild(document.getElementById("startup")); }, 300)
   }, 1)
 }

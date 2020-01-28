@@ -38,14 +38,6 @@ app.get("/packages", async function(req, res) {
     res.send(JSON.stringify(array));
     console.log("Package data sending complete.")
 });
-app.get("/packages/start/:packageName", async function(req, res) {
-    console.log(`[GET] Client is starting package ${req.params.packageName}!`);
-    fs.readFile(`${__dirname}/packages/${req.params.packageName}/app.js`, (err, data) => {
-        const file = Buffer.from(data).toString("base64");
-        res.send(JSON.stringify(file));
-        console.log(`Package sent.`)
-    });
-});
 
 // START FILE API
 
