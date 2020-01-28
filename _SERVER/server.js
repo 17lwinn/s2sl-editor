@@ -64,7 +64,14 @@ app.get("/file/read/:type/:filePath", async function(req, res) {
         });
     }
 });
-app.get("/file/readStatic/:")
+app.get("/file/readStatic/:filePath", async function(req, res) {
+  console.log(`[STATIC-GET] Client is requesting file ${req.params.filePath}!`);
+  req.params.filePath = await req.params.filePath.replaceAll("$$$$", "/");
+  fs.readFile(`${__dirname}/${req.params.filePath}`, (err, data) => {
+    res.send(data);
+    console.log(`File ${req.params.filePath} sent as STATIC.`)
+  });
+})
 app.post("/file/write/:type/:filePath", async function(req, res) {
     if (!(req.params.filePath.includes("/home"))) return;
     if (req.params.type === "directory") {
