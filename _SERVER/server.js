@@ -74,7 +74,7 @@ app.get("/file/readStatic/:filePath", async function(req, res) {
   });
 })
 app.post("/file/write/:type/:filePath", async function(req, res) {
-    if (!(req.params.filePath.includes("/home"))) return;
+    if (!(req.params.filePath.includes("home"))) return;
     if (req.params.type === "directory") {
         console.log(`[POST] Client is creating directory at ${req.params.filePath}!`);
         req.params.filePath = await req.params.filePath.replaceAll("$$$$", "/");
