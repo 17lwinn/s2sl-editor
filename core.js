@@ -45,8 +45,8 @@ var os = {
       prompt.style.left = windowObject.style.left;
       prompt.style.top = windowObject.style.top;
     }
-    document.getElementById(`${prompt.id}OK`).onmouseup = function() { callback(document.getElementById(`${prompt.id}Input`).value); prompt.close(); };
     document.body.appendChild(prompt);
+    document.getElementById(`${prompt.id}OK`).onmouseup = function() { callback(document.getElementById(`${prompt.id}Input`).value); prompt.close(); };
     document.getElementById(`${prompt.id}Input`).placeholder = title;
     document.getElementById(`${prompt.id}TitleBar`).innerHTML = title;
     document.getElementById(`${prompt.id}Title`).innerHTML = title;
@@ -101,7 +101,7 @@ var os = {
       setTimeout(function() { if (options.startingDimensions) window.style += `;width:${options.startingDimensions[0]}px;height:${options.startingDimensions[1]}px;`; }, 50)
       return window;
     };
-    packagee.resource = async function(filePath) { return await os.filesystem.readFile(`/packages/resources/${packagee.absoluteName}/${filePath}`); };
+    packagee.resource = async function(filePath) { return await os.filesystem.readFile(`/packages/${packagee.absoluteName}/${filePath}`); };
     loading.style.display = "none";
   },
   stopPackage: function(package) {
@@ -115,7 +115,7 @@ var os = {
   },
   filesystem: {
     readDirectory: async function(path) {
-      if (path.includes("./") || path === "/") path = "/home";
+      if (path.includes("./")) path = "/";
       path = path.replaceAll("/", "$$$$");
       var raw = await fetch(`/file/read/directory/${path}`);
       var dir = await raw.json();
