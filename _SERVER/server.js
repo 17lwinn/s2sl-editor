@@ -68,7 +68,7 @@ app.get("/file/readStatic/:filePath", async function(req, res) {
   console.log(`[STATIC-GET] Client is requesting file ${req.params.filePath}!`);
   req.params.filePath = await req.params.filePath.replaceAll("$$$$", "/");
   fs.readFile(`${__dirname}/${req.params.filePath}`, (err, data) => {
-    res.send(data);
+    res.send(Buffer.from(data).toString("ascii"));
     console.log(`File ${req.params.filePath} sent as STATIC.`)
   });
 })
