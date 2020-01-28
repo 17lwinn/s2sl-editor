@@ -28,6 +28,7 @@ document.addEventListener("mouseup", function() { bodyContextMenu.style.display 
 var fileIcons = {
   "directory": "directory.webp",
   "application/javascript": "javascript.webp",
+  "image/png": `/file/readStatic/${path}`,
 };
 
 var fileList = document.getElementById(`${package.name}FileList`);
