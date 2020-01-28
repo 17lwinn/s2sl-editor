@@ -64,6 +64,7 @@ app.get("/file/read/:type/:filePath", async function(req, res) {
         });
     }
 });
+app.get("/file/readStatic/:")
 app.post("/file/write/:type/:filePath", async function(req, res) {
     if (!(req.params.filePath.includes("/home"))) return;
     if (req.params.type === "directory") {
