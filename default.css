@@ -3,7 +3,7 @@ body {
   background-size: cover;
   margin: 0px;
 }
-*:not(h1):not(pre) {box-sizing: border-box; font-family: "open sans", sans-serif; font-size: 14px; transition: font-size cubic-bezier(.17,.67,0,.83) 0.3s; }
+*:not(h1):not(pre) { box-sizing: border-box; font-family: "open sans", sans-serif; font-size: 14px; transition: font-size cubic-bezier(.17,.67,0,.83) 0.3s; }
 
 a { text-decoration: none; }
 a:hover { text-decoration: underline; }
@@ -40,7 +40,6 @@ img {
   transition: cubic-bezier(.17,.67,0,.83) 0.3s;
   height: 40px;
   width: 40px;
-  border-radius: 100%;
 }
 .dock img:hover {
   margin-left: 20px;
@@ -94,6 +93,7 @@ img {
   padding-left: 10px;
   cursor: default;
   text-align: center;
+  user-select: none;
 }
 .windowTitleBar ui { margin-right: 3.5rem; }
 .windowBody {
