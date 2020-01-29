@@ -8,8 +8,6 @@ const bodyParser = require("body-parser");
 const compression = require("compression");
 const rimraf = require("rimraf");
 
-String.prototype.replaceAll = function(f,r) { return this.split(f).join(r); };
-
 app.use(compression());
 app.use(express.static(path.join(__dirname, "../")));
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -45,7 +43,6 @@ app.get("/file/read/:type/:filePath", async function(req, res) {
     if (req.params.type === "directory") {
         console.log(`[GET] Client is requesting files in directory ${req.params.filePath}!`);
         const array = [];
-        req.params.filePath = await req.params.filePath.replaceAll("$$$$", "/");
         const rawDir = fs.readdirSync(`${__dirname}/${req.params.filePath}`, { withFileTypes: true });
         for (const file of rawDir) {
             var type = mime.getType(file.name.split('.').pop());
@@ -56,7 +53,6 @@ app.get("/file/read/:type/:filePath", async function(req, res) {
         console.log(`All files in directory ${req.params.filePath} sent.`)
     } else if (req.params.type === "file") {
         console.log(`[GET] Client is requesting file ${req.params.filePath}!`);
-        req.params.filePath = await req.params.filePath.replaceAll("$$$$", "/");
         fs.readFile(`${__dirname}/${req.params.filePath}`, (err, data) => {
             const file = Buffer.from(data).toString("base64");
             res.send(JSON.stringify(file));
@@ -66,7 +62,6 @@ app.get("/file/read/:type/:filePath", async function(req, res) {
 });
 app.get("/file/readStatic/:filePath", async function(req, res) {
   console.log(`[STATIC-GET] Client is requesting file ${req.params.filePath}!`);
-  req.params.filePath = await req.params.filePath.replaceAll("$$$$", "/");
   fs.readFile(`${__dirname}/${req.params.filePath}`, (err, data) => {
     res.writeHead(200);
     res.end(data);
@@ -77,12 +72,10 @@ app.post("/file/write/:type/:filePath", async function(req, res) {
     if (!(req.params.filePath.includes("home"))) return;
     if (req.params.type === "directory") {
         console.log(`[POST] Client is creating directory at ${req.params.filePath}!`);
-        req.params.filePath = await req.params.filePath.replaceAll("$$$$", "/");
         fs.mkdirSync(`${__dirname}/${req.params.filePath}`);
         console.log(`Directory ${req.params.filePath} created.`)
     } else if (req.params.type === "file") {
         console.log(`[POST] Client is creating file at ${req.params.filePath}!`);
-        req.params.filePath = await req.params.filePath.replaceAll("$$$$", "/");
         const file = Buffer.from(req.body.data, "base64").toString("ascii");
         fs.writeFile(`${__dirname}/${req.params.filePath}`, file, "ascii", () => console.log(`File ${req.params.filePath} created.`))
     }
@@ -91,11 +84,9 @@ app.post("/file/rm/:type/:filePath", async function(req, res) {
     if (!(req.params.filePath.includes("/home"))) return;
     if (req.params.type === "directory") {
         console.log(`[POST] Client is removing directory at ${req.params.filePath}!`);
-        req.params.filePath = await req.params.filePath.replaceAll("$$$$", "/");
         rimraf(`${__dirname}/${req.params.filePath}`, function() { console.log(`Directory ${req.params.filePath} removed.`); });
     } else if (req.params.type === "file") {
         console.log(`[POST] Client is removing file at ${req.params.filePath}!`);
-        req.params.filePath = await req.params.filePath.replaceAll("$$$$", "/");
         fs.unlink(`${__dirname}/${req.params.filePath}`, e => {
             if (e) return;
             console.log(`File ${req.params.filePath} removed.`)

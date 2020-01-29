@@ -3,8 +3,7 @@ var package = os.runningPackages[document.currentScript.id];
 var mainWindowRaw = await package.resource("main.html");
 package.createWindow(atob(mainWindowRaw), { resizable: true });
 
-document.getElementById(`${package.name}Text`).src = "data:text/html;base64," + btoa(`<head><link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet"></head><body contenteditable></body>`);
-var text = document.getElementById(`${package.name}Text`).contentWindow.document;
+var text = await document.getElementById(`${package.name}Text`).contentDocument;
 text.designMode = "on";
 
 document.getElementById(`${package.name}Bold`).onmouseup = function() { text.execCommand("bold", false); }

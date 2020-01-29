@@ -114,7 +114,7 @@ var os = {
   filesystem: {
     readDirectory: async function(path) {
       if (path.includes("./")) path = "/";
-      path = path.replaceAll("/", "$$$$");
+      path = path.replaceAll("/", "%2F");
       var raw = await fetch(`/file/read/directory/${path}`);
       var dir = await raw.json();
       return dir;
@@ -122,7 +122,7 @@ var os = {
     readFile: async function(path) {
       loading.style.display = null;
       if (path.includes("./")) return;
-      path = path.replaceAll("/", "$$$$");
+      path = path.replaceAll("/", "%2F");
       var raw = await fetch(`/file/read/file/${path}`);
       var file = await raw.json();
       loading.style.display = "none";
@@ -130,7 +130,7 @@ var os = {
     },
     writeDirectory: function(path) {
       if (path.includes("./")) return;
-      path = path.replaceAll("/", "$$$$");
+      path = path.replaceAll("/", "%2F");
       var xhr = new XMLHttpRequest();
       xhr.open("POST", `/file/write/directory/${path}`, true);
       xhr.setRequestHeader('Content-Type', 'application/json');
@@ -138,7 +138,7 @@ var os = {
     },
     writeFile: function(path, data) {
       if (path.includes("./")) return;
-      path = path.replaceAll("/", "$$$$");
+      path = path.replaceAll("/", "%2F");
       var xhr = new XMLHttpRequest();
       xhr.open("POST", `/file/write/file/${path}`, true);
       xhr.setRequestHeader('Content-Type', 'application/json');
@@ -146,7 +146,7 @@ var os = {
     },
     deleteDirectory: function(path) {
       if (path.includes("./")) return;
-      path = path.replaceAll("/", "$$$$");
+      path = path.replaceAll("/", "%2F");
       var xhr = new XMLHttpRequest();
       xhr.open("POST", `/file/rm/directory/${path}`, true);
       xhr.setRequestHeader('Content-Type', 'application/json');
@@ -154,7 +154,7 @@ var os = {
     },
     deleteFile: function(path) {
       if (path.includes("./")) return;
-      path = path.replaceAll("/", "$$$$");
+      path = path.replaceAll("/", "%2F");
       var xhr = new XMLHttpRequest();
       xhr.open("POST", `/file/rm/file/${path}`, true);
       xhr.setRequestHeader('Content-Type', 'application/json');
