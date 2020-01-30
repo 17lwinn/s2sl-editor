@@ -1,7 +1,7 @@
 ;(async function() {
 var package = os.runningPackages[document.currentScript.id];
 var mainWindowRaw = await package.resource("main.html");
-package.createWindow(atob(mainWindowRaw), { resizable: true });
+await package.createWindow(atob(mainWindowRaw), { resizable: true });
 
 var text = await document.getElementById(`${package.name}Text`).contentDocument;
 text.designMode = "on";
@@ -18,4 +18,5 @@ document.getElementById(`${package.name}IndentCenter`).onmouseup = function() { 
 document.getElementById(`${package.name}IndentRight`).onmouseup = function() { text.execCommand("justifyRight", false); }
 document.getElementById(`${package.name}OrderedList`).onmouseup = function() { text.execCommand("insertOrderedList", false); }
 document.getElementById(`${package.name}UnorderedList`).onmouseup = function() { text.execCommand("insertUnorderedList", false); }
+console.log(text);
 })()
