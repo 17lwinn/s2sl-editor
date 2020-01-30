@@ -46,7 +46,7 @@ var os = {
       prompt.style.top = windowObject.style.top;
     }
     document.body.appendChild(prompt);
-    document.getElementById(`${prompt.id}OK`).onmouseup = function() { callback(document.getElementById(`${prompt.id}Input`).value); prompt.close(); };
+    document.getElementById(`${prompt.id}OK`).onclick = function() { callback(document.getElementById(`${prompt.id}Input`).value); prompt.close(); };
     document.getElementById(`${prompt.id}Input`).placeholder = title;
     document.getElementById(`${prompt.id}TitleBar`).innerHTML = title;
     document.getElementById(`${prompt.id}Title`).innerHTML = title;
