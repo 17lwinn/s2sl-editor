@@ -104,15 +104,4 @@ function main(args) {
     print(out[0] + "." + out.slice(1));
 }
 
-var args;
-if (typeof scriptArgs != "undefined") {
-    args = scriptArgs;
-    args.shift();
-} else if (typeof arguments != "undefined") {
-    args = arguments;
-} else {
-    /* default: 1000 digits */
-    args=[1000];
-}
-
-main(args);
+var args = os.prompt("How many digits of Pi to calculate?", "pi_bigint.js", "Prompt", function(val) {main([val]);});
