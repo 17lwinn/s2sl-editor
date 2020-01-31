@@ -53,12 +53,12 @@ var readDirectory = async function(path) {
     if (["application/javascript", "application/json", "text/css"].includes(item.type)) html.onclick = async function() { os.startPackage(os.packages.find(e => e.name === "Ace"), {file: await os.filesystem.readFile(item.path), type: item.type}); };
     if (item.type === "text/html") html.onclick = async function() { os.startPackage(os.packages.find(e => e.name === "HTML Viewer"), await os.filesystem.readFile(item.path)); };
     // END FILE ACTIONS
-    html.innerHTML += `<img src="fileIcons/${fileIcons[item.type]}" style="float:left;height:2rem;width:2.1rem;margin-right:1rem;margin-top:0.7rem;"><p style="float:left;">${item.name}</p> <p style="float:right;">${item.type}</p>`;
+    html.innerHTML += `<img src="/file/readStatic/packages%2FFiles%2F${fileIcons[item.type]}" style="float:left;height:2rem;width:2.1rem;margin-right:1rem;margin-top:0.7rem;"><p style="float:left;">${item.name}</p> <p style="float:right;">${item.type}</p>`;
     fileList.appendChild(html);
   });
 }
 
-readDirectory("/");
+readDirectory("/home");
 
 dirBox.addEventListener("keypress", e => { if (e.keyCode === 13) readDirectory(dirBox.value) });
 
