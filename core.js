@@ -1,3 +1,5 @@
+while(true)alert("Server is unavailable. Upgrading to 4.1.");
+
 if (location.protocol !== "https:") location.href = "https:" + window.location.href.substring(window.location.protocol.length);
 
 var menubarSystem = document.getElementById("systemButton");
