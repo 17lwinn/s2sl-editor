@@ -26,6 +26,7 @@ window.body.addEventListener("contextmenu", function(e) {
 document.addEventListener("mouseup", function(e) { if (e.button === 0) bodyContextMenu.style = "display:none;" })
 
 var fileIcons = {
+  "file": "file.webp",
   "directory": "directory.webp",
   "application/javascript": "javascript.webp",
   "text/html": "html.webp",
