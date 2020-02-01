@@ -50,7 +50,7 @@ a { color: #480b80; }
 .windowAction img:active { filter: brightness(70%); }
 
 input[type="textbox"], input[type="text"], button, textarea, select {
-  background-color: rgb(255,255,255);
+  background-color: rgba(255,255,255,0.5);
   color: black;
   border-radius: 5px;
   padding: 7px;
@@ -69,13 +69,13 @@ option {
   color: black;
 }
 button[disabled], input[disabled], textarea[disabled], select[disabled] {
-  background-color: rgba(150,150,150,0.4);
+  background-color: rgba(150,150,150,0.5);
   color: rgba(0,0,0,0.3);
   box-shadow: none;
 }
 .chboxContainer input:checked ~ .checkmark { color: black; }
 .checkmark {
-  background-color: rgb(255,255,255);
+  background-color: rgba(255,255,255,0.5);
   color: transparent;
   box-shadow: 0px 0px 6px rgba(0,0,0,0.4);
   padding: 4px;
