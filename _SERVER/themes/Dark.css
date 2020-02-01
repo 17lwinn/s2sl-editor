@@ -2,35 +2,21 @@
 
 a { color: #c8a2eb; }
 
-.fullscreen {
-  background-color: rgb(50,50,50);
-  color: white;
-}
+.fullscreen, .dock, .contextMenu, .windowTitleBar { color: white; }
 
-.dock {
-  background-color: rgb(50,50,50);
-  color: white;
-  box-shadow: 0px 0px 6px rgba(0,0,0,0.4);
-}
+.dock { box-shadow: 0px 0px 6px rgba(0,0,0,0.4); }
 
-.contextMenu {
-  background-color: rgb(50,50,50);
-  color: white;
-}
-.notAllowed {
-  color: rgba(255,255,255,0.3);
-}
+.notAllowed { color: rgba(255,255,255,0.3); }
 .contextMenuSeparator {
   border-top: 1px solid rgba(255,255,255,0.3);
 }
 
-.windowTitleBar { color: white; }
 .window {
   background: rgba(0,0,0,0.7);
   backdrop-filter: blur(20px);
 }
 .windowBody {
-  background: linear-gradient(0deg, rgb(34,34,34), rgb(52,52,52));
+  background: rgb(44,47,54);
   color: #ebebeb;
 }
 .windowAction {

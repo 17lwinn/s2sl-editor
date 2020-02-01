@@ -33,7 +33,7 @@ var os = {
     setTimeout(function() { alert.style.transition = "none"; }, 200);
     windowEnable(alert);
   },
-  prompt: function(message, title="Prompt", window="Prompt", callback) {
+  prompt: function(message, title="Prompt", window="Prompt", callback, showTextBox=true) {
     var prompt = document.getElementById("Prompt").cloneNode(true);
     prompt.id += Math.random().toString();
     prompt.innerHTML = prompt.innerHTML.replaceAll("%window%", prompt.id);
@@ -47,9 +47,9 @@ var os = {
     }
     document.body.appendChild(prompt);
     document.getElementById(`${prompt.id}OK`).onclick = function() { callback(document.getElementById(`${prompt.id}Input`).value); prompt.close(); };
-    document.getElementById(`${prompt.id}Input`).placeholder = title;
     document.getElementById(`${prompt.id}TitleBar`).innerHTML = title;
     document.getElementById(`${prompt.id}Title`).innerHTML = title;
+    if (showTextBox) { document.getElementById(`${prompt.id}Input`).style = null; document.getElementById(`${prompt.id}Input`).placeholder = title; }
     document.getElementById(`${prompt.id}Message`).innerHTML = message;
     windowEnable(prompt);
     setTimeout(function() { prompt.style.opacity = null; prompt.style.transform = null; }, 5);
