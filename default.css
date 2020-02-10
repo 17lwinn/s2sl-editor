@@ -16,8 +16,6 @@ a:hover { text-decoration: underline; }
 .fullscreen div:hover, .fullscreen div:focus { transform: scale(1.25); }
 .fullscreen div:active { transform: scale(1.5); }
 
-body.loading, body.loading * { cursor: progress !important; }
-
 img {
   user-drag: none;
   -webkit-user-drag: none;
