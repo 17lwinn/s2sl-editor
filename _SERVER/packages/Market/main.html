@@ -1,7 +1,9 @@
 <div id="%window%TitleBar" class="windowTitleBar"><div id="%window%Close" class="windowAction"><img src="close.svg"></div><div id="%window%Maximize" class="windowAction"><img src="max.svg"></div><div id="%window%Minimize" class="windowAction"><img src="min.svg"></div><ui>Market</ui></div>
 <div id="%window%Body" class="windowBody blur" style="padding:0;">
-  <div class="menubar">
-    <div id="%package%Save" class="menubarButton">Save</div>
-    <div id="%package%Run" class="menubarButton" style="display:none;">Run</div>
+  <div class="menubar" style="text-align:center;">
+    <div id="%package%ViewAll" class="menubarButton" style="width:100px;border-bottom:3px solid rgb(66, 144, 245);">All</div>
+    <div id="%package%ViewInstalled" class="menubarButton" style="width:100px;">Installed</div>
+    <br>
+    <input type="textbox" id="%package%AllSearch" placeholder="Search.." style="width:calc(100% - 160px);margin:10px;">
   </div>
 </div>

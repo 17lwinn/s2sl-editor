@@ -118,7 +118,7 @@ input, button:not([class]), textarea, select {
   background: silver;
 }
 
-.progressBarInner { background: rgb(7, 13, 102); color: white; border: 1px solid black; }
+.progressBarInner { background: rgb(7, 13, 102); color: transparent; border: 1px solid black; }
 .progressBarOuter {
   width: 100%;
   background: white;
@@ -136,7 +136,6 @@ textarea, input {
   border-bottom: 1px solid #dfdfdf;
   box-shadow: inset 1px 1px grey, 1px 0 white, 0 1px white, 1px 1px white;
   background: white;
-  box-shadow: none;
 }
 
 .menubar {
