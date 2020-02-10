@@ -21,7 +21,7 @@ app.get("/packages", async function(req, res) {
     const packages = fs.readdirSync(`${__dirname}/packages`, { withFileTypes: true }).filter(dir => dir.isDirectory());
     let canAccess;
     for (const dir of packages) {
-      const info = require(`./packages/${dir.name}/info.json`);
+      const info = require(`${__dirname}/packages/${dir.name}/info.json`);
       if (info.isApp) {
         canAccess = true;
         try { fs.accessSync(`${__dirname}/packages/${dir.name}/icon.webp`, fs.constants.F_OK); } catch(e) { canAccess = false; }
