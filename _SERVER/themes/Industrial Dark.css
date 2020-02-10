@@ -49,7 +49,7 @@ a { color: #c8a2eb; }
 .windowAction img:hover { filter: brightness(40%); }
 .windowAction img:active { filter: brightness(0%); }
 
-input, button, textarea, select {
+input, button:not([class]), textarea, select {
   background-color: rgb(44,48,54);
   color: white;
   border-radius: 3px;
@@ -98,5 +98,5 @@ input[type="range"]::-webkit-slider-thumb {
 #systemButton img { box-shadow: none; filter: drop-shadow(0px 0px 5px black); }
 #menubarClock { color: white; text-shadow: 0px 0px 5px black; border: none; }
 
-.menubarButton:hover, button:hover:not([disabled]), .checkmark:hover:not(.notAllowed), select:hover:not([disabled]), .contextMenuSelection:hover:not(.notAllowed), ::-webkit-scrollbar-thumb:hover, input[type="range"]::-webkit-slider-thumb:hover { background: linear-gradient(0deg, rgb(0,65,155), rgb(13,113,155)); }
+.menubarButton:hover, .menubarButton:focus, button:hover:not([disabled]):not([class]), button:focus:not([disabled]):not([class]), .checkmark:hover:not(.notAllowed), select:hover:not([disabled]), select:focus:not([disabled]), .contextMenuSelection:hover:not(.notAllowed), input[type="range"]::-webkit-slider-thumb:hover { background: linear-gradient(0deg, rgb(0,65,155), rgb(13,113,155)); }
 .menubarButton:active, button:active:not([disabled]), .checkmark:active:not(.notAllowed), select:active:not([disabled]), .contextMenuSelection:active:not(.notAllowed), ::-webkit-scrollbar-thumb:active, input[type="range"]::-webkit-slider-thumb:active { background: linear-gradient(0deg, rgb(48,115,255), rgb(63,173,255)); }

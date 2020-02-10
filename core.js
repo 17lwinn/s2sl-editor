@@ -313,7 +313,7 @@ window.onload = async function() {
   os.packages.forEach(async function(package, index) {
     if (package.startOnBoot) os.startPackage(package);
     if (package.isApp) {
-      document.getElementById("appsDisplay").innerHTML += `<div><img id="${package.name}Start" src="data:image/webp;base64,${package.icon}"><br>${package.name}</div>`;
+      document.getElementById("appsDisplay").innerHTML += `<button tabindex="0" id="${package.name}Start" ><img src="data:image/webp;base64,${package.icon}"><br>${package.name}</button>`;
       await document.getElementById(`${package.name}Start`);
       document.getElementById(`${package.name}Start`).onclick = function() { os.startPackage(package); };
     };

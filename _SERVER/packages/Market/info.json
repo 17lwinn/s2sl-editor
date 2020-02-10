@@ -1,0 +1,5 @@
+{
+    "name": "Market",
+    "startOnBoot": false,
+    "isApp": true
+}

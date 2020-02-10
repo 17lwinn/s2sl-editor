@@ -49,7 +49,7 @@ a { color: #480b80; }
 .windowAction img:hover { filter: brightness(50%); }
 .windowAction img:active { filter: brightness(70%); }
 
-input[type="textbox"], input[type="text"], button, textarea, select {
+input[type="textbox"], input[type="text"], button:not([class]), textarea, select {
   background-color: rgba(255,255,255,0.5);
   color: black;
   border-radius: 5px;
@@ -105,7 +105,7 @@ input[type="range"]::-webkit-slider-thumb:hover { background: rgb(200,200,200); 
 .menubarButton, .menubarObject {
   border-radius: 5px;
 }
-.menubarButton:hover, button:hover:not([disabled]), .checkmark:hover:not(.notAllowed), select:hover:not([disabled]), .contextMenuSelection:hover:not(.notAllowed), ::-webkit-scrollbar-thumb:hover { background-color: rgba(175,175,175,0.4); }
+.menubarButton:hover, .menubarButton:focus, button:hover:not([disabled]):not([class]), button:focus:not([disabled]):not([class]), .checkmark:hover:not(.notAllowed), select:hover:not([disabled]), select:focus:not([disabled]), .contextMenuSelection:hover:not(.notAllowed), ::-webkit-scrollbar-thumb:hover { background-color: rgba(175,175,175,0.4); }
 .menubarButton:active, button:active:not([disabled]), .checkmark:active:not(.notAllowed), select:active:not([disabled]), .contextMenuSelection:active:not(.notAllowed), ::-webkit-scrollbar-thumb:active { background-color: rgba(120,120,120,0.4); }
 button, .checkmark:not(.notAllowed) {
   overflow: hidden;
