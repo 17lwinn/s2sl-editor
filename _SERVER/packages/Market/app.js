@@ -6,7 +6,11 @@ var loading = document.getElementById(`${package.name}loading`);
 
 var raw = await fetch("https://aurora-market.glitch.me/homepage");
 var homepage = await raw.json();
-console.log(homepage);
+
+document.getElementById(`${package.name}homepage`).style.display = null;
+homepage.forEach(package => {
   
+});
+
 loading.style.display = "none";
 })()
