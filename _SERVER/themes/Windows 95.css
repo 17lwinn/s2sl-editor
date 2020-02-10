@@ -118,11 +118,23 @@ input, button:not([class]), textarea, select {
   background: silver;
 }
 
+.progressBarInner { background: rgb(7, 13, 102); color: white; border: 1px solid black; }
+.progressBarOuter {
+  width: 100%;
+  background: white;
+  border-top: 1px solid black;
+  border-left: 1px solid black;
+  border-right: 1px solid #dfdfdf;
+  border-bottom: 1px solid #dfdfdf;
+  box-shadow: inset 1px 1px grey, 1px 0 white, 0 1px white, 1px 1px white;
+}
+
 textarea, input {
-  border-top: 1px solid gray;
-  border-left: 1px solid gray;
-  border-right: 1px solid white;
-  border-bottom: 1px solid white;
+  border-top: 1px solid black;
+  border-left: 1px solid black;
+  border-right: 1px solid #dfdfdf;
+  border-bottom: 1px solid #dfdfdf;
+  box-shadow: inset 1px 1px grey, 1px 0 white, 0 1px white, 1px 1px white;
   background: white;
   box-shadow: none;
 }

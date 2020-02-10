@@ -49,7 +49,7 @@ a { color: #480b80; }
 .windowAction img:hover { filter: brightness(50%); }
 .windowAction img:active { filter: brightness(70%); }
 
-input[type="textbox"], input[type="text"], button, textarea, select {
+input[type="textbox"], input[type="text"], button, textarea, select, .progressBarOuter {
   background-color: rgba(255,255,255,0.5);
   color: black;
   border-radius: 5px;
@@ -60,6 +60,9 @@ input[type="textbox"], input[type="text"], button, textarea, select {
   box-shadow: 0px 0px 6px rgba(0,0,0,0.4);
 }
 
+.progressBarInner { border-radius: 5px; background: rgba(255,255,255,0.5); color: black; }
+.progressBarOuter { width: 100%; background: rgba(150,150,150,0.5); }
+
 #systemButton img {
   filter: brightness(0%);
 }
@@ -69,7 +72,7 @@ option {
   color: black;
 }
 button[disabled], input[disabled], textarea[disabled], select[disabled] {
-  background-color: rgba(150,150,150,0.5);
+  background: rgba(150,150,150,0.5);
   color: rgba(0,0,0,0.3);
   box-shadow: none;
 }

@@ -49,7 +49,7 @@ a { color: #c8a2eb; }
 .windowAction img:hover { filter: brightness(40%); }
 .windowAction img:active { filter: brightness(0%); }
 
-input, button, textarea, select {
+input, button, textarea, select, .progressBarOuter {
   background-color: rgb(44,48,54);
   color: white;
   border-radius: 3px;
@@ -58,6 +58,9 @@ input, button, textarea, select {
   padding-right: 7px;
   border: 1px solid rgb(32,35,40);
 }
+
+.progressBarInner { border-radius: 3px; background: linear-gradient(0deg, rgb(0,65,155), rgb(13,113,155)); color: black; }
+.progressBarOuter { width: 100%; }
 
 textarea, input { box-shadow: inset 0px 0px 3px rgba(0,0,0,0.25); }
 
