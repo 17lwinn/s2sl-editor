@@ -21,17 +21,17 @@ app.get("/packages", async function(req, res) {
     const packages = fs.readdirSync(`${__dirname}/packages`, { withFileTypes: true }).filter(dir => dir.isDirectory());
     let canAccess;
     for (const dir of packages) {
-        const info = require(`./packages/${dir.name}/info.json`);
-        if (info.isApp) {
-          canAccess = true;
-          try { fs.accessSync(`${__dirname}/packages/${dir.name}/icon.webp`, fs.constants.F_OK); } catch(e) { canAccess = false; }
-          if (canAccess) {
-            const rawIcon = fs.readFileSync(`${__dirname}/packages/${dir.name}/icon.webp`);
-            info.icon = await Buffer.from(rawIcon).toString("base64");
-          }
+      const info = require(`./packages/${dir.name}/info.json`);
+      if (info.isApp) {
+        canAccess = true;
+        try { fs.accessSync(`${__dirname}/packages/${dir.name}/icon.webp`, fs.constants.F_OK); } catch(e) { canAccess = false; }
+        if (canAccess) {
+          const rawIcon = fs.readFileSync(`${__dirname}/packages/${dir.name}/icon.webp`);
+          info.icon = await Buffer.from(rawIcon).toString("base64");
         }
-        array.push(info);
-        console.log(`Package ${info.name} loaded`);
+      }
+      array.push(info);
+      console.log(`Package ${info.name} loaded`);
     }
     res.send(JSON.stringify(array));
     console.log("Package data sending complete.")

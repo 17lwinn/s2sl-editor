@@ -6,19 +6,23 @@
     <br>
     <input type="textbox" id="%package%AllSearch" placeholder="Search.." style="width:calc(100% - 160px);margin:10px;">
   </div>
-  
+  <div id="%package%loading" style="width:100%;text-align:center;">
+    <p>Updating package list...</p>
+    <img src="loading.webp" style="height:30px;width:30px;"></img>
+  </div>
 
-  <ul id="%package%homepage" style="overflow-y:auto;max-height:80%;width:100%;padding:none;">
+  <ul id="%package%homepage" style="overflow-y:auto;max-height:80%;width:100%;padding:20px;">
     <div id="%package%featured">
       <h1>Featured</h1>
-      <img src="wallpaper.webp" style="width:100%;height:auto;">
-    </div><br><br>
+      <img src="https://media.discordapp.net/attachments/605344668330491925/676553953017724948/unknown.png" style="border-radius:5px;width:100%;height:auto;">
+    </div><br>
     <div id="%package%popular">
       <h1>Popular</h1>
-    </div><br><br>
+    </div><br>
     <div id="%package%categories">
       <h1>Categories</h1>
     </div>
   </ul>
+  
   <ul id="%package%list" style="overflow-y:auto;max-height:80%;width:100%;display:none;"></ul>
 </div>
