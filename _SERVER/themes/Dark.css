@@ -34,7 +34,7 @@ a { color: #c8a2eb; }
 .windowAction img:hover { filter: brightness(50%); }
 .windowAction img:active { filter: brightness(30%); }
 
-input[type="textbox"], input[type="text"], button, textarea, select {
+input[type="textbox"], input[type="text"], button, textarea, select, .progressBarOuter {
   background-color: rgba(0,0,0,0.3);
   color: #ebebeb;
   border-radius: 5px;
@@ -44,6 +44,9 @@ input[type="textbox"], input[type="text"], button, textarea, select {
   border: none;
   box-shadow: 0px 0px 6px rgba(0,0,0,0.4);
 }
+
+.progressBarInner { border-radius: 5px; background: rgba(255,255,255,0.4); color: black; }
+.progressBarOuter { width: 100%; background: rgba(0,0,0,0.15); }
 
 option {
   background-color: black;

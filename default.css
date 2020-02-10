@@ -149,6 +149,9 @@ input[type="range"]::-webkit-slider-thumb { -webkit-appearance: none; }
   display: inline-block;
 }
 
+.progressBarInner { height: 100%; text-align: center; }
+.progressBarOuter { display: inline-block; padding: 0 !important; height: 24px; }
+
 iframe { border: none; }
 
 

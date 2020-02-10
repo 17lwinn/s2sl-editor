@@ -105,11 +105,9 @@ var os = {
   stopPackage: function(package) {
     if (package.isApp) package.dockIcon.style = "transform:scale(0);width:0px;height:15px;";
     if (package.close) package.close();
-    setTimeout(function() {
-      if (package.isApp) document.getElementById("dockDisplay").removeChild(package.dockIcon);
-      document.body.removeChild(package.script);
-      delete os.runningPackages[package.name];
-    }, 500)
+    document.body.removeChild(package.script);
+    delete os.runningPackages[package.name];
+    setTimeout(function() { if (package.isApp) document.getElementById("dockDisplay").removeChild(package.dockIcon); }, 500)
   },
   filesystem: {
     readDirectory: async function(path) {
