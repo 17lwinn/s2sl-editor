@@ -1,5 +1,0 @@
-stuff to fix
--settings menubar
--switch over menubar buttons to <button>
--:hover is also :focused
--apps in apps menu should be focusable/tabbable
