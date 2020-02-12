@@ -8,9 +8,16 @@ var clockMonths = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep"
 var osContextMenu = document.getElementById("osContextMenu");
 var loading = document.getElementById("menubarLoading");
 
-var packageStartAnim = document.getElementById("packageStartAnimation");
+var packageStartAnim = document.getElementById("PackageStartAnimation");
+var mouseX, mouseY;
 
 String.prototype.replaceAll = function(f,r) { return this.split(f).join(r); } 
+
+addEventListener("mousemove", function(e) {
+  mouseX = e.clientX;
+  mouseY = e.clientY;
+  console.log(mouseX);
+});
 
 var os = {
   alert: function(message, title="Alert", window="Alert", callback) {
@@ -72,11 +79,19 @@ var os = {
       packagee.dockIcon.src = `data:image/webp;base64,${package.icon}`;
       document.getElementById("dockDisplay").appendChild(packagee.dockIcon);
       packageStartAnim.style.display = null;
-      packageStartAnim.style.opacity = 
+      packageStartAnim.style.opacity = 1;
+      packageStartAnim.style.transform = "translate(-50%, -50%) scale(0.5)";
+      packageStartAnim.src = packagee.dockIcon.src;
+      console.log(mouseY + " " + mouseX);
+      packageStartAnim.style.top = mouseY + "px";
+      packageStartAnim.style.left = mouseX + "px";
       setTimeout(function() {
         packagee.dockIcon.onclick = function() { if (packagee.windows[0].style.display !== null) packagee.windows.forEach(window => window.minimize()); };
         packagee.dockIcon.style = null;
-      }, 5);
+        packageStartAnim.style.opacity = 0;
+        packageStartAnim.style.transform = "translate(-50%, -50%) scale(1)";
+        setTimeout(function() { packageStartAnim.style.display = "none"; }, 500)
+      }, 1);
     };
     var script = document.createElement("script");
     script.src = "data:text/javascript;base64," + packageJS;
