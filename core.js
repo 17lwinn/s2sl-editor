@@ -8,6 +8,8 @@ var clockMonths = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep"
 var osContextMenu = document.getElementById("osContextMenu");
 var loading = document.getElementById("menubarLoading");
 
+var packageStartAnim = document.getElementById("packageStartAnimation");
+
 String.prototype.replaceAll = function(f,r) { return this.split(f).join(r); } 
 
 var os = {
@@ -69,6 +71,8 @@ var os = {
       packagee.dockIcon.style = "transform:scale(0);width:0px;height:15px;";
       packagee.dockIcon.src = `data:image/webp;base64,${package.icon}`;
       document.getElementById("dockDisplay").appendChild(packagee.dockIcon);
+      packageStartAnim.style.display = null;
+      packageStartAnim.style.opacity = 
       setTimeout(function() {
         packagee.dockIcon.onclick = function() { if (packagee.windows[0].style.display !== null) packagee.windows.forEach(window => window.minimize()); };
         packagee.dockIcon.style = null;
