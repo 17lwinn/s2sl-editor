@@ -21,7 +21,6 @@ loading.style.display = "none";
 async function view(appName) {
   var raw = await fetch(`https://aurora-market.glitch.me/apps/${appName}`);
   var info = await raw.json();
-  os.alert(JSON.stringify(info), "Debug");
 }
   
 })()

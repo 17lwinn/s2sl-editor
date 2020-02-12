@@ -55,7 +55,7 @@ app.get("/file/read/:type/:filePath", async function(req, res) {
         console.log(`[GET] Client is requesting file ${req.params.filePath}!`);
         fs.readFile(`${__dirname}/${req.params.filePath}`, (err, data) => {
             const file = Buffer.from(data).toString("base64");
-            res.send(JSON.stringify(file);
+            res.send(JSON.stringify(file));
             console.log(`File ${req.params.filePath} sent.`)
         });
     }
