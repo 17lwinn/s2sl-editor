@@ -11,9 +11,16 @@
     <img src="loading.webp" style="height:30px;width:30px;"></img>
   </div>
 
-  <ul id="%package%info" style="overflow-y:auto;max-height:80%;width:100%;">
-    <img id="%package%infobanner" style="width:100%;height:auto;border-radius:5px;">
-
+  <ul id="%package%info" style="overflow-y:auto;max-height:80%;width:100%;padding:20px;display:none;">
+    <div>
+      <img id="%package%infobanner" style="width:100%;height:auto;border-radius:5px;">
+      <p style="position: absolute;bottom: 8px;left: 16px;" id="%package%infoname"></p>
+    </div>
+    <br>
+    <img id="%package%infoicon">
+    <button id="%package%infoinstall">Install</button>
+    <br>
+    <p id="%package%infodescription"></p>
   </ul>
 
   <ul id="%package%homepage" style="overflow-y:auto;max-height:80%;width:100%;padding:20px;display:none;">
@@ -28,5 +35,5 @@
     </div>
   </ul>
   
-  <ul id="%package%list" style="overflow-y:auto;max-height:80%;width:100%;display:none;"></ul>
+  <ul id="%package%list" style="overflow-y:auto;max-height:80%;width:100%;padding:30%;display:none;"></ul>
 </div>
