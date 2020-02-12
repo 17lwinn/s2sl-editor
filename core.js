@@ -16,7 +16,6 @@ String.prototype.replaceAll = function(f,r) { return this.split(f).join(r); }
 addEventListener("mousemove", function(e) {
   mouseX = e.clientX;
   mouseY = e.clientY;
-  console.log(mouseX);
 });
 
 var os = {
@@ -78,20 +77,15 @@ var os = {
       packagee.dockIcon.style = "transform:scale(0);width:0px;height:15px;";
       packagee.dockIcon.src = `data:image/webp;base64,${package.icon}`;
       document.getElementById("dockDisplay").appendChild(packagee.dockIcon);
-      packageStartAnim.style.display = null;
-      packageStartAnim.style.opacity = 1;
-      packageStartAnim.style.transform = "translate(-50%, -50%) scale(0.5)";
+      packageStartAnim.style = `transform:translate(-50%, -50%) scale(0.5);top:${mouseY}px;left:${mouseX}px;`;
       packageStartAnim.src = packagee.dockIcon.src;
-      console.log(mouseY + " " + mouseX);
-      packageStartAnim.style.top = mouseY + "px";
-      packageStartAnim.style.left = mouseX + "px";
       setTimeout(function() {
         packagee.dockIcon.onclick = function() { if (packagee.windows[0].style.display !== null) packagee.windows.forEach(window => window.minimize()); };
         packagee.dockIcon.style = null;
         packageStartAnim.style.opacity = 0;
-        packageStartAnim.style.transform = "translate(-50%, -50%) scale(1)";
+        packageStartAnim.style.transform = "translate(-50%, -50%)";
         setTimeout(function() { packageStartAnim.style.display = "none"; }, 500)
-      }, 1);
+      }, 5);
     };
     var script = document.createElement("script");
     script.src = "data:text/javascript;base64," + packageJS;
