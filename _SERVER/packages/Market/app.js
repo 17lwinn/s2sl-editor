@@ -18,8 +18,9 @@ document.getElementById(`${package.name}featured`).src = `data:image/webp;base64
 document.getElementById(`${package.name}homepage`).style.display = null;
 loading.style.display = "none";
   
-function view(appName) {
-  console.log(appName);
+async function view(appName) {
+  var raw = await fetch(`https://aurora-market.glitch.me/apps/${appName}`);
+  var info = await raw.json();
 }
   
 })()

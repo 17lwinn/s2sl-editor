@@ -77,7 +77,7 @@ var os = {
       packagee.dockIcon.style = "transform:scale(0);width:0px;height:15px;";
       packagee.dockIcon.src = `data:image/webp;base64,${package.icon}`;
       document.getElementById("dockDisplay").appendChild(packagee.dockIcon);
-      packageStartAnim.style = `transform:translate(-50%, -50%) scale(0.5);top:${mouseY}px;left:${mouseX}px;`;
+      packageStartAnim.style = `transform:translate(-50%, -50%) scale(0.4);top:${mouseY}px;left:${mouseX}px;`;
       packageStartAnim.src = packagee.dockIcon.src;
       setTimeout(function() {
         packagee.dockIcon.onclick = function() { if (packagee.windows[0].style.display !== null) packagee.windows.forEach(window => window.minimize()); };
