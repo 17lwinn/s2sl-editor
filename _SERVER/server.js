@@ -33,7 +33,7 @@ app.get("/packages", async function(req, res) {
       array.push(info);
       console.log(`Package ${info.name} loaded`);
     }
-    res.send(JSON.stringify(array));
+    res.send(array);
     console.log("Package data sending complete.")
 });
 
@@ -49,13 +49,13 @@ app.get("/file/read/:type/:filePath", async function(req, res) {
             if (file.isDirectory() && !type) type = "directory";
             array.push({name: file.name, type: type, path: `${req.params.filePath}/${file.name}`});
         };
-        res.send(JSON.stringify(array));
+        res.send(array);
         console.log(`All files in directory ${req.params.filePath} sent.`)
     } else if (req.params.type === "file") {
         console.log(`[GET] Client is requesting file ${req.params.filePath}!`);
         fs.readFile(`${__dirname}/${req.params.filePath}`, (err, data) => {
             const file = Buffer.from(data).toString("base64");
-            res.send(JSON.stringify(file));
+            res.send(JSON.stringify(file);
             console.log(`File ${req.params.filePath} sent.`)
         });
     }

@@ -12,7 +12,7 @@ await homepage.forEach(async function(app) {
   await document.getElementById(`${app.name}view`);
   document.getElementById(`${app.name}view`).onclick = function() { view(app.name); };
 });
-  
+
 document.getElementById(`${package.name}featured`).src = `data:image/webp;base64,${homepage[0].banner}`;
 
 document.getElementById(`${package.name}homepage`).style.display = null;
@@ -21,6 +21,7 @@ loading.style.display = "none";
 async function view(appName) {
   var raw = await fetch(`https://aurora-market.glitch.me/apps/${appName}`);
   var info = await raw.json();
+  os.alert(JSON.stringify(info), "Debug");
 }
   
 })()
