@@ -19,7 +19,7 @@ a:hover { text-decoration: underline; }
 #PackageStartAnimation {
   position: fixed;
   z-index: 500;
-  transition: opacity 0.5s, transform 0.5s;
+  transition: opacity 0.3s, transform 0.3s;
   pointer-events: none;
 }
 
@@ -101,7 +101,6 @@ img {
 }
 .windowTitleBar ui { margin-right: 3.5rem; }
 .windowBody {
-  border-radius: 0px 0px 7px 7px;
   padding: 15px;
   height: calc(100% - 35px);
   overflow: auto;

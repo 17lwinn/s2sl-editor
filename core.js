@@ -73,18 +73,19 @@ var os = {
     packagee.flags = flags;
     packagee.windows = [];
     if (packagee.isApp) {
+      document.getElementById("dockDisplay").innerHTML += `<img src=""`
       packagee.dockIcon = document.createElement("img");
       packagee.dockIcon.style = "transform:scale(0);width:0px;height:15px;";
       packagee.dockIcon.src = `data:image/webp;base64,${package.icon}`;
-      document.getElementById("dockDisplay").appendChild(packagee.dockIcon);
       packageStartAnim.style = `transform:translate(-50%, -50%) scale(0.4);top:${mouseY}px;left:${mouseX}px;`;
       packageStartAnim.src = packagee.dockIcon.src;
+      document.getElementById("dockDisplay").appendChild(packagee.dockIcon);
+      packagee.dockIcon.onclick = function() { if (packagee.windows[0].style.display !== null) packagee.windows.forEach(window => window.minimize()); };
       setTimeout(function() {
-        packagee.dockIcon.onclick = function() { if (packagee.windows[0].style.display !== null) packagee.windows.forEach(window => window.minimize()); };
         packagee.dockIcon.style = null;
         packageStartAnim.style.opacity = 0;
         packageStartAnim.style.transform = "translate(-50%, -50%)";
-        setTimeout(function() { packageStartAnim.style.display = "none"; }, 500)
+        setTimeout(function() { packageStartAnim.style.display = "none"; }, 300)
       }, 5);
     };
     var script = document.createElement("script");
@@ -116,7 +117,7 @@ var os = {
     loading.style.display = "none";
   },
   stopPackage: function(package) {
-    if (package.isApp) package.dockIcon.style = "transform:scale(0);width:0px;height:15px;";
+    if (package.isApp) package.dockIcon.style = "transform:scale(0);";
     if (package.close) package.close();
     document.body.removeChild(package.script);
     delete os.runningPackages[package.name];
