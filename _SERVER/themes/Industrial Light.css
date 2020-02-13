@@ -28,8 +28,10 @@ a { color: #480b80; }
 
 .window {
   border: 1px solid rgb(150,150,150);
+  border-radius: 3px;
 }
 .windowTitleBar {
+  border-radius: 3px 3px 0px 0px;
   background: linear-gradient(0deg, rgb(198,198,198), rgb(230,230,230));
   color: rgb(75,75,75);
   font-weight: bold;
@@ -37,6 +39,7 @@ a { color: #480b80; }
 }
 .windowBody {
   background-color: rgb(240,240,240);
+  border-radius: 0px 0px 3px 3px;
   color: black;
 }
 .windowAction {

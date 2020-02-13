@@ -93,7 +93,6 @@ img {
   border-radius: 7px;
 }
 .windowTitleBar {
-  border-radius: 7px 7px 0px 0px;
   padding: 7px;
   padding-left: 10px;
   cursor: default;

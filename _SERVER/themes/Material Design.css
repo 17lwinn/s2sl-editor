@@ -5,19 +5,27 @@ a { color: #480b80; }
 .fullscreen {
   background-color: rgb(245,245,245);
   color: black;
+  border-radius: 30px;
+  margin: 5px;
 }
 
 .dock {
   background-color: rgb(245,245,245);
   color: black;
   box-shadow: 0px 0px 6px rgba(0,0,0,0.4);
-  border-radius: 50px;
-  margin
+  border-radius: 30px;
+  margin: 5px;
+  width: calc(100% - 10px);
+  padding-left: 15px;
+  padding-right: 15px;
+  height: 50px;
+  padding-top: 3px;
 }
 
 .contextMenu {
   background-color: rgb(245,245,245);
   color: black;
+  border-radius: 12px;
 }
 .notAllowed {
   color: rgba(0,0,0,0.3);
@@ -29,9 +37,10 @@ a { color: #480b80; }
 .windowTitleBar { color: black; }
 .window {
   background-color: rgba(255,255,255,0.6);
-  backdrop-filter: blur(20px);
+  border-radius: 15px;
 }
 .windowBody {
+  border-radius: 0px 0px 15px 15px;
   background-color: rgb(245,245,245);
   color: black;
 }
@@ -137,11 +146,3 @@ button:active:after, .checkmark:not(.notAllowed):active:after {
   opacity: .3;
   transition: 0s;
 }
-
-.blur {
-  color: black;
-  background-color: rgba(255,255,255,0.6);
-  backdrop-filter: blur(20px);
-}
-
-.window .blur { background: transparent; backdrop-filter: none; }
