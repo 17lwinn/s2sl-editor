@@ -73,11 +73,12 @@ var os = {
     packagee.flags = flags;
     packagee.windows = [];
     if (packagee.isApp) {
-      document.getElementById("dockDisplay").innerHTML += `<img id="${package.name}Dock" src="data:image/webp;base64,${package.icon}" style="transform:scale(0);width:0px;height:15px;">`;
-      await document.getElementById(`${package.name}Dock`);
-      packagee.dockIcon = document.getElementById(`${package.name}Dock`);
+      packagee.dockIcon = document.createElement("img");
+      packagee.dockIcon.src = `data:image/webp;base64,${package.icon}`;
       packageStartAnim.src = packagee.dockIcon.src;
       packageStartAnim.style = `transform:translate(-50%, -50%) scale(0.4);top:${mouseY}px;left:${mouseX}px;`;
+      packagee.dockIcon.style = "transform:scale(0);";
+      document.getElementById("dockDisplay").appendChild(packagee.dockIcon);
       packagee.dockIcon.onclick = function() { packagee.windows.forEach(w => w.minimize()); };
       setTimeout(function() {
         packagee.dockIcon.style = null;
@@ -115,11 +116,13 @@ var os = {
     loading.style.display = "none";
   },
   stopPackage: function(package) {
-    if (package.isApp) package.dockIcon.style = "transform:scale(0);";
+    if (package.isApp) {
+      package.dockIcon.style = "transform:scale(0);";
+      setTimeout(function() { package.dockIcon.remove(); }, 500)
+    }
     if (package.close) package.close();
     document.body.removeChild(package.script);
     delete os.runningPackages[package.name];
-    setTimeout(function() { if (package.isApp) document.getElementById("dockDisplay").removeChild(package.dockIcon); }, 500)
   },
   filesystem: {
     readDirectory: async function(path) {
