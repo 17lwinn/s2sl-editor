@@ -35,15 +35,8 @@ a { color: #480b80; }
 }
 
 .windowTitleBar { color: black; }
-.window {
-  background-color: rgba(255,255,255,0.6);
-  border-radius: 15px;
-}
-.windowBody {
-  border-radius: 0px 0px 15px 15px;
-  background-color: rgb(245,245,245);
-  color: black;
-}
+.window { border-radius: 15px; background: white; }
+.windowBody { border-radius: 0px 0px 15px 15px; color: black; }
 .windowAction {
   background-color: transparent;
   padding-left: 0.2em;
@@ -62,8 +55,8 @@ a { color: #480b80; }
 
 input[type="textbox"], input[type="text"], button, textarea, select, .progressBarOuter {
   background-color: rgba(255,255,255,0.5);
-  color: black;
-  border-radius: 5px;
+  color: lightblue;
+  border-radius: 7px;
   padding: 7px;
   padding-left: 9px;
   padding-right: 9px;

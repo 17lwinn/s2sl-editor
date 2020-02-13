@@ -73,14 +73,12 @@ var os = {
     packagee.flags = flags;
     packagee.windows = [];
     if (packagee.isApp) {
-      document.getElementById("dockDisplay").innerHTML += `<img src=""`
-      packagee.dockIcon = document.createElement("img");
-      packagee.dockIcon.style = "transform:scale(0);width:0px;height:15px;";
-      packagee.dockIcon.src = `data:image/webp;base64,${package.icon}`;
-      packageStartAnim.style = `transform:translate(-50%, -50%) scale(0.4);top:${mouseY}px;left:${mouseX}px;`;
+      document.getElementById("dockDisplay").innerHTML += `<img id="${package.name}Dock" src="data:image/webp;base64,${package.icon}" style="transform:scale(0);width:0px;height:15px;">`;
+      await document.getElementById(`${package.name}Dock`);
+      packagee.dockIcon = document.getElementById(`${package.name}Dock`);
       packageStartAnim.src = packagee.dockIcon.src;
-      document.getElementById("dockDisplay").appendChild(packagee.dockIcon);
-      packagee.dockIcon.onclick = function() { if (packagee.windows[0].style.display !== null) packagee.windows.forEach(window => window.minimize()); };
+      packageStartAnim.style = `transform:translate(-50%, -50%) scale(0.4);top:${mouseY}px;left:${mouseX}px;`;
+      packagee.dockIcon.onclick = function() { packagee.windows.forEach(w => w.minimize()); };
       setTimeout(function() {
         packagee.dockIcon.style = null;
         packageStartAnim.style.opacity = 0;
