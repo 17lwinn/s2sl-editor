@@ -1,3 +1,10 @@
+@font-face {
+  font-family: "Product Sans";
+  src: local('Open Sans'), local('OpenSans'), url(https://fonts.gstatic.com/s/productsans/v5/HYvgU2fE2nRJvZ5JFAumwegdm0LZdjqr5-oayXSOefg.woff2) format('woff2');
+}
+
+*:not(h1):not(pre) { font-family: "Product Sans" !important; font-size: 15px !important;}
+
 ::-webkit-scrollbar-thumb { background-color: rgba(255,255,255,0.4); border-radius: 5px; box-shadow: 0px 0px 6px rgba(0,0,0,0.4); }
 
 a { color: #480b80; }
@@ -55,16 +62,19 @@ a { color: #480b80; }
 
 input[type="textbox"], input[type="text"], button, textarea, select, .progressBarOuter {
   background-color: rgba(255,255,255,0.5);
-  color: lightblue;
+  color: #4290f5;
+  font-weight: bold;
   border-radius: 7px;
   padding: 7px;
   padding-left: 9px;
   padding-right: 9px;
   border: none;
-  box-shadow: 0px 0px 6px rgba(0,0,0,0.2);
+  box-shadow: 0px 3px 6px rgba(0,0,0,0.2);
+  transition: background-color 0.3s;
+  letter-spacing: 0.5px;
 }
 
-.progressBarInner { border-radius: 5px; background: rgba(255,255,255,0.5); color: black; }
+.progressBarInner { border-radius: 7px 50px 50px 7px; background: #4290f5; color: black; }
 .progressBarOuter { width: 100%; background: rgba(150,150,150,0.5); }
 
 #systemButton img {
