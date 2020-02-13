@@ -61,7 +61,7 @@ img {
 
 .contextMenu {
   position: fixed;
-  border-radius: 5px;
+  border-radius: 7px;
   padding-top: 5px;
   padding-bottom: 5px;
   display: inline-block;
@@ -87,13 +87,13 @@ img {
 
 .window {
   position: fixed;
-  box-shadow: 0px 0px 32px rgba(0,0,0,0.7);
+  box-shadow: 0px 0px 32px rgba(0,0,0,0.5);
   z-index: 1;
   transition: 0.2s;
-  border-radius: 5px;
+  border-radius: 7px;
 }
 .windowTitleBar {
-  border-radius: 5px 5px 0px 0px;
+  border-radius: 7px 7px 0px 0px;
   padding: 7px;
   padding-left: 10px;
   cursor: default;
@@ -102,7 +102,7 @@ img {
 }
 .windowTitleBar ui { margin-right: 3.5rem; }
 .windowBody {
-  border-radius: 0px 0px 5px 5px;
+  border-radius: 0px 0px 7px 7px;
   padding: 15px;
   height: calc(100% - 35px);
   overflow: auto;
@@ -140,7 +140,7 @@ button[disabled], input[disabled], textarea[disabled], select[disabled] {
   left: 0;
   padding-left: 5px;
   padding-right: 4px;
-  border-radius: 5px;
+  border-radius: 7px;
 }
 input[type="range"] { -webkit-appearance: none; }
 input[type="range"]::-webkit-slider-thumb { -webkit-appearance: none; }
