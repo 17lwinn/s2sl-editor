@@ -1,3 +1,7 @@
+body {
+  background: url("https://www.xmple.com/wallpaper/spots-purple-polka-pink-dots-3840x2160-c2-ff69b4-9400d3-l2-86-247-a-15-f-3.svg") no-repeat center center fixed !important;
+}
+
 ::-webkit-scrollbar-thumb { border-top: 1px solid white; border-left: 1px solid white; border-right: 1px solid gray; border-bottom: 1px solid gray; box-shadow: inset 1px 1px #dfdfdf, 1px 0 black, 0 1px black, 1px 1px black; }
 
 .fullscreen {
@@ -6,12 +10,12 @@
   border-right: 1px solid gray;
   border-bottom: 1px solid gray;
   box-shadow: inset 1px 1px #dfdfdf, 1px 0 black, 0 1px black, 1px 1px black;
-  background: silver;
+  background: #ffa3fb;
   color: black;
 }
 
 .dock {
-  background: silver;
+  background: #ffa3fb;
   color: black;
   box-shadow: inset 1px 1px #dfdfdf, 1px 0 black, 0 1px black, 1px 1px black;
   border-top: 1px solid silver;
@@ -68,11 +72,11 @@
   border-bottom: 1px solid gray;
   border-radius: 0;
   box-shadow: 1px 0 black, 0 1px black, 1px 1px black, inset 1px 1px white;
-  background-color: silver;
+  background-color: #ffa3fb;
 }
 .windowTitleBar {
-  color: white;
-  background: darkblue;
+  color: black;
+  background: repeating-linear-gradient(0deg,  #ccc,  #ff57f7 2px,  #5e2db3 0);
   border-bottom: 1px solid rgba(0,0,0,0.3);
   border-radius: 0;
   margin-bottom: -3px;
