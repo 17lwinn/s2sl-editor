@@ -66,7 +66,6 @@ var os = {
   runningPackages: {},
   startPackage: async function(package, flags) {
     loading.style.display = null;
-    var packageJS = await os.filesystem.readFile(`/packages/${package.name}/app.js`);
     var packagee = Object.assign({}, package);
     packagee.name += Math.random().toString();
     packagee.absoluteName = package.name;
@@ -76,10 +75,10 @@ var os = {
       packagee.dockIcon = document.createElement("img");
       packagee.dockIcon.src = `data:image/webp;base64,${package.icon}`;
       packageStartAnim.src = packagee.dockIcon.src;
-      packageStartAnim.style = `transform:translate(-50%, -50%) scale(0.4);top:${mouseY}px;left:${mouseX}px;`;
       packagee.dockIcon.style = "transform:scale(0);";
       document.getElementById("dockDisplay").appendChild(packagee.dockIcon);
       packagee.dockIcon.onclick = function() { packagee.windows.forEach(w => w.minimize()); };
+      packageStartAnim.style = `transform:translate(-50%, -50%) scale(0.4);top:${mouseY}px;left:${mouseX}px;`;
       setTimeout(function() {
         packagee.dockIcon.style = null;
         packageStartAnim.style.opacity = 0;
@@ -87,6 +86,7 @@ var os = {
         setTimeout(function() { packageStartAnim.style.display = "none"; }, 300)
       }, 5);
     };
+    var packageJS = await os.filesystem.readFile(`/packages/${package.name}/app.js`);
     var script = document.createElement("script");
     script.src = "data:text/javascript;base64," + packageJS;
     script.id = packagee.name;
