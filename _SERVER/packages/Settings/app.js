@@ -33,7 +33,7 @@ document.getElementById(`${package.name}WallpaperURLSelect`).onclick = function(
   window.localStorage.setItem("bgURL", bgURL.value);
 };
 
-if (window.localStorage.getItem("theme")) theme.value = window.localStorage.getItem("theme"); else theme.value = "/themes/Light.css";
+if (window.localStorage.getItem("theme")) theme.value = window.localStorage.getItem("theme"); else theme.value = "/themes/Dark.css";
 if (window.localStorage.getItem("bgURL")) bgURL.value = window.localStorage.getItem("bgURL");
 
 document.getElementById(`${package.name}Reset`).onclick = function() {
