@@ -8,38 +8,39 @@ a { color: #480b80; }
 }
 
 .dock {
-  background: darkgray;
+  background: rgb(51, 51, 51);
   color: white;
 }
 
 .contextMenu {
   background: black;
   color: white;
-  border-radius: 0px;
+  border-radius: 5px;
 }
 .contextMenuSeparator {
   border-top: 1px solid rgba(0,0,0,0.3);
 }
 
 .window {
-  border: 1px solid rgb(150,150,150);
+  border: none;
 }
 .windowTitleBar {
-  background: lightgray;
+  background: rgb(41, 41, 41);
+  color: white;
   border-bottom: 1px solid rgba(0,0,0,0.3);
 }
 .windowBody {
-  background-color: white;
-  color: black;
+  background-color: rgb(51, 51, 51);
+  color: white;
 }
 .windowAction {
   margin-right: 0.4em;
-  margin-top: -0.05em;
+  margin-top: -0.03em;
   float: left;
 }
 
-.windowAction img { filter: brightness(0%); }
-.windowAction img:hover { filter: brightness(30%); }
+.windowAction img { filter: brightness(100%); }
+.windowAction img:hover { filter: brightness(70%); }
 
 input, button, textarea, select, .progressBarOuter {
   background: darkgray;
@@ -54,8 +55,8 @@ input, button, textarea, select, .progressBarOuter {
 .progressBarOuter { width: 100%; background: black;}
 
 option {
-  background-color: lightgray;
-  color: black;
+  background-color: rgb(71, 71, 71);
+  color: white;
 }
 button[disabled], input[disabled], textarea[disabled], select[disabled], .notAllowed {
   background: rgb(175,175,175);
@@ -78,11 +79,11 @@ input[type="range"]::-webkit-slider-thumb {
 }
 .menubar { color: black; }
 .menubarButton, .menubarObject {
-  border: 1px solid rgb(175,175,175);
+  border: 1px solid rgb(255,255,255);
   background-color: lightgray;
 }
 
-#systemButton img { filter: brightness(0%); }
+#systemButton img { filter: brightness(100%); }
 
 .menubarButton:hover, button:hover:not([disabled]), .checkmark:hover:not(.notAllowed), select:hover:not([disabled]), .contextMenuSelection:hover:not(.notAllowed), input[type="range"]::-webkit-slider-thumb:hover { background: rgb(175,175,175); }
 .menubarButton:active, button:active:not([disabled]), .checkmark:active:not(.notAllowed), select:active:not([disabled]), .contextMenuSelection:active:not(.notAllowed), ::-webkit-scrollbar-thumb:active, input[type="range"]::-webkit-slider-thumb:active { background: gray; }
