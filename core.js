@@ -186,7 +186,7 @@ setInterval(function() {
 menubarSystem.addEventListener("click", function() {
   if (menubarClick) {
     menubarClick = false;
-    apps.style.bottom = null;
+    apps.style.transform = null;
     apps.style.opacity = 0;
     setTimeout(function() {
       apps.style.display = "none";
