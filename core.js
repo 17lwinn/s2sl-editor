@@ -99,7 +99,7 @@ var os = {
       window.id = packagee.name + "Window" + Math.random().toString();
       window.className += "window";
       window.innerHTML = body.replaceAll(/%package%/, packagee.name).replaceAll(/%window%/, window.id);
-      window.style = "opacity:0;transform:scale(0.75);";
+      window.style = "opacity:0;transform:scale(0.85);";
       document.body.appendChild(window);
       if (menubarClick) menubarSystem.click();
       setTimeout(function() { window.style = null; }, 5);
@@ -310,7 +310,7 @@ document.getElementById("StopAllProcesses").onclick = function() { Object.values
 document.getElementById("MinimizeAllWindows").onclick = function() { Object.values(os.runningPackages).forEach(package => { if (package.windows[0]) package.windows.forEach(window => window.minimize()); }); }
 
 //BEGIN SETTINGS HOOK
-if (window.localStorage.getItem("theme")) os.filesystem.readFile(window.localStorage.getItem("theme")).then(theme => document.getElementById("STYLE_Theme").href = `data:text/css;base64,${theme}`); else os.filesystem.readFile("/themes/Light.css").then(theme => document.getElementById("STYLE_Theme").href = `data:text/css;base64,${theme}`);
+if (window.localStorage.getItem("theme")) os.filesystem.readFile(window.localStorage.getItem("theme")).then(theme => document.getElementById("STYLE_Theme").href = `data:text/css;base64,${theme}`); else os.filesystem.readFile("/themes/Dark.css").then(theme => document.getElementById("STYLE_Theme").href = `data:text/css;base64,${theme}`);
 
 if (window.localStorage.getItem("bgURL")) {
   var bgURLStyle = document.createElement("style");
