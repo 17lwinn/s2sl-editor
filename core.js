@@ -195,7 +195,7 @@ menubarSystem.addEventListener("click", function() {
     menubarClick = true;
     apps.style.display = null;
     setTimeout(function() {
-      apps.style.bottom = "55px";
+      apps.style.transform = "translateY(-55px)";
       apps.style.opacity = 1;
       document.getElementById("appSearch").value = null;
       document.getElementById("appSearch").focus();
