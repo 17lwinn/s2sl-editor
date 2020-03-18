@@ -3,17 +3,17 @@
 a { color: #480b80; }
 
 .fullscreen {
-  background: lightgray;
-  color: black;
+  background: rgb(61, 61, 61);
+  color: white;
 }
 
 .dock {
   background: rgb(51, 51, 51);
-  color: white;
+  color: black;
 }
 
 .contextMenu {
-  background: black;
+  background: rgb(41, 41, 41);
   color: white;
   border-radius: 5px;
 }
@@ -62,11 +62,11 @@ button[disabled], input[disabled], textarea[disabled], select[disabled], .notAll
   background: rgb(175,175,175);
   color: rgba(0,0,0,0.3);
 }
-.chboxContainer input:checked ~ .checkmark { color: black; }
+.chboxContainer input:checked ~ .checkmark { color: white; }
 .checkmark {
   color: transparent;
-  background: lightgray;
-  border: 1px solid rgb(175,175,175);
+  background: rgb(31, 31, 31);
+  border: 1px solid rgb(75,75,75);
   border-radius: 0px;
 }
 input[type="range"] { height: 3px; }
@@ -79,11 +79,11 @@ input[type="range"]::-webkit-slider-thumb {
 }
 .menubar { color: black; }
 .menubarButton, .menubarObject {
-  border: 1px solid rgb(255,255,255);
+  border: 1px solid rgb(55,55,55);
   background-color: lightgray;
 }
 
-#systemButton img { filter: brightness(100%); }
+#systemButton img { filter: brightness(0%); }
 
-.menubarButton:hover, button:hover:not([disabled]), .checkmark:hover:not(.notAllowed), select:hover:not([disabled]), .contextMenuSelection:hover:not(.notAllowed), input[type="range"]::-webkit-slider-thumb:hover { background: rgb(175,175,175); }
+.menubarButton:hover, button:hover:not([disabled]), .checkmark:hover:not(.notAllowed), select:hover:not([disabled]), .contextMenuSelection:hover:not(.notAllowed), input[type="range"]::-webkit-slider-thumb:hover { background: rgb(75,75,75); }
 .menubarButton:active, button:active:not([disabled]), .checkmark:active:not(.notAllowed), select:active:not([disabled]), .contextMenuSelection:active:not(.notAllowed), ::-webkit-scrollbar-thumb:active, input[type="range"]::-webkit-slider-thumb:active { background: gray; }
