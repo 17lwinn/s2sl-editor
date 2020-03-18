@@ -42,7 +42,7 @@ a { color: #480b80; }
 .windowAction img:hover { filter: brightness(30%); }
 
 input, button, textarea, select, .progressBarOuter {
-  background: lightgray;
+  background: darkgray;
   color: black;
   padding: 4px;
   padding-left: 7px;
@@ -79,7 +79,7 @@ input[type="range"]::-webkit-slider-thumb {
 .menubar { color: black; }
 .menubarButton, .menubarObject {
   border: 1px solid rgb(175,175,175);
-  background-color: lightgray;
+  background-color: white;
 }
 
 #systemButton img { filter: brightness(0%); }
