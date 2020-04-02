@@ -63,6 +63,9 @@ var os = {
     setTimeout(function() { prompt.style.opacity = null; prompt.style.transform = null; }, 5);
     setTimeout(function() { prompt.style.transition = "none"; }, 200);
   },
+  notify: function(message, title="Notification", icon) {
+    
+  },
   runningPackages: {},
   startPackage: async function(package, flags) {
     loading.style.display = null;

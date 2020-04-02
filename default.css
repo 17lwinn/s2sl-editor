@@ -16,6 +16,8 @@ a:hover { text-decoration: underline; }
 .fullscreen div:hover, .fullscreen div:focus { transform: scale(1.35); }
 .fullscreen div:active { transform: scale(1.6); }
 
+.notification { transition: 0.2s; max-width: 30%; height: }
+
 #PackageStartAnimation {
   position: fixed;
   z-index: 500;
