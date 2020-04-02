@@ -1,3 +1,0 @@
-.createWindow(`<div id="%window%TitleBar" class="windowTitleBar"><div id="%window%Close" class="windowAction"><img src="close.svg"></div><div id="%window%Maximize" class="windowAction"><img src="max.svg"></div><div id="%window%Minimize" class="windowAction"><img src="min.svg"></div><ui>AuroraPython</ui></div><div id="%window%Body" class="windowBody blur">
-  <iframe src="https://brython.info/console.html" style="width:100%;height:90%;"></iframe>
-</div>`, {resizable: true});
