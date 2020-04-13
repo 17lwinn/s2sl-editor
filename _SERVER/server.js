@@ -62,6 +62,7 @@ app.get("/file/read/:type/:filePath", async function(req, res) {
 });
 app.get("/file/readStatic/:filePath", async function(req, res) {
   console.log(`[STATIC-GET] Client is requesting file ${req.params.filePath}!`);
+  req.params.filePath = req.params.filePath
   fs.readFile(`${__dirname}/${req.params.filePath}`, (err, data) => {
     res.writeHead(200);
     res.end(data);
