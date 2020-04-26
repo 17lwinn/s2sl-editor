@@ -181,7 +181,7 @@ setInterval(function() {
   var minute = date.getMinutes()
   if (minute < 10) minute = "0" + minute;
 	document.getElementById("menubarClock").innerHTML = clockDays[date.getDay()] + " " + clockMonths[date.getMonth()] + " " + date.getDate() + "<br>" + date.getHours() + ":" + minute;
-}, 2000);
+}, 2500);
 
 menubarSystem.addEventListener("click", function() {
   if (menubarClick) {
