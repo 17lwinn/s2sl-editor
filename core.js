@@ -97,22 +97,22 @@ var os = {
     packagee.script = script;
     os.runningPackages[packagee.name] = packagee;
     packagee.createWindow = function(body, options={}) {
-      var window = document.createElement("div");
-      window.id = packagee.name + "Window" + Math.random().toString();
-      window.className += "window";
-      window.innerHTML = body.replaceAll(/%package%/, packagee.name).replaceAll(/%window%/, window.id);
-      window.style = "opacity:0;transform:scale(0.85);";
-      document.body.appendChild(window);
+      var pwindow = document.createElement("div");
+      pwindow.id = packagee.name + "Window" + Math.random().toString();
+      pwindow.className += "window";
+      pwindow.innerHTML = body.replaceAll(/%package%/, packagee.name).replaceAll(/%window%/, pwindow.id);
+      pwindow.style = "opacity:0;transform:scale(0.85);";
+      document.body.appendChild(pwindow);
       if (menubarClick) menubarSystem.click();
-      window.requestAnimationFrame(function() { window.style = null; });
+      window.requestAnimationFrame(function() { pwindow.style = null; });
       setTimeout(function() { Object.values(os.runningPackages).forEach(package => { if (package.windows[0]) package.windows.forEach(window => window.style.zIndex = 1); }); window.style.transition = "none"; window.style.zIndex = 2; }, 200)
-      if (options.resizable === true) window.resizable = true;
-      windowEnable(window, packagee);
-      window.edit = function(body) { document.getElementById(`${window.id}Body`).outerHTML = body.replaceAll(/%package%/, packagee.name).replaceAll(/%window%/, window.id); };
-      window.body = document.getElementById(`${window.id}Body`);
-      packagee.windows.push(window);
-      setTimeout(function() { if (options.startingDimensions) window.style += `;width:${options.startingDimensions[0]}px;height:${options.startingDimensions[1]}px;`; }, 50)
-      return window;
+      if (options.resizable === true) pwindow.resizable = true;
+      windowEnable(pwindow, packagee);
+      pwindow.edit = function(body) { document.getElementById(`${pwindow.id}Body`).outerHTML = body.replaceAll(/%package%/, packagee.name).replaceAll(/%window%/, pwindow.id); };
+      pwindow.body = document.getElementById(`${pwindow.id}Body`);
+      packagee.windows.push(pwindow);
+      setTimeout(function() { if (options.startingDimensions) pwindow.style += `;width:${options.startingDimensions[0]}px;height:${options.startingDimensions[1]}px;`; }, 50)
+      return pwindow;
     };
     packagee.resource = async function(filePath) { return await os.filesystem.readFile(`/packages/${packagee.absoluteName}/${filePath}`); };
     loading.style.display = "none";
@@ -259,7 +259,7 @@ function windowEnable(elmnt, package) {
     } else {
       elmnt.minimized = false;
       elmnt.style.display = null;
-      setTimeout(function() { elmnt.style.opacity = null; elmnt.style.transform = null; }, 5);
+      window.requestAnimationFrame(function() { elmnt.style.opacity = null; elmnt.style.transform = null; });
       setTimeout(function() { elmnt.style.transition = "none"; }, 200);
       Object.values(os.runningPackages).forEach(package => { if (package.windows[0]) package.windows.forEach(window => window.style.zIndex = 1); });
       elmnt.style.zIndex = 2;
@@ -277,25 +277,25 @@ function windowEnable(elmnt, package) {
       elmnt.style.transition = "0.2s";
       $(elmnt).draggable("disable");
       $(elmnt).resizable("disable");
-      setTimeout(function() {
+      window.requestAnimationFrame(function() {
         elmnt.style.top = "0";
         elmnt.style.left = "0";
         elmnt.style.width = "100%";
         elmnt.style.height = "calc(100vh - 55px)";
         setTimeout(function() { elmnt.style.transition = "none"; }, 200);
-      }, 1)
+      });
     } else {
       elmnt.style.transition = "0.2s";
       $(elmnt).draggable("enable");
       $(elmnt).resizable("enable");
-      setTimeout(function() {
+      window.requestAnimationFrame(function() {
         maximized = false;
         elmnt.style.width = width;
         elmnt.style.height = height;
         elmnt.style.top = top;
         elmnt.style.left = left;
         setTimeout(function() { elmnt.style.transition = "none"; }, 200);
-      }, 1)
+      });
     }
   }
   if (maximizer) { maximizer.addEventListener("click", maximize); document.getElementById(elmnt.id + "TitleBar").addEventListener("dblclick", maximize); }
@@ -333,8 +333,8 @@ window.onload = async function() {
       document.getElementById(`${package.name}Start`).onclick = function() { os.startPackage(package); };
     };
   })
-  setTimeout(function() {
+  window.requestAnimationFrame(function() {
     document.getElementById("startup").style = "transition:0.3s;opacity:0;width:100%;height:100%;position:fixed;";
     setTimeout(function() { document.body.removeChild(document.getElementById("startup")); }, 300)
-  }, 1)
+  });
 }
