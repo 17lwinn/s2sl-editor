@@ -10,6 +10,7 @@ var loading = document.getElementById("menubarLoading");
 
 var packageStartAnim = document.getElementById("PackageStartAnimation");
 var mouseX, mouseY;
+var curUUID = 0;
 
 String.prototype.replaceAll = function(f,r) { return this.split(f).join(r); } 
 
@@ -63,14 +64,12 @@ var os = {
     setTimeout(function() { prompt.style.opacity = null; prompt.style.transform = null; }, 5);
     setTimeout(function() { prompt.style.transition = "none"; }, 200);
   },
-  notify: function(message, title="Notification", icon) {
-    
-  },
   runningPackages: {},
   startPackage: async function(package, flags) {
     loading.style.display = null;
     var packagee = Object.assign({}, package);
-    packagee.name += Math.random().toString();
+    packagee.name += curUUID.toString();
+    curUUID++;
     packagee.absoluteName = package.name;
     packagee.flags = flags;
     packagee.windows = [];
@@ -82,12 +81,12 @@ var os = {
       document.getElementById("dockDisplay").appendChild(packagee.dockIcon);
       packagee.dockIcon.onclick = function() { packagee.windows.forEach(w => w.minimize()); };
       packageStartAnim.style = `transform:translate(-50%, -50%) scale(0.4);top:${mouseY}px;left:${mouseX}px;`;
-      setTimeout(function() {
+      window.requestAnimationFrame(function() {
         packagee.dockIcon.style = null;
         packageStartAnim.style.opacity = 0;
         packageStartAnim.style.transform = "translate(-50%, -50%)";
         setTimeout(function() { packageStartAnim.style.display = "none"; }, 300)
-      }, 5);
+      });
     };
     var packageJS = await os.filesystem.readFile(`/packages/${package.name}/app.js`);
     var script = document.createElement("script");
