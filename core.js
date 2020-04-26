@@ -10,7 +10,6 @@ var loading = document.getElementById("menubarLoading");
 
 var packageStartAnim = document.getElementById("PackageStartAnimation");
 var mouseX, mouseY;
-var curUUID = 0;
 
 String.prototype.replaceAll = function(f,r) { return this.split(f).join(r); } 
 
@@ -20,15 +19,15 @@ addEventListener("mousemove", function(e) {
 });
 
 var os = {
-  alert: function(message, title="Alert", window="Alert", callback) {
+  alert: function(message, title="Alert", pwindow="Alert", callback) {
     var alert = document.getElementById("Alert").cloneNode(true);
     alert.id += Math.random().toString();
     alert.innerHTML = alert.innerHTML.replaceAll("%window%", alert.id);
     alert.style.opacity = 0;
     alert.style.transform = "scale(0.75)";
     alert.style.display = null;
-    if (window !== "Alert") {
-      var windowObject = document.getElementById(window);
+    if (pwindow !== "Alert") {
+      var windowObject = document.getElementById(pwindow);
       alert.style.left = windowObject.style.left;
       alert.style.top = windowObject.style.top;
     }
@@ -38,19 +37,19 @@ var os = {
     document.getElementById(`${alert.id}TitleBar`).innerHTML = title;
     document.getElementById(`${alert.id}Title`).innerHTML = title;
     document.getElementById(`${alert.id}Message`).innerHTML = message;
-    setTimeout(function() { alert.style.opacity = 1; alert.style.transform = "scale(1)"; }, 5);
+    window.requestAnimationFrame(function() { alert.style.opacity = 1; alert.style.transform = "scale(1)"; });
     setTimeout(function() { alert.style.transition = "none"; }, 200);
     windowEnable(alert);
   },
-  prompt: function(message, title="Prompt", window="Prompt", callback, showTextBox=true) {
+  prompt: function(message, title="Prompt", pwindow="Prompt", callback, showTextBox=true) {
     var prompt = document.getElementById("Prompt").cloneNode(true);
     prompt.id += Math.random().toString();
     prompt.innerHTML = prompt.innerHTML.replaceAll("%window%", prompt.id);
     prompt.style.display = null;
     prompt.style.opacity = 0;
     prompt.style.transform = "scale(0.75)";
-    if (!(window === "Prompt")) {
-      var windowObject = document.getElementById(window);
+    if (!(pwindow === "Prompt")) {
+      var windowObject = document.getElementById(pwindow);
       prompt.style.left = windowObject.style.left;
       prompt.style.top = windowObject.style.top;
     }
@@ -61,15 +60,14 @@ var os = {
     if (showTextBox) { document.getElementById(`${prompt.id}Input`).style = null; document.getElementById(`${prompt.id}Input`).placeholder = title; }
     document.getElementById(`${prompt.id}Message`).innerHTML = message;
     windowEnable(prompt);
-    window.requestAnimationFrame(function() { prompt.stype.opacity = null; prompt.style.transform = null; })
+    window.requestAnimationFrame(function() { prompt.style.opacity = null; prompt.style.transform = null; })
     setTimeout(function() { prompt.style.transition = "none"; }, 200);
   },
   runningPackages: {},
   startPackage: async function(package, flags) {
     loading.style.display = null;
     var packagee = Object.assign({}, package);
-    packagee.name += curUUID.toString();
-    curUUID++;
+    packagee.name += Math.random().toString();
     packagee.absoluteName = package.name;
     packagee.flags = flags;
     packagee.windows = [];
@@ -271,8 +269,7 @@ function windowEnable(elmnt, package) {
       left = elmnt.style.left;
       elmnt.style.width = width;
       elmnt.style.height = height;
-      elmnt.style.transition += ", top 0.2s, left 0.2s";
-      console.log(elmnt.style.transition)
+      elmnt.style.transition = "width 0.2s, height 0.2s, top 0.2s, left 0.2s";
       $(elmnt).draggable("disable");
       $(elmnt).resizable("disable");
       window.requestAnimationFrame(function() {
@@ -285,6 +282,7 @@ function windowEnable(elmnt, package) {
     } else {
       $(elmnt).draggable("enable");
       $(elmnt).resizable("enable");
+      elmnt.style.transition = "width 0.2s, height 0.2s, top 0.2s, left 0.2s";
       window.requestAnimationFrame(function() {
         maximized = false;
         elmnt.style.width = width;
@@ -292,6 +290,7 @@ function windowEnable(elmnt, package) {
         elmnt.style.top = top;
         elmnt.style.left = left;
       });
+      setTimeout(function() { elmnt.style.transition = null; }, 200);
     }
   }
   if (maximizer) { maximizer.addEventListener("click", maximize); document.getElementById(elmnt.id + "TitleBar").addEventListener("dblclick", maximize); }
