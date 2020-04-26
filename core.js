@@ -61,7 +61,7 @@ var os = {
     if (showTextBox) { document.getElementById(`${prompt.id}Input`).style = null; document.getElementById(`${prompt.id}Input`).placeholder = title; }
     document.getElementById(`${prompt.id}Message`).innerHTML = message;
     windowEnable(prompt);
-    setTimeout(function() { prompt.style.opacity = null; prompt.style.transform = null; }, 5);
+    window.requestAnimationFrame(function() { prompt.stype.opacity = null; prompt.style.transform = null; })
     setTimeout(function() { prompt.style.transition = "none"; }, 200);
   },
   runningPackages: {},
@@ -104,7 +104,7 @@ var os = {
       window.style = "opacity:0;transform:scale(0.85);";
       document.body.appendChild(window);
       if (menubarClick) menubarSystem.click();
-      setTimeout(function() { window.style = null; }, 5);
+      window.requestAnimationFrame(function() { window.style = null; });
       setTimeout(function() { Object.values(os.runningPackages).forEach(package => { if (package.windows[0]) package.windows.forEach(window => window.style.zIndex = 1); }); window.style.transition = "none"; window.style.zIndex = 2; }, 200)
       if (options.resizable === true) window.resizable = true;
       windowEnable(window, packagee);
@@ -196,12 +196,12 @@ menubarSystem.addEventListener("click", function() {
   } else {
     menubarClick = true;
     apps.style.display = null;
-    setTimeout(function() {
+    window.requestAnimationFrame(function() {
       apps.style.transform = "translateY(-55px)";
       apps.style.opacity = 1;
       document.getElementById("appSearch").value = null;
       document.getElementById("appSearch").focus();
-    }, 1);
+    });
   }
 });
 
@@ -225,9 +225,9 @@ document.addEventListener("contextmenu", function(e) {
   osContextMenu.style.display = null;
   osContextMenu.style.top = (e.clientY - 20) + "px";
   osContextMenu.style.left = e.clientX + "px";
-  setTimeout(function() {
+  window.requestAnimationFrame(function() {
     osContextMenu.style.top = e.clientY + "px";
-  }, 1)
+  });
 }, false);
 document.addEventListener("mouseup", function(e) { if (e.button === 0) osContextMenu.style = "display:none;" })
 
