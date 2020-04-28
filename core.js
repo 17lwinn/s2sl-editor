@@ -295,27 +295,7 @@ function windowEnable(elmnt, package) {
   }
   if (maximizer) { maximizer.addEventListener("click", maximize); document.getElementById(elmnt.id + "TitleBar").addEventListener("dblclick", maximize); }
   if (minimizer) minimizer.addEventListener("click", minimize);
-  //$(elmnt).draggable({ handle: document.getElementById(elmnt.id + "TitleBar") });
-  var pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
-  document.getElementById(elmnt.id + "TitleBar").onmousedown = function(e) {
-    if (maximized == false) {
-      e = e || window.event;
-      pos3 = e.clientX;
-      pos4 = e.clientY;
-      document.onmouseup = function() {document.onmouseup = null; document.onmousemove = null;};
-      document.onmousemove = function(e) {
-        e = e || window.event;
-        pos1 = pos3 - e.clientX;
-        pos2 = pos4 - e.clientY;
-        pos3 = e.clientX;
-        pos4 = e.clientY;
-        e.preventDefault();
-        elmnt.style.transform = `translate(${elmnt.offsetLeft - pos1}px, ${elmnt.offsetTop - pos2}px)`;
-        //elmnt.style.top = (elmnt.offsetTop - pos2) + "px";
-        //elmnt.style.left = (elmnt.offsetLeft - pos1) + "px";
-      }
-    }
-  }
+  $(elmnt).draggable({ handle: document.getElementById(elmnt.id + "TitleBar") });
   if (elmnt.resizable) $(elmnt).resizable({ handles: "all" });
   document.getElementById(elmnt.id + "TitleBar").addEventListener("mousedown", function() {
     Object.values(os.runningPackages).forEach(package => { if (package.windows[0]) package.windows.forEach(window => window.style.zIndex = 1); });
