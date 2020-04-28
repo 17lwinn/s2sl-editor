@@ -3,7 +3,7 @@ body {
   background-size: cover;
   margin: 0px;
 }
-*:not(h1):not(pre) { box-sizing: border-box; font-display: swap; font-family: "open sans", sans-serif; font-size: 14px; }
+*:not(h1):not(pre) { box-sizing: border-box; font-family: "open sans", sans-serif; font-size: 14px; }
 
 a { text-decoration: none; }
 a:hover { text-decoration: underline; }
