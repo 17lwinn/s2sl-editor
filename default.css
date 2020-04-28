@@ -118,12 +118,8 @@ h1 { margin-top: 10px; margin-bottom:10px; }
   width: 0.95rem;
 }
 
-input, button, textarea, select, option {
-  outline: none;
-}
-button[disabled], input[disabled], textarea[disabled], select[disabled] {
-  cursor: not-allowed;
-}
+input, button, textarea, select, option { outline: none; }
+button[disabled], input[disabled], textarea[disabled], select[disabled] { cursor: not-allowed; }
 .chboxContainer {
   display: block;
   position: relative;
