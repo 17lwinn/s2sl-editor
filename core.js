@@ -330,6 +330,12 @@ window.onload = async function() {
   })
   window.requestAnimationFrame(function() {
     document.getElementById("startup").style = "transition:0.3s;opacity:0;width:100%;height:100%;position:fixed;";
-    setTimeout(function() { document.body.removeChild(document.getElementById("startup")); }, 300)
+    setTimeout(function() { document.getElementById("startup").remove(); }, 300)
   });
+  
+  /*document.getElementById("applications").remove(); // for snorp's use only - use dis wen is updating to 5.0 and wen snorp has motivation
+  document.getElementById("dock").remove();
+  document.getElementById("osContextMenu").remove();
+  document.getElementById("%window%Close").disabled = true;
+  return os.alert("<strong>0x01</strong> - Server is unavailable or is handling too many requests.<br><b>You shouldn't see this, contact Snorp.</b>", "");*/
 }
