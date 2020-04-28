@@ -7,8 +7,10 @@ const mime = require("mime/lite");
 const bodyParser = require("body-parser");
 const compression = require("compression");
 const rimraf = require("rimraf");
+const minify = require("express-minify");
 
 app.use(compression());
+app.use(minify());
 app.use(express.static(path.join(__dirname, "../")));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());

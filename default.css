@@ -89,7 +89,7 @@ img {
   position: fixed;
   box-shadow: 0px 0px 32px rgba(0,0,0,0.5);
   z-index: 1;
-  transition: transform 0.2s, opacity 0.2s, width 0.2s, height 0.2s;
+  transition: transform 0.2s, opacity 0.2s;
   border-radius: 7px;
 }
 .windowTitleBar {
