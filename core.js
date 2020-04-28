@@ -194,11 +194,11 @@ menubarSystem.addEventListener("click", function() {
   } else {
     menubarClick = true;
     apps.style.display = null;
+    document.getElementById("appSearch").value = null;
+    document.getElementById("appSearch").focus();
     window.requestAnimationFrame(function() {
       apps.style.transform = "translateY(-55px)";
       apps.style.opacity = 1;
-      document.getElementById("appSearch").value = null;
-      document.getElementById("appSearch").focus();
     });
   }
 });
