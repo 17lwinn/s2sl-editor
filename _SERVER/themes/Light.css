@@ -27,7 +27,7 @@ a { color: #480b80; }
 .windowTitleBar { color: black; }
 .window {
   background-color: rgba(255,255,255,0.6);
-  backdrop-filter: blur(20px);
+  backdrop-filter: blur(25px);
 }
 .windowBody {
   background-color: rgb(245,245,245);
@@ -138,7 +138,7 @@ button:active:after, .checkmark:not(.notAllowed):active:after {
 .blur {
   color: black;
   background-color: rgba(255,255,255,0.6);
-  backdrop-filter: blur(30px);
+  backdrop-filter: blur(25px);
 }
 
 .window .blur { background: transparent; backdrop-filter: none; }
