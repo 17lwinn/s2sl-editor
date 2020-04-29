@@ -1,0 +1,15 @@
+{
+  "name": "auroraOS",
+  "description": "auroraOS. An OS in your web browser.",
+  "icons": [
+    {
+      "src": "logo.webp",
+      "type": "image/webp",
+      "sizes": "150x150"
+    }
+  ],
+  "start_url": "/",
+  "background_color": "#ffffff",
+  "display": "fullscreen",
+  "scope": "/"
+}
