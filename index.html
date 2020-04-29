@@ -1,6 +1,5 @@
 <!DOCTYPE html>
-<html>
-
+<html lang="en">
 <head>
   <title>auroraOS</title>
   <link rel="icon" type="image/webp" href="logo.webp" />
@@ -15,6 +14,7 @@
   <meta name="robots" content="nofollow,noarchive"/>
   <meta name="description" content="auroraOS demo. An open-source OS in your web browser with a fast window manager, beautiful GUI, and more."/>
   <meta name="title" content="auroraOS Demo"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   
   <meta property="og:title" content="auroraOS"/>
   <meta property="og:description" content="auroraOS demo. An open-source OS in your web browser with a fast window manager, beautiful GUI, and more."/>
@@ -37,7 +37,7 @@
     <div onclick="os.startPackage(os.packages.find(e => e.name === 'Settings'))" class="contextMenuSelection">Settings</div>
   </div>
   <div id="dock" class="dock blur">
-    <div id="systemButton" class="menubarButton animated flip delay-1s"><img src="logo.webp" style="border-radius:0px;transform:scale(1);margin:-2px;height:30px;width:30px;padding-top:0px;padding:-8px;"></div>
+    <div id="systemButton" class="menubarButton animated flip delay-1s"><img alt="Start" src="logo.webp" style="border-radius:0px;transform:scale(1);margin:-2px;height:30px;width:30px;padding-top:0px;padding:-8px;"></div>
     <container style="margin-left:35px;" id="dockDisplay"></container>
     <div id="menubarClock" style="text-align:right;margin:-4px;" class="menubarObject"></div>
     <img id="menubarLoading" src="loading.webp" class="menubarObject" style="display:none;position:fixed;bottom:8px;right:85px;transform:scale(1);height:40px;width:47px;margin:0px;">
