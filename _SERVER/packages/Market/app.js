@@ -50,6 +50,13 @@ async function view(app) {
   document.getElementById(`${package.name}info`).style.display = null;
   document.getElementById(`${package.name}ViewAll`).style.borderBottom = null;
   document.getElementById(`${package.name}ViewInstalled`).style.borderBottom = null;
+  document.getElementById(`${package.name}infoinstall`).onclick = async function() {
+    var raw = await fetch("https://aurora-market.glitch.me/install/" + app.name);
+    var data = await raw.json();
+    data.forEach(file => {
+      
+    })
+  }
   loading.style.display = "none";
 }
   
