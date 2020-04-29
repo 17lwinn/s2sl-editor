@@ -1,7 +1,6 @@
 ;(async function(){
 var package = os.runningPackages[document.currentScript.id];
 var mainWindowRaw = await package.resource("main.html");
-var window = package.createWindow(atob(mainWindowRaw), { resizable: true });
 
 var bodyContextMenu = document.createElement("div");
 bodyContextMenu.id = `${package.name}ContextMenu`;
@@ -11,6 +10,8 @@ bodyContextMenu.innerHTML = `<div id="${package.name}Folder" class="contextMenuS
 document.body.appendChild(bodyContextMenu);
 
 package.close = function() { document.body.removeChild(bodyContextMenu); };
+
+var window = package.createWindow(atob(mainWindowRaw), { resizable: true });
 
 window.body.addEventListener("contextmenu", function(e) {
   if (e.defaultPrevented) return;
@@ -51,7 +52,6 @@ var readDirectory = async function(path) {
     // START FILE ACTIONS
     if (item.type === null) item.type = "file";
     if (item.type === "directory") html.onclick = function() { readDirectory(item.path); }; else html.onclick = async function() { os.startPackage(os.packages.find(e => e.name === "Notepad"), await os.filesystem.readFile(item.path)); };
-    if (item.name.includes(".exec")) html.onclick = async function() { os.startPackage(os.packages.find(e => e.name === "Terminal"), atob(await os.filesystem.readFile(item.path))); };
     if (["application/javascript", "application/json", "text/css"].includes(item.type)) html.onclick = async function() { os.startPackage(os.packages.find(e => e.name === "Ace"), {file: await os.filesystem.readFile(item.path), type: item.type}); };
     if (item.type === "text/html") html.onclick = async function() { os.startPackage(os.packages.find(e => e.name === "HTML Viewer"), await os.filesystem.readFile(item.path)); };
     // END FILE ACTIONS
