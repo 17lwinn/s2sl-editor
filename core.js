@@ -32,8 +32,8 @@ var os = {
       alert.style.top = windowObject.style.top;
     }
     alert.style.zIndex = 200;
-    if (callback) document.getElementById(`${alert.id}Close`).onmouseup = function() { callback(); };
     document.body.appendChild(alert);
+    if (callback) document.getElementById(`${alert.id}Close`).onmouseup = function() { callback(); };
     document.getElementById(`${alert.id}TitleBar`).innerHTML = title;
     document.getElementById(`${alert.id}Title`).innerHTML = title;
     document.getElementById(`${alert.id}Message`).innerHTML = message;
