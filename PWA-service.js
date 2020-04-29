@@ -1,14 +1,19 @@
-self.addEventListener('install', (event) => {
-  console.log('👷', 'install', event);
-  self.skipWaiting();
+self.addEventListener("instal", (event) => {
+  event.waitUntil(
+    caches.open("v1").then((cache) => {
+      return cache.addAll([
+        "logo.webp",
+        "PWA/noInternet.html"
+      ]);
+    })
+  );
 });
 
-self.addEventListener('activate', (event) => {
+self.addEventListener("activate", (event) => {
   console.log('👷', 'activate', event);
   return self.clients.claim();
 });
 
 self.addEventListener('fetch', function(event) {
-  // console.log('👷', 'fetch', event);
   event.respondWith(fetch(event.request));
 });
