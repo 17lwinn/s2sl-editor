@@ -311,23 +311,26 @@ function windowEnable(elmnt, package) {
   });
   
   document.getElementById(elmnt.id + "TitleBar").addEventListener("touchstart", function(e) {
-    pos3 = e.clientX;
-    pos4 = e.clientY;
+    e.preventDefault();
+    e = e.touches[0];
+    pos3 = e.screenX;
+    pos4 = e.screenY;
     Object.values(os.runningPackages).forEach(package => { if (package.windows[0]) package.windows.forEach(window => window.style.zIndex = 1); });
     elmnt.style.zIndex = 2;
-    document.touchend = function() {document.ontouchend = null; document.ontouchmove = null;};
-    document.ontouchmove = function(e) {
-      e.preventDefault();
-      pos1 = pos3 - e.clientX;
-      pos2 = pos4 - e.clientY;
-      pos3 = e.clientX;
-      pos4 = e.clientY;
+    function move(e) {
+      e = e.touches[0];
+      pos1 = pos3 - e.screenX;
+      pos2 = pos4 - e.screenY;
+      pos3 = e.screenX;
+      pos4 = e.screenY;
       elmnt.style.top = (elmnt.offsetTop - pos2) + "px";
       elmnt.style.left = (elmnt.offsetLeft - pos1) + "px";
     }
-  }, {passive: true});
+    document.ontouchend = function() {document.ontouchend = null; document.removeEventListener("touchmove", move)};
+    document.addEventListener("touchmove", move, {passive: true});
+  });
   
-  $(elmnt).draggable({ handle: document.getElementById(elmnt.id + "TitleBar") });
+  //$(elmnt).draggable({ handle: document.getElementById(elmnt.id + "TitleBar") });
   if (elmnt.resizable) $(elmnt).resizable({ handles: "all" });
   document.getElementById(elmnt.id + "TitleBar").addEventListener("mousedown", function() {
     Object.values(os.runningPackages).forEach(package => { if (package.windows[0]) package.windows.forEach(window => window.style.zIndex = 1); });
