@@ -193,7 +193,7 @@ menubarSystem.addEventListener("click", function() {
     menubarClick = true;
     apps.style.display = null;
     document.getElementById("appSearch").value = null;
-    document.getElementById("appSearch").focus();
+    if (typeof window.orientation == "undefined") document.getElementById("appSearch").focus();
     window.requestAnimationFrame(function() {
       apps.style.transform = "translateY(-55px)";
       apps.style.opacity = 1;
@@ -327,7 +327,7 @@ function windowEnable(elmnt, package) {
         elmnt.style.left = (elmnt.offsetLeft - pos1) + "px";
       }
       document.ontouchend = function() {document.ontouchend = null; document.removeEventListener("touchmove", move)};
-      document.addEventListener("touchmove", move);
+      document.addEventListener("touchmove", move, {passive: false});
     }
   }, {passive: true});
   
