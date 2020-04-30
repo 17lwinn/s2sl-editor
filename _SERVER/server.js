@@ -15,10 +15,6 @@ app.use(express.static(path.join(__dirname, "../")));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
-app.use(function(req, res) {
-  if (!req.secure) res.redirect("https://" + req.headers.host + req.url);
-});
-
 // START OS API
 
 app.get("/packages", async function(req, res) {
