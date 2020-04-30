@@ -1,8 +1,8 @@
 self.addEventListener("install", function(event) {
   console.log("update " + Math.random().toString());
   event.waitUntil(
-    caches.open("v2").then((cache) => {
-      return cache.addAll(["logo.webp", "PWA/noInternet.html", "https://fonts.googleapis.com/css?family=Open+Sans", "jquery.js", "default.css", "loading.webp", "index.html", ""]);
+    caches.open("v1").then((cache) => {
+      return cache.addAll(["PWA/noInternet.html", "index.html", "default.css", "logo.webp", "wallpaper.webp", "loading.webp", "jquery.js", "core.js"]);
     })
   );
 });
@@ -11,7 +11,7 @@ self.addEventListener("activate", (event) => {
   event.waitUntil(
     caches.keys().then((keyList) => {
       return Promise.all(keyList.map((key) => {
-        if (["v2"].indexOf(key) === -1) {
+        if (["v1"].indexOf(key) === -1) {
           return caches.delete(key);
         }
       }));
