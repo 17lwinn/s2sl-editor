@@ -68,7 +68,7 @@ app.post("/file/write/:type/:filePath", async function(req, res) {
         fs.mkdir(`${__dirname}/${req.params.filePath}`);
     } else if (req.params.type === "file") {
         const file = Buffer.from(req.body.data, "base64").toString("ascii");
-        fs.writeFile(`${__dirname}/${req.params.filePath}`, file, "ascii")
+        fs.writeFile(`${__dirname}/${req.params.filePath}`, file, "ascii", function(){});
     }
 });
 app.post("/file/rm/:type/:filePath", async function(req, res) {
