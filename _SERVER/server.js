@@ -15,6 +15,10 @@ app.use(express.static(path.join(__dirname, "../")));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
+app.use(function(req, res) {
+  if (!req.secure) res.redirect("https://" + req.headers.host + req.url);
+});
+
 // START OS API
 
 app.get("/packages", async function(req, res) {
@@ -57,7 +61,6 @@ app.get("/file/read/:type/:filePath", async function(req, res) {
     }
 });
 app.get("/file/readStatic/:filePath", async function(req, res) {
-  req.params.filePath = req.params.filePath
   fs.readFile(`${__dirname}/${req.params.filePath}`, (err, data) => {
     res.writeHead(200);
     res.end(data);

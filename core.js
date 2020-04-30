@@ -1,5 +1,3 @@
-if (location.protocol !== "https:") location.href = "https:" + window.location.href.substring(window.location.protocol.length);
-
 var menubarSystem = document.getElementById("systemButton");
 var apps = document.getElementById("applications");
 var menubarClick = false;
