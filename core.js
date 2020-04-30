@@ -26,8 +26,8 @@ var os = {
     alert.style.display = null;
     if (pwindow !== "Alert") {
       var windowObject = document.getElementById(pwindow);
-      alert.style.left = windowObject.style.left;
-      alert.style.top = windowObject.style.top;
+      alert.style.left = mouseX + "px";//windowObject.style.left;
+      alert.style.top = mouseY + "px";//windowObject.style.top;
     }
     alert.style.zIndex = 200;
     document.body.appendChild(alert);
@@ -36,7 +36,6 @@ var os = {
     document.getElementById(`${alert.id}Title`).innerHTML = title;
     document.getElementById(`${alert.id}Message`).innerHTML = message;
     window.requestAnimationFrame(function() { alert.style.opacity = 1; alert.style.transform = "scale(1)"; });
-    setTimeout(function() { alert.style.transition = "none"; }, 200);
     windowEnable(alert);
   },
   prompt: function(message, title="Prompt", pwindow="Prompt", callback, showTextBox=true) {
@@ -48,8 +47,8 @@ var os = {
     prompt.style.transform = "scale(0.75)";
     if (!(pwindow === "Prompt")) {
       var windowObject = document.getElementById(pwindow);
-      prompt.style.left = windowObject.style.left;
-      prompt.style.top = windowObject.style.top;
+      prompt.style.left = mouseX + "px";//windowObject.style.left;
+      prompt.style.top = mouseY + "px";//windowObject.style.top;
     }
     document.body.appendChild(prompt);
     document.getElementById(`${prompt.id}OK`).onclick = function() { callback(document.getElementById(`${prompt.id}Input`).value); prompt.close(); };
@@ -59,7 +58,6 @@ var os = {
     document.getElementById(`${prompt.id}Message`).innerHTML = message;
     windowEnable(prompt);
     window.requestAnimationFrame(function() { prompt.style.opacity = null; prompt.style.transform = null; })
-    setTimeout(function() { prompt.style.transition = "none"; }, 200);
   },
   runningPackages: {},
   startPackage: async function(package, flags) {
@@ -230,9 +228,9 @@ document.addEventListener("mouseup", function(e) { if (e.button === 0) osContext
 function windowEnable(elmnt, package) {
   var maximizer, maximized, width, height, top, left, pos1, pos2, pos3, pos4;
   var minimizer = document.getElementById(elmnt.id + "Minimize");
+  maximized = false;
   if (elmnt.resizable) {
     maximizer = document.getElementById(elmnt.id + "Maximize");
-    maximized = false;
     elmnt.maximize = maximize;
   }
   elmnt.minimize = minimize;
