@@ -317,6 +317,7 @@ function windowEnable(elmnt, package) {
       pos3 = e.screenX;
       pos4 = e.screenY;
       function move(e) {
+        e.preventDefault();
         e = e.touches[0];
         pos1 = pos3 - e.screenX;
         pos2 = pos4 - e.screenY;
@@ -326,7 +327,7 @@ function windowEnable(elmnt, package) {
         elmnt.style.left = (elmnt.offsetLeft - pos1) + "px";
       }
       document.ontouchend = function() {document.ontouchend = null; document.removeEventListener("touchmove", move)};
-      document.addEventListener("touchmove", move, {passive: true});
+      document.addEventListener("touchmove", move);
     }
   }, {passive: true});
   
