@@ -1,7 +1,7 @@
 self.addEventListener("install", function(event) {
   event.waitUntil(
     caches.open("v1").then((cache) => {
-      return cache.addAll(["logo.webp", "noInternet.html"]);
+      return cache.addAll(["logo.webp", "PWA/noInternet.html"]);
     })
   );
 });

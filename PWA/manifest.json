@@ -4,7 +4,7 @@
   "description": "auroraOS. An OS in your web browser.",
   "icons": [
     {
-      "src": "../logo.webp",
+      "src": "/logo.webp",
       "type": "image/webp",
       "sizes": "150x150"
     },

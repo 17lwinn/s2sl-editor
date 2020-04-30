@@ -317,7 +317,7 @@ if (window.localStorage.getItem("bgURL")) {
 };
 //END SETTINGS HOOK
 
-if ("serviceWorker" in navigator) navigator.serviceWorker.register("PWA-service.js");
+if ("serviceWorker" in navigator) navigator.serviceWorker.register("/PWA-service.js");
 
 window.onload = async function() {
   var packages = await fetch("/packages");
