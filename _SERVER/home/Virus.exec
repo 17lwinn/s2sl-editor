@@ -1,0 +1,1 @@
+os.startPackage(os.packages.find(package => package.name === "dolphin virus"))

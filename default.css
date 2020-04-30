@@ -20,6 +20,7 @@ a:hover { text-decoration: underline; }
   position: fixed;
   z-index: 500;
   transition: opacity 0.3s, transform 0.3s;
+  pointer-events: none;
 }
 
 img {
