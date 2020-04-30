@@ -5,7 +5,7 @@ body {
   background-size: cover;
   margin: 0px;
 }
-*:not(h1):not(pre) { box-sizing: border-box; font-family: -apple-system,BlinkMacSystemFont,segoe-ui,"Open Sans",system-ui; font-size: 15px; }
+*:not(h1):not(pre) { box-sizing: border-box; font-family: -apple-system,segoe-ui,"Open Sans",system-ui; font-size: 15px; }
 
 a { text-decoration: none; }
 a:hover { text-decoration: underline; }

@@ -135,10 +135,12 @@ button:active:after, .checkmark:not(.notAllowed):active:after {
   transition: 0s;
 }
 
-.blur {
-  color: black;
-  background-color: rgba(255,255,255,0.6);
-  backdrop-filter: blur(25px);
+@supports (backdrop-filter: blur(25px)) {
+  .blur {
+    color: black;
+    background-color: rgba(255,255,255,0.6);
+    backdrop-filter: blur(25px);
+  }
+  
+  .window .blur { background: transparent; backdrop-filter: none; }
 }
-
-.window .blur { background: transparent; backdrop-filter: none; }
