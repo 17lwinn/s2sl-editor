@@ -323,8 +323,8 @@ function windowEnable(elmnt, package) {
         pos2 = pos4 - e.screenY;
         pos3 = e.screenX;
         pos4 = e.screenY;
-        elmnt.style.top = (elmnt.offsetTop - (pos2/0.8)) + "px";
-        elmnt.style.left = (elmnt.offsetLeft - (pos1/0.8)) + "px";
+        elmnt.style.top = (elmnt.offsetTop - (pos2/0.9)) + "px";
+        elmnt.style.left = (elmnt.offsetLeft - (pos1/0.9)) + "px";
       }
       document.ontouchend = function() {document.ontouchend = null; document.removeEventListener("touchmove", move)};
       document.addEventListener("touchmove", move, {passive: false});
