@@ -101,7 +101,7 @@ var os = {
       document.body.appendChild(pwindow);
       if (menubarClick) menubarSystem.click();
       window.requestAnimationFrame(function() { pwindow.style = null; });
-      setTimeout(function() { Object.values(os.runningPackages).forEach(package => { if (package.windows[0]) package.windows.forEach(window => window.style.zIndex = 1); }); window.style.zIndex = 2; }, 200)
+      setTimeout(function() { Object.values(os.runningPackages).forEach(package => { if (package.windows[0]) package.windows.forEach(pwindow => pwindow.style.zIndex = 1); }); pwindow.style.zIndex = 2; }, 200)
       if (options.resizable === true) pwindow.resizable = true;
       windowEnable(pwindow, packagee);
       pwindow.edit = function(body) { document.getElementById(`${pwindow.id}Body`).outerHTML = body.replaceAll(/%package%/, packagee.name).replaceAll(/%window%/, pwindow.id); };
@@ -228,7 +228,7 @@ document.addEventListener("contextmenu", function(e) {
 document.addEventListener("mouseup", function(e) { if (e.button === 0) osContextMenu.style = "display:none;" })
 
 function windowEnable(elmnt, package) {
-  var maximizer, maximized, width, height, top, left;
+  var maximizer, maximized, width, height, top, left, pos1, pos2, pos3, pos4;
   var minimizer = document.getElementById(elmnt.id + "Minimize");
   if (elmnt.resizable) {
     maximizer = document.getElementById(elmnt.id + "Maximize");
@@ -268,7 +268,6 @@ function windowEnable(elmnt, package) {
       elmnt.style.width = width;
       elmnt.style.height = height;
       elmnt.style.transition = "width 0.2s, height 0.2s, top 0.2s, left 0.2s";
-      $(elmnt).draggable("disable");
       $(elmnt).resizable("disable");
       window.requestAnimationFrame(function() {
         elmnt.style.top = "0";
@@ -278,11 +277,10 @@ function windowEnable(elmnt, package) {
       });
       setTimeout(function() { elmnt.style.transition = null; }, 200);
     } else {
-      $(elmnt).draggable("enable");
+      maximized = false;
       $(elmnt).resizable("enable");
       elmnt.style.transition = "width 0.2s, height 0.2s, top 0.2s, left 0.2s";
       window.requestAnimationFrame(function() {
-        maximized = false;
         elmnt.style.width = width;
         elmnt.style.height = height;
         elmnt.style.top = top;
@@ -295,42 +293,43 @@ function windowEnable(elmnt, package) {
   if (minimizer) minimizer.addEventListener("click", minimize);
   
   document.getElementById(elmnt.id + "TitleBar").addEventListener("mousedown", function(e) {
-    pos3 = e.clientX;
-    pos4 = e.clientY;
     Object.values(os.runningPackages).forEach(package => { if (package.windows[0]) package.windows.forEach(window => window.style.zIndex = 1); });
     elmnt.style.zIndex = 2;
-    document.onmouseup = function() {document.onmouseup = null; document.onmousemove = null;};
-    document.onmousemove = function(e) {
-      pos1 = pos3 - e.clientX;
-      pos2 = pos4 - e.clientY;
+    if (maximized == false) {
       pos3 = e.clientX;
       pos4 = e.clientY;
-      elmnt.style.top = (elmnt.offsetTop - pos2) + "px";
-      elmnt.style.left = (elmnt.offsetLeft - pos1) + "px";
+      document.onmouseup = function() {document.onmouseup = null; document.onmousemove = null;};
+      document.onmousemove = function(e) {
+        pos1 = pos3 - e.clientX;
+        pos2 = pos4 - e.clientY;
+        pos3 = e.clientX;
+        pos4 = e.clientY;
+        elmnt.style.top = (elmnt.offsetTop - pos2) + "px";
+        elmnt.style.left = (elmnt.offsetLeft - pos1) + "px";
+      }
     }
   });
-  
   document.getElementById(elmnt.id + "TitleBar").addEventListener("touchstart", function(e) {
-    e.preventDefault();
-    e = e.touches[0];
-    pos3 = e.screenX;
-    pos4 = e.screenY;
     Object.values(os.runningPackages).forEach(package => { if (package.windows[0]) package.windows.forEach(window => window.style.zIndex = 1); });
     elmnt.style.zIndex = 2;
-    function move(e) {
+    if (maximized == false) {
       e = e.touches[0];
-      pos1 = pos3 - e.screenX;
-      pos2 = pos4 - e.screenY;
       pos3 = e.screenX;
       pos4 = e.screenY;
-      elmnt.style.top = (elmnt.offsetTop - pos2) + "px";
-      elmnt.style.left = (elmnt.offsetLeft - pos1) + "px";
+      function move(e) {
+        e = e.touches[0];
+        pos1 = pos3 - e.screenX;
+        pos2 = pos4 - e.screenY;
+        pos3 = e.screenX;
+        pos4 = e.screenY;
+        elmnt.style.top = (elmnt.offsetTop - pos2) + "px";
+        elmnt.style.left = (elmnt.offsetLeft - pos1) + "px";
+      }
+      document.ontouchend = function() {document.ontouchend = null; document.removeEventListener("touchmove", move)};
+      document.addEventListener("touchmove", move, {passive: true});
     }
-    document.ontouchend = function() {document.ontouchend = null; document.removeEventListener("touchmove", move)};
-    document.addEventListener("touchmove", move, {passive: true});
-  });
+  }, {passive: true});
   
-  //$(elmnt).draggable({ handle: document.getElementById(elmnt.id + "TitleBar") });
   if (elmnt.resizable) $(elmnt).resizable({ handles: "all" });
   document.getElementById(elmnt.id + "TitleBar").addEventListener("mousedown", function() {
     Object.values(os.runningPackages).forEach(package => { if (package.windows[0]) package.windows.forEach(window => window.style.zIndex = 1); });
