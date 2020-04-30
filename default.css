@@ -1,9 +1,11 @@
+@font-face{font-family:"Open Sans";src:local("Open Sans Regular"),local("OpenSans-Regular"),url(https://fonts.gstatic.com/s/opensans/v17/mem8YaGs126MiZpBA-UFVZ0bf8pkAg.woff2) format("woff2")}
+
 body {
   background: url("wallpaper.webp") no-repeat center center fixed;
   background-size: cover;
   margin: 0px;
 }
-*:not(h1):not(pre) { box-sizing: border-box; font-family: segoe ui, "open sans", sans-serif; font-size: 15px; }
+*:not(h1):not(pre) { box-sizing: border-box; font-family: segoe ui, "Open Sans", sans-serif; font-size: 15px; }
 
 a { text-decoration: none; }
 a:hover { text-decoration: underline; }
