@@ -172,12 +172,14 @@ var os = {
   }
 };
 
-setInterval(function() {
-	var date = new Date();
+function clockUpdate() {
+  var date = new Date();
   var minute = date.getMinutes()
   if (minute < 10) minute = "0" + minute;
 	document.getElementById("menubarClock").innerHTML = clockDays[date.getDay()] + " " + clockMonths[date.getMonth()] + " " + date.getDate() + "<br>" + date.getHours() + ":" + minute;
-}, 2500);
+  setTimeout(clockUpdate, 2500);
+}
+clockUpdate();
 
 menubarSystem.addEventListener("click", function() {
   if (menubarClick) {
