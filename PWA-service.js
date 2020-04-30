@@ -1,5 +1,5 @@
 self.addEventListener("install", function(event) {
-  console.log("update " + Math.random().toString());
+  //console.log("Update " + Math.random().toString());
   event.waitUntil(
     caches.open("v1").then((cache) => {
       return cache.addAll([

@@ -12,5 +12,6 @@
   },
   "scripts": {
     "start": "node _SERVER/server.js"
-  }
+  },
+  "engines": { "node": "13.x" }
 }
