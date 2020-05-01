@@ -5,11 +5,13 @@ a { color: #480b80; }
 .fullscreen {
   background: lightgray;
   color: black;
+  border: 1px solid rgba(0,0,0,0.3);
 }
 
 .dock {
   background: lightgray;
   color: black;
+  border: 1px solid rgba(0,0,0,0.3);
 }
 
 .contextMenu {

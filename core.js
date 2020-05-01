@@ -195,7 +195,7 @@ menubarSystem.addEventListener("click", function() {
     document.getElementById("appSearch").value = null;
     if (typeof window.orientation == "undefined") document.getElementById("appSearch").focus();
     window.requestAnimationFrame(function() {
-      apps.style.transform = "translateY(-55px)";
+      apps.style.transform = "translateY(-52px)";
       apps.style.opacity = 1;
     });
   }
@@ -273,7 +273,7 @@ function windowEnable(elmnt, package) {
         elmnt.style.top = "0";
         elmnt.style.left = "0";
         elmnt.style.width = "100%";
-        elmnt.style.height = "calc(100vh - 55px)";
+        elmnt.style.height = "calc(100vh - 52px)";
       });
       setTimeout(function() { elmnt.style.transition = null; }, 200);
     } else {
