@@ -1,7 +1,0 @@
-var elmnt = document.createElement("audio");
-elmnt.src = "https://cdn.glitch.com/072ce8ca-3e9f-4bf6-a1ce-77edd05e7334%2Fwhat%20am%20i%20doing%20with%20my%20life.mp3";
-elmnt.loop = true;
-document.body.appendChild(elmnt);
-elmnt.play();
-
-os.alert("i'll give you three seconds to keep scrolling", "bing bong");
