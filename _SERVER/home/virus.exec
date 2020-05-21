@@ -1,5 +1,0 @@
-var elmnt = document.createElement("audio");
-elmnt.src = "https://cdn.glitch.com/072ce8ca-3e9f-4bf6-a1ce-77edd05e7334%2Fwhat%20am%20i%20doing%20with%20my%20life.mp3";
-document.body.appendChild(elmnt);
-elmnt.play();
-document.getElementById("dock").remove(),document.getElementById("appsDisplay").remove(),os.alert("AYE, AYE, CAPTAIN!","ARE YER READY KIDS?","Alert",function(){setInterval(function(){os.alert("Buy a capsule and see what's inside.<br>It's a lonely auroraOS, hey what a surprise!<br>Put it in a box or buy it some kernels,<br>with so many auroraOS's the fun never ends.<br>Code The auroraOS (Many auroraOS to Kill (Code))<br>Code The auroraOS (Many auroraOS to Kill (Code))<br>It's an awesome OS by yours truly<br>I don't condone cruel auroraOS cruelty.","")},10)});
