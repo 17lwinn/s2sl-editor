@@ -360,9 +360,11 @@ window.onload = async function() {
   os.packages.forEach(async function(package, index) {
     if (package.startOnBoot) os.startPackage(package);
     if (package.isApp) {
-      document.getElementById("appsDisplay").innerHTML += `<div id="${package.name}Start"><img src="data:image/webp;base64,${package.icon}"><br>${package.name}</div>`;
-      await document.getElementById(`${package.name}Start`);
-      document.getElementById(`${package.name}Start`).onclick = function() { os.startPackage(package); };
+      const element = document.createElement("div");
+      element.id = package.name + "Start";
+      element.innerHTML = `<img src="data:image/webp;base64,${package.icon}"><br>${package.name}`;
+      element.onclick = function() { os.startPackage(package); };
+      document.getElementById("appsDisplay").appendChild(element);
     };
   })
   window.requestAnimationFrame(function() {
