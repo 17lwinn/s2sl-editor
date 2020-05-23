@@ -1,5 +1,6 @@
 ;(async function(){
-var package = os.runningPackages[document.currentScript.id];
+os.alert("Filesystem refused to connect.", "Fatal Error");
+var package = os.runningPackages[document.currentScript.id]; os.stopPackage(package); return;
 var mainWindowRaw = await package.resource("main.html");
 
 var bodyContextMenu = document.createElement("div");
