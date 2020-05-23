@@ -370,6 +370,8 @@ window.onload = async function() {
   window.requestAnimationFrame(function() {
     document.getElementById("startup").style = "transition:0.3s;opacity:0;width:100%;height:100%;position:fixed;";
     setTimeout(function() { document.getElementById("startup").remove(); }, 300)
+    
+    os.alert("<b>What's new?</b><br>We have a <a href='https://discord.gg/ZYKSYbm'>Discord server</a> now!<br>auroraOS 5.0 is coming out in the next week or two.<br>Filesystem is currently unavailable.", "");
   });
   
   /*document.getElementById("applications").remove(); // for snorp's use only - use dis wen is updating to 5.0 and wen snorp has motivation
