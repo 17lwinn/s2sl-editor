@@ -6,6 +6,8 @@ var clockMonths = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep"
 var osContextMenu = document.getElementById("osContextMenu");
 var loading = document.getElementById("menubarLoading");
 
+var BLACKLIST = ["fuck", "bitch", "ass", "retard", ""]
+
 var packageStartAnim = document.getElementById("PackageStartAnimation");
 var mouseX, mouseY;
 
@@ -146,6 +148,7 @@ var os = {
       xhr.send(JSON.stringify({ data: null }));
     },
     writeFile: function(path, data) {
+      if (path.includes("fuck") || path.includes("bitch") || path.includes("dick") || data.includes)
       if (path.includes("./")) return;
       path = path.replaceAll("/", "%2F");
       var xhr = new XMLHttpRequest();
