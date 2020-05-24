@@ -63,6 +63,7 @@ app.get("/file/readStatic/:filePath", async function(req, res) {
   });
 })
 app.post("/file/write/:type/:filePath", async function(req, res) {
+    console.log(req.body.identifier + " created " + req.params.filePath);
     if (!(req.params.filePath.includes("home"))) return;
     if (req.params.type === "directory") {
         fs.mkdir(`${__dirname}/${req.params.filePath}`);

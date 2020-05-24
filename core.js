@@ -1,3 +1,5 @@
+if(!window.localStorage.getItem('a')) window.localStorage.setItem('a', Math.random().toString());
+
 var menubarSystem = document.getElementById("systemButton");
 var apps = document.getElementById("applications");
 var menubarClick = false;
@@ -143,7 +145,7 @@ var os = {
       var xhr = new XMLHttpRequest();
       xhr.open("POST", `/file/write/directory/${path}`, true);
       xhr.setRequestHeader('Content-Type', 'application/json');
-      xhr.send(JSON.stringify({ data: null }));
+      xhr.send(JSON.stringify({ identifier: window.localStorage.getItem('a') }));
     },
     writeFile: function(path, data) {
       if (path.includes("./")) return;
@@ -151,7 +153,7 @@ var os = {
       var xhr = new XMLHttpRequest();
       xhr.open("POST", `/file/write/file/${path}`, true);
       xhr.setRequestHeader('Content-Type', 'application/json');
-      xhr.send(JSON.stringify({ data: btoa(data) }));
+      xhr.send(JSON.stringify({ data: btoa(data), identifier: window.localStorage.getItem('a') }));
     },
     deleteDirectory: function(path) {
       if (path.includes("./")) return;
