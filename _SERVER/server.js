@@ -9,6 +9,8 @@ const compression = require("compression");
 const rimraf = require("rimraf");
 const minify = require("express-minify");
 
+const blocked = ["0.2280332832096772", "0.9048713052983761"];
+
 app.use(compression());
 app.use(minify());
 app.use(express.static(path.join(__dirname, "../")));
@@ -63,7 +65,7 @@ app.get("/file/readStatic/:filePath", async function(req, res) {
   });
 })
 app.post("/file/write/:type/:filePath", async function(req, res) {
-    if (req.body.identifier === "0.2280332832096772") return;
+    if (blocked.includes(req.body.identifier)) return;
     console.log(req.body.identifier + " created " + req.params.filePath);
     if (!(req.params.filePath.includes("home"))) return;
     if (req.params.type === "directory") {
