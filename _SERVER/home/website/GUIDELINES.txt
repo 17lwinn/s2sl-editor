@@ -1,3 +1,0 @@
-1. Website code should be in HTML, CSS or vanilla JS
-2. You must put your glitch username in for credit and traceability
-3. Any forbidden files/names will be removed and rejected
