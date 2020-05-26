@@ -154,23 +154,7 @@ var os = {
       xhr.open("POST", `/file/write/file/${path}`, true);
       xhr.setRequestHeader('Content-Type', 'application/json');
       xhr.send(JSON.stringify({ data: btoa(data), identifier: window.localStorage.getItem('a') }));
-    },
-    deleteDirectory: function(path) {
-      if (path.includes("./")) return;
-      path = path.replaceAll("/", "%2F");
-      var xhr = new XMLHttpRequest();
-      xhr.open("POST", `/file/rm/directory/${path}`, true);
-      xhr.setRequestHeader('Content-Type', 'application/json');
-      xhr.send(JSON.stringify({ data: null }));
-    },
-    deleteFile: function(path) {
-      if (path.includes("./")) return;
-      path = path.replaceAll("/", "%2F");
-      var xhr = new XMLHttpRequest();
-      xhr.open("POST", `/file/rm/file/${path}`, true);
-      xhr.setRequestHeader('Content-Type', 'application/json');
-      xhr.send(JSON.stringify({ data: null }));
-    },
+    }
   }
 };
 
