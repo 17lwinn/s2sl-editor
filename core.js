@@ -28,8 +28,8 @@ var os = {
     alert.style.display = null;
     if (pwindow !== "Alert") {
       var windowObject = document.getElementById(pwindow);
-      alert.style.left = mouseX + "px";//windowObject.style.left;
-      alert.style.top = mouseY + "px";//windowObject.style.top;
+      alert.style.left = mouseX + "px";
+      alert.style.top = mouseY + "px";
     }
     alert.style.zIndex = 200;
     document.body.appendChild(alert);
@@ -49,8 +49,8 @@ var os = {
     prompt.style.transform = "scale(0.75)";
     if (!(pwindow === "Prompt")) {
       var windowObject = document.getElementById(pwindow);
-      prompt.style.left = mouseX + "px";//windowObject.style.left;
-      prompt.style.top = mouseY + "px";//windowObject.style.top;
+      prompt.style.left = mouseX + "px";
+      prompt.style.top = mouseY + "px";
     }
     document.body.appendChild(prompt);
     document.getElementById(`${prompt.id}OK`).onclick = function() { callback(document.getElementById(`${prompt.id}Input`).value); prompt.close(); };
