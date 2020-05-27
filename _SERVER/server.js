@@ -20,6 +20,8 @@ app.use(bodyParser.json());
 // START OS API
 
 app.get("/packages", async function(req, res) {
+    //console.dir(req.ip)
+  // ^ log ip addresses to console
     const array = [];
     const packages = fs.readdirSync(`${__dirname}/packages`, { withFileTypes: true }).filter(dir => dir.isDirectory());
     let canAccess;
