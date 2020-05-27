@@ -10,6 +10,7 @@ const rimraf = require("rimraf");
 const minify = require("express-minify");
 const xssFilter = require('x-xss-protection')
 const blocked = ["0.2280332832096772", "0.9048713052983761"];
+var cors = require('cors');
 
 app.use(compression());
 app.use(minify());
@@ -17,6 +18,7 @@ app.use(express.static(path.join(__dirname, "../")));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(xssFilter());
+app.use(cors());
 // START OS API
 
 app.get("/packages", async function(req, res) {
@@ -84,6 +86,11 @@ app.post("/file/rm/:type/:filePath", async function(req, res) {
     } else if (req.params.type === "file") {
         fs.unlink(`${__dirname}/${req.params.filePath}`);
     }
+});
+app.use((req, res, next) => {
+    res.append('X-Frame-Options', 'deny');
+    res.append('Access-Control-Allow-Origin', '*')
+    next();
 });
 
 app.listen(port, () => console.log(`auroraOS started on port ${port}`));
