@@ -1,7 +1,7 @@
 @font-face{font-family:"Open Sans";src:local("Open Sans Regular"),local("OpenSans-Regular"),url(https://fonts.gstatic.com/s/opensans/v17/mem8YaGs126MiZpBA-UFVZ0bf8pkAg.woff2) format("woff2")}
 
 body {
-  background: url("wallpaper.webp") no-repeat center center fixed;
+  background: url("https://www.galwaydaily.com/wp-content/uploads/2020/03/200309-D-HN545-003.jpg") no-repeat center center fixed;
   background-size: cover;
   margin: 0px;
   overscroll-behavior: none;

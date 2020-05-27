@@ -1,0 +1,5 @@
+{
+    "name": "welcome",
+    "startOnBoot": true,
+    "isApp": false
+}

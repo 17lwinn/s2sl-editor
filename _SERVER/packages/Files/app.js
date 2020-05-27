@@ -50,7 +50,6 @@ var readDirectory = async function(path) {
     html.style = "width:100%;text-align:left;margin:0;padding:0;padding-left:10px;padding-right:10px;";
     if (item.path.substring(0, 2) === "//") item.path = "" + item.path.substring(2);
     // START FILE ACTIONS
-    if (item.type === null) item.type = "file";
     if (item.type === "directory") html.onclick = function() { readDirectory(item.path); }; else html.onclick = async function() { os.startPackage(os.packages.find(e => e.name === "Notepad"), await os.filesystem.readFile(item.path)); };
     if (item.name.includes(".exec")) html.onclick = async function() { eval(atob(await os.filesystem.readFile(item.path))); };
     if (["application/javascript", "application/json", "text/css"].includes(item.type)) html.onclick = async function() { os.startPackage(os.packages.find(e => e.name === "Code Viewer"), {file: await os.filesystem.readFile(item.path), type: item.type}); };
