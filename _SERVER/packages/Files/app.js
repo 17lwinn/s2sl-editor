@@ -6,7 +6,7 @@ var bodyContextMenu = document.createElement("div");
 bodyContextMenu.id = `${package.name}ContextMenu`;
 bodyContextMenu.className = "contextMenu blur";
 bodyContextMenu.style = "display:none;";
-bodyContextMenu.innerHTML = `<div id="${package.name}Folder" class="contextMenuSelection">Create folder</div><div id="${package.name}File" class="contextMenuSelection">Create file</div>`;
+bodyContextMenu.innerHTML = `<div id="${package.name}Folder" class="contextMenuSelection"></div><div id="${package.name}File" class="contextMenuSelection">Create file</div>`;
 document.body.appendChild(bodyContextMenu);
 
 package.close = function() { document.body.removeChild(bodyContextMenu); };
