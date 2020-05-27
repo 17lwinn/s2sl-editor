@@ -8,7 +8,7 @@ const bodyParser = require("body-parser");
 const compression = require("compression");
 const rimraf = require("rimraf");
 const minify = require("express-minify");
-
+const xssFilter = require('x-xss-protection')
 const blocked = ["0.2280332832096772", "0.9048713052983761"];
 
 app.use(compression());
@@ -16,7 +16,7 @@ app.use(minify());
 app.use(express.static(path.join(__dirname, "../")));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
-
+app.use(xssFilter());
 // START OS API
 
 app.get("/packages", async function(req, res) {
