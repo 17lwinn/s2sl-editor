@@ -19,6 +19,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(xssFilter());
 app.use(cors());
+app.use(require('express-status-monitor')());
 // START OS API
 
 app.get("/packages", async function(req, res) {

@@ -1,0 +1,5 @@
+{
+    "name": "monitor",
+    "startOnBoot": false,
+    "isApp": false
+}
